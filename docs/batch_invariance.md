@@ -102,19 +102,18 @@ print(f"There are {len(results)} unique results")
 - 固定 tile / 固定 split 规则 + 统一 KV logical layout
 
 ### 从系统角度
+    - [sglang](https://github.com/sgl-project/sglang/issues/10278)
+    - [vllm](https://github.com/vllm-project/vllm/issues/27433)
 
-| Component / 模块 | 为什么会影响 deterministic / batch-invariant inference？| vLLM 现状  | SGLang 现状 |
-| ----- | ------- | --------- | --------- |
-| **RMSNorm / LayerNorm / mean / log_softmax 等 reduction op** | -  | 集成了 TML 的 `batch_invariant_ops`，整体：**dense+单卡：✅；MoE/TP：未完全覆盖**。  | 集成了 TML 的 `batch_invariant_ops`，整体：**dense+单卡：✅；MoE/TP：受限于后面通信问题**。 |
-| **Matmul / Linear GEMM**  | -  | batch-invariant 模式下使用 `mm_batch_invariant` / `matmul_persistent` 等，固定 tile 配置和 split-K 策略；结合 FlexAttention 的路径，保证 dense 模型在单卡上 matmul 是 batch-invariant 的。**单卡 dense：✅；多卡/部分量化 / MoE fused GEMM：未完全覆盖**。   | deterministic 模式下同样通过集成 `batch_invariant_ops` 替换 matmul，实现固定的 reduction 逻辑；在 Qwen3-8B TP=1 上通过 single/mixed/prefix 测试。对 MoE/TP 的 GEMM 还没有系统性 batch-invariant 保证。**dense+单卡：✅；MoE/TP：未完全覆盖**。|
-| **Self-Attention 核心（QKᵀ, softmax, AV）**  | - | Batch-invariant 模式强制使用 FlexAttention backend，并配合 batch-invariant kernel 实现固定 split-KV、统一 prefill/decode 路径。对 **dense, TP=1** 的 text-only 模型基本解决；对 **VLM / 多模态 attention** 官方有 issue 在补，尚未完全 batch-invariant。**文本 dense：✅；VLM/特殊 backend：未完全覆盖**。 | 针对 **FlashInfer / FlashAttention-3 / Triton** 三类 backend，分别实现 deterministic 版本：固定 split-KV size，prefill & decode 使用相同 kernel 配置，并让 chunked prefill 与 split-KV 对齐。Qwen3-8B TP=1 已验证通过。对 VLM / 部分 backend + 大 TP 仍有问题。**文本 dense：✅；多模态/大 TP：未完全覆盖**。 |
-| **Chunked Prefill（长 context 切分）**   | 长序列通常被切成多个 chunk 逐步送入 KV cache。若 chunk 的切分点根据当前 batch 负载动态调整，同一长序列在不同并发度下会被切成不同的段，每段参与 attention/reduction 的方式就不同，造成数值路径差异。  | **未优化**  | 重写了 chunked prefill 算法，使 **chunk 边界与 split-KV size 对齐**，并为每条序列固定切分 pattern，使引入更多 request 时不会改变该序列自身的 chunk 序列。Qwen3-8B TP=1 场景验证通过。**单卡 dense：✅；和 radix cache/大 TP 联动仍在演进：未完全覆盖**。 |
-| **KV Cache 布局 / Paged / Radix Cache**  | KV cache 在内存中的布局会决定 attention kernel 如何读取和分块。如果不同 batch 场景下 page/segment 合并、prefix 共享/重排方式不同，同一 token 在 kernel 中所参与的分块结构会不同，从而改变 reduction 顺序。 | vLLM 的 paged KV cache 是核心特性；batch-invariant 模式通过 FlexAttention + 固定 layout 的思路减少布局变化对数值的影响，但是： prefix-sharing 策略、compression、offload 等高级玩法在 batch invariance 模式下支持有限。**基础 paged KV + 单卡 dense OK；更激进的缓存/压缩：未完全覆盖**。| SGLang 当前 deterministic 模式主要和普通 KV cache + chunked prefill 集成，radix cache 在 FlashInfer/Triton 下是**暂时关闭**。**普通 KV：✅；radix cache：目前暂不支持（为 determinism 关闭）**。|
-| **Scheduler：动态 batching / request 排布**  | 只影响batch的管理，只要消除batch variance, 就可以消除影响  | -  | - |
-| **分布式 Tensor Parallel / DP 下的 all-reduce / all-gather**     | TP/DP 需要 all-reduce / all-gather；浮点 all-reduce 的加法顺序依赖 rank 排布、chunk 切分、通信算法（ring/tree/nvls）。  | vLLM 暂时 **只对 TP=1 有强保证**；**TP>1：暂不支持**。  | SGLang 已经在 Qwen3-8B 上测试了 TP=2/4；结果显示：TP=2 可以通过 deterministic test；TP=4 在 Blackwell 上 prefix 模式仍然出现不一致。主要原因是 NVLS 自定义 all-reduce 目前不 deterministic。**TP=1：✅；TP=2：部分 ✅；TP>=4：暂不支持**。    |
-| **MoE: gating（softmax+top-k） & expert dispatch**    | gating 是对每个 token 的 expert logits 做 softmax+top-k，本质上又是一个 reduction+排序过程，对数值微小扰动高度敏感。随后 expert dispatch 会引入 all-to-all 通信、不同 expert 的 GEMM。当 batch 改变或通信/reduction 路径不稳定时，很容易导致选择不同 expert，从而完全改变后续轨迹。 | **MoE：暂不支持**。    | TP>1 + MoE 的测试已观察到明显不 determinism。**MoE：暂不支持**。  |
-| **量化 kernel（FP8/INT8、nvFP4 等）**  | 量化/反量化通常包含 scale 估计、clamp、整数 GEMM + 反缩放，其中也会有 reduction、max/min、统计计算。当 kernel 和调度对 batch/形状敏感时，同一输入在不同 batch 下可能得到不同的 scale/clip 行为，引起微小数值差异。  | **量化 + batch invariance：暂不支持**。  | **量化 deterministic：暂不支持**。  |
-| **VLM / Vision encoder + cross-attention**   | VLM 在文本 attention 之外，还包含 image patch embedding / ViT / resampler、以及 text–image cross-attention。这些模块有自己的 big matmul/reduction，与文本部分 share 或不 share kernel。若这些 kernel 不 batch-invariant，那么多模态场景下 deterministic 更难保证。 | 官方有 [issue](https://github.com/vllm-project/vllm/issues/27059)，还在doing：**text-only dense 相对成熟，VLM 仍在 TODO**。  | SGLang 的 deterministic 工作主要在 text-only LLM 上**多模态 deterministic：暂不支持**。  |
+| Component | 为什么会影响 deterministic / batch-invariant inference | vLLM 现状 | SGLang 现状 |
+| --------- | ---------------------------------------------------- | -------- | ---------- |
+| **RMSNorm / LayerNorm / mean / log_softmax 等 reduction op**    | reduction 常用 **split-reduction / atomic / warp-level**，reduction 的分块策略会随 batch shape 变，导致浮点加法顺序变化（非结合性） | 集成了 batch_invariant_ops kernels。 **TP>1：✅；**  | 同vLLM。 **dense TP=1：✅；** |
+| **Matmul / Linear GEMM**   | GEMM 常用 **split-K / block swizzle / different tile config**；在不同batch下会走不同 kernel =》不同 reduction 树。| 初步集成了batch_invariant_ops matmul, **dense TP=1：✅；量化/fused GEMM/TP：⚠️**  | 同vLLM。 **dense TP=1：✅；MoE/TP/fused GEMM：⚠️**  |
+| **Attention**  | decode 侧常需要 **Split-KV / FlashDecoding**；很多实现会根据“当前 batch 并发/seq 分布”动态决定 split 数或 split size → reduction 顺序变化。 | vLLM 提供 **fixed split-KV size** attention 实现；支持FlashInfer/TRITON_MLA 等）。 **dense：✅；更多后端/特性：⚠️** | SGLang在 **fixed split-KV size** 的 batch-invariant attention基础上，支持了 FlashInfer / FA3 / Triton 多后端。但 FA3 目前只能 num_splits=1 **dense：✅** |
+| **Chunked Prefill**  | 长序列通常被切成多个 chunk 逐步送入 KV cache。若 chunk 的切分点根据当前 batch 负载动态调整，同一长序列在不同并发度下会被切成不同的段，每段参与 attention/reduction 的方式就不同，造成数值路径差异。 | **-** | **单卡 dense：✅；和 radix cache/大 TP 联动仍在演进：未完全覆盖**  |
+| **KV cache/Paged/Radix Attention** | KV cache 在内存中的布局会决定 attention kernel 如何读取和分块。如果不同 batch 场景下 page/segment 合并、prefix 共享/重排方式不同，同一 token 在 kernel 中所参与的分块结构会不同，从而改变 reduction 顺序。 | **基础 paged KV + 单卡 dense OK；更激进的缓存/压缩：未完全覆盖。**   |  **✅普通 KV：✅；radix cache：目前暂不支持（为 determinism 关闭）**  |
+| **TP 通信：All-Reduce / 自定义 all-reduce / NCCL 算法选择**  | 行并行层需要 all-reduce；不同 TP size / 不同 NCCL 算法（ring/tree）会改变 reduction 顺序 | **TP>8 supported：✅**  | Support TP with deterministic all-reduce kernels **TP>1:✅** |
+| **MoE + EP（all-to-all / token dispatch）**  | MoE 的 token dispatch 常涉及 **动态分桶、all-to-all、padding/pack**；不同 batch 下 token 分配/排序会变，导致聚合/归并顺序变化；再叠加通信与 fused kernel，极易破坏 determinism。  | **MoE/TP：✅, EP:⚠️**   | **MoE/TP：✅，EP：⚠️** |
 
 
 ### 其他问题
@@ -133,3 +132,130 @@ print(f"There are {len(results)} unique results")
     - NCCL 负责的是多卡之间的 all-reduce / all-gather / reduce-scatter 等通信
     - NCCL 的 ring / tree / hierarchical 算法会按拓扑做分段加法，顺序可能随进程数量、分组策略变化而变化
     - 新版 NCCL 提供了一些 环境变量, 确保在 同一个并行配置(拓扑/rank等)下，尽量保证运算路径固定，使多次运行结果稳定 =>  **需要在上层保证每次all-reduce的参与rank，tensor切分方式，调用顺序一致**
+
+
+## MoE gating 是batch-invariant
+$${(e_1, w_1),(e_2, w_2)} = topk(softmax(matmul(w_{gate}, input)))$$
+
+- Test 过程
+    - matmul/attention等模块 替换成 batch_invariant_ops 的版本
+    - 检测 first MoE Gating layer 的输入/router_logits/输出
+
+- 结果
+    - 是batch-invariant
+
+
+- 第一版测试因为 Gating 中的 Matmul 没有替换，测试出不同的结论
+    - 根因分析
+        - Gate Input: 100% 相同 (0.0000000000e+00)
+        - Raw Router Logits: 出现差异(6.2500000000e-02) — 根因
+        - Softmax Probabilities: 差异被放大 (1.1757239699e-03)
+        - Top-k Expert Indices: 3.1% 的 expert 选择改变
+        - 根因：Gate computation (Linear layer) 的 matmul 操作不是 batch-invariant
+        - 影响链：Raw Logits → Softmax → Top-k Selection
+
+- Qwen2MoE source code
+```py
+class Qwen3MoeExperts(nn.Module):
+    """Collection of expert weights stored as 3D tensors."""
+
+    def __init__(self, config):
+        super().__init__()
+        self.num_experts = config.num_experts
+        self.hidden_dim = config.hidden_size
+        self.intermediate_dim = config.moe_intermediate_size
+        self.gate_up_proj = nn.Parameter(torch.empty(self.num_experts, 2 * self.intermediate_dim, self.hidden_dim))
+        self.down_proj = nn.Parameter(torch.empty(self.num_experts, self.hidden_dim, self.intermediate_dim))
+        self.act_fn = ACT2FN[config.hidden_act]
+
+    def forward(
+        self,
+        hidden_states: torch.Tensor,
+        top_k_index: torch.Tensor,
+        top_k_weights: torch.Tensor,
+    ) -> torch.Tensor:
+        final_hidden_states = torch.zeros_like(hidden_states)
+        with torch.no_grad():
+            expert_mask = torch.nn.functional.one_hot(top_k_index, num_classes=self.num_experts)
+            expert_mask = expert_mask.permute(2, 1, 0)
+            expert_hit = torch.greater(expert_mask.sum(dim=(-1, -2)), 0).nonzero()
+
+        for expert_idx in expert_hit:
+            expert_idx = expert_idx[0]
+            if expert_idx == self.num_experts:
+                continue
+            top_k_pos, token_idx = torch.where(expert_mask[expert_idx])
+            current_state = hidden_states[token_idx]
+            gate, up = nn.functional.linear(current_state, self.gate_up_proj[expert_idx]).chunk(2, dim=-1)
+            current_hidden_states = self.act_fn(gate) * up
+            current_hidden_states = nn.functional.linear(current_hidden_states, self.down_proj[expert_idx])
+            current_hidden_states = current_hidden_states * top_k_weights[token_idx, top_k_pos, None]
+            final_hidden_states.index_add_(0, token_idx, current_hidden_states.to(final_hidden_states.dtype))
+
+        return final_hidden_states
+
+
+class Qwen3MoeTopKRouter(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        self.top_k = config.num_experts_per_tok
+        self.num_experts = config.num_experts
+        self.norm_topk_prob = config.norm_topk_prob
+        self.hidden_dim = config.hidden_size
+        self.weight = nn.Parameter(torch.zeros(self.num_experts, self.hidden_dim))
+
+    def forward(self, hidden_states):
+        hidden_states = hidden_states.reshape(-1, self.hidden_dim)
+        router_logits = F.linear(hidden_states, self.weight)  # (seq_len, num_experts)
+        router_logits = torch.nn.functional.softmax(router_logits, dtype=torch.float, dim=-1)
+        router_top_value, router_indices = torch.topk(router_logits, self.top_k, dim=-1)  # (seq_len, top_k)
+        if self.norm_topk_prob:
+            router_top_value /= router_top_value.sum(dim=-1, keepdim=True)
+        router_top_value = router_top_value.to(router_logits.dtype)
+        router_scores = router_top_value
+        return router_logits, router_scores, router_indices
+
+
+class Qwen3MoeSparseMoeBlock(nn.Module):
+    def __init__(self, config: Qwen3MoeConfig):
+        super().__init__()
+        self.experts = Qwen3MoeExperts(config)
+        self.gate = Qwen3MoeTopKRouter(config)
+
+    def forward(self, hidden_states: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        batch_size, sequence_length, hidden_dim = hidden_states.shape
+        hidden_states_reshaped = hidden_states.view(-1, hidden_dim)
+        _, routing_weights, selected_experts = self.gate(hidden_states_reshaped)
+        final_hidden_states = self.experts(hidden_states_reshaped, selected_experts, routing_weights)
+        return final_hidden_states.reshape(batch_size, sequence_length, hidden_dim)
+```
+
+
+## EP
+- step 2，Dispatch：
+    - 本地重排
+        - local执行，无variant
+    ```py
+    # [batch_size, top_k] -> [batch_size, top_k, num_experts]
+    # token0: [1,3] -> [[0,1,0,0,0], [0,0,0,1,0]]
+    expert_mask = torch.nn.functional.one_hot(top_k_index, num_classes=self.num_experts)
+    # [batch_size, top_k, num_experts] -> [num_experts, top_k, batch_size]
+    # expert_musk[token_id]得到一个musk矩阵，选中input中实际被send到该expert的tokens_idx list
+    expert_mask = expert_mask.permute(2, 1, 0)
+    # 获取选中的 experts [num_active_experts, 1]
+    expert_hit = torch.greater(expert_mask.sum(dim=(-1, -2)), 0).nonzero()
+    ```
+    
+    - ALL-to-ALL通信
+        - 每个rank把token发送到 target expert 所在的rank
+        - 没有reduction
+
+- stage 4，Expert Compute
+    - MLP(MatMul); local 计算
+
+- stage 5，ALL-to-ALL通信 + Combine
+    - 将每个token的结果送回 原本的rank
+    - 加权 + reduction
+    $$y = \sum_{i=1}^{k}w_i * Expert_{e_i}(x)$$
+
+<img src="./pictures/EP.jpg">
