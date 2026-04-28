@@ -1,0 +1,324 @@
+{
+  "A_BF16": {
+    "bs1_reproducibility": {
+      "match": true,
+      "mm": 0
+    },
+    "cross_row_invariance": {
+      "bs2": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11
+        ]
+      },
+      "bs4": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      },
+      "bs8": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      },
+      "bs32": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      },
+      "bs64": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      }
+    },
+    "cross_m_invariance": {
+      "ref_seq": [
+        11,
+        9822,
+        13,
+        1102,
+        574,
+        5918,
+        369,
+        279,
+        220,
+        9367,
+        24,
+        4435,
+        596,
+        14930,
+        323,
+        574,
+        10825,
+        311,
+        387,
+        264,
+        13643,
+        6070,
+        13,
+        4452,
+        11,
+        433,
+        6244,
+        459,
+        9888,
+        4706,
+        315,
+        12366,
+        323,
+        264,
+        7891,
+        315,
+        8753,
+        7829,
+        13,
+        11450,
+        11,
+        433,
+        374,
+        832,
+        315,
+        279,
+        1455,
+        66352,
+        61024,
+        304,
+        279,
+        1917,
+        382,
+        791,
+        469,
+        3168,
+        301,
+        22703,
+        13656,
+        520,
+        220,
+        16723,
+        20645,
+        320
+      ],
+      "batches": {
+        "bs2": {
+          "match": false,
+          "mm": 12,
+          "first_div": 52,
+          "mean_pre_div_logit_diff": 0.036057692307692304,
+          "max_pre_div_logit_diff": 0.125
+        },
+        "bs4": {
+          "match": true,
+          "mm": 0,
+          "first_div": -1,
+          "mean_pre_div_logit_diff": 0.033203125,
+          "max_pre_div_logit_diff": 0.25
+        },
+        "bs8": {
+          "match": true,
+          "mm": 0,
+          "first_div": -1,
+          "mean_pre_div_logit_diff": 0.033203125,
+          "max_pre_div_logit_diff": 0.25
+        },
+        "bs32": {
+          "match": true,
+          "mm": 0,
+          "first_div": -1,
+          "mean_pre_div_logit_diff": 0.037109375,
+          "max_pre_div_logit_diff": 0.375
+        },
+        "bs64": {
+          "match": true,
+          "mm": 0,
+          "first_div": -1,
+          "mean_pre_div_logit_diff": 0.0390625,
+          "max_pre_div_logit_diff": 0.5
+        }
+      }
+    }
+  },
+  "B_linear_only": {
+    "bs1_reproducibility": {
+      "match": true,
+      "mm": 0
+    },
+    "cross_row_invariance": {
+      "bs2": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11
+        ]
+      },
+      "bs4": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      },
+      "bs8": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      },
+      "bs32": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      },
+      "bs64": {
+        "all_rows_same_token": true,
+        "max_logit_diff_across_rows": 0.0,
+        "top_tokens": [
+          11,
+          11,
+          11,
+          11
+        ]
+      }
+    },
+    "cross_m_invariance": {
+      "ref_seq": [
+        11,
+        9822,
+        13,
+        1102,
+        574,
+        5918,
+        369,
+        279,
+        220,
+        9367,
+        24,
+        4435,
+        596,
+        14930,
+        323,
+        574,
+        10825,
+        311,
+        387,
+        264,
+        13643,
+        6070,
+        13,
+        4452,
+        11,
+        433,
+        6244,
+        459,
+        9888,
+        4706,
+        315,
+        12366,
+        323,
+        264,
+        7891,
+        315,
+        8753,
+        7829,
+        13,
+        11450,
+        11,
+        433,
+        374,
+        832,
+        315,
+        279,
+        1455,
+        66352,
+        61024,
+        304,
+        279,
+        1917,
+        382,
+        791,
+        469,
+        3168,
+        301,
+        22703,
+        13656,
+        520,
+        220,
+        16723,
+        20645,
+        320
+      ],
+      "batches": {
+        "bs2": {
+          "match": false,
+          "mm": 12,
+          "first_div": 52,
+          "mean_pre_div_logit_diff": 0.03365384615384615,
+          "max_pre_div_logit_diff": 0.25
+        },
+        "bs4": {
+          "match": false,
+          "mm": 12,
+          "first_div": 52,
+          "mean_pre_div_logit_diff": 0.026442307692307692,
+          "max_pre_div_logit_diff": 0.125
+        },
+        "bs8": {
+          "match": false,
+          "mm": 12,
+          "first_div": 52,
+          "mean_pre_div_logit_diff": 0.026442307692307692,
+          "max_pre_div_logit_diff": 0.125
+        },
+        "bs32": {
+          "match": false,
+          "mm": 12,
+          "first_div": 52,
+          "mean_pre_div_logit_diff": 0.038461538461538464,
+          "max_pre_div_logit_diff": 0.25
+        },
+        "bs64": {
+          "match": false,
+          "mm": 12,
+          "first_div": 52,
+          "mean_pre_div_logit_diff": 0.04567307692307692,
+          "max_pre_div_logit_diff": 0.25
+        }
+      }
+    }
+  }
+}

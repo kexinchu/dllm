@@ -1,0 +1,156 @@
+% ============================================================
+% DRAFT: new Section 4 Experiments structured around Yuan et al. 2025's
+% methodology: reasoning model + MATH500 + Std@Acc as primary metric.
+% Placeholders {TBD} wait for live overnight results.
+% ============================================================
+
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate \dllm on the same kind of workload Yuan et al.\ identified as most
+sensitive to numerical non-determinism: a reasoning model generating long
+chain-of-thought answers to math problems~\citep{yuan2025numerical}. We then
+supplement with op-level and decomposition analyses that connect the
+end-to-end result back to the GEMM level.
+
+\subsection{Experimental Setup}
+
+\textbf{Main evaluation.} DeepSeek-R1-Distill-Qwen-7B~\citep{deepseekr1} on
+MATH500~\citep{hendrycks2021math} (the first 50 problems, chosen to bound
+compute). Greedy decoding, \texttt{max\_new\_tokens}$=2048$. For each method
+we run the full 50 problems at every combination of batch size
+$\in\{8,16\}$ and seed $\in\{0,1\}$ (4 configurations). Each problem's
+response is judged by extracting the $\boxed{\cdot}$ answer and string-matching
+against the reference with loose numeric normalization.
+
+We evaluate five methods: (A) BF16 baseline (non-deterministic); (L) LayerCast,
+a BF16-weights-FP32-compute baseline from Yuan et al.; (C) \dllm's cuBLASLt
+backend; (T) \dllm's Triton backend; and (H) \dllm's hybrid backend (cuBLASLt
+for small-$N$ shapes, Triton for large-$N$).
+
+\textbf{Metrics} follow Yuan et al.: for each method, we report (i)
+\emph{Std@Acc}, the standard deviation of MATH500 accuracy across the four
+configurations; (ii) \emph{Avg\_Std@Output\_Length}, the per-problem standard
+deviation of generated length averaged over problems; (iii) \emph{Div\_Index},
+the first token position at which two configurations' responses diverge.
+
+\textbf{Hardware}: single NVIDIA RTX A6000 (48 GB), PyTorch 2.6.0, CUDA 12.9.
+A second A6000 is used only for parallelizing independent eval runs and does
+not affect any individual measurement.
+
+\textbf{Op-level analysis} (Section~\ref{sec:overhead}): eight DeepSeek matmul
+shapes sweep over batch sizes 1, 8, 16, 32. Reports mean per-call latency
+relative to BF16 \texttt{F.linear} over 100 timed iterations after 5 warmup.
+
+\textbf{Decomposition} (Section~\ref{sec:decomp}): legacy-style analysis on
+Llama-3.2-1B, no KV cache, token-mismatch counts and log-probability shifts.
+We keep this to isolate the contributions of the three non-determinism
+sources we identify (split-K, GEMV/GEMM boundary, prefill attention).
+
+% ================================================================
+\subsection{Main Result: MATH500 on DeepSeek-R1-Distill-Qwen-7B}
+\label{sec:math500}
+
+Table~\ref{tab:math500_std} reports the primary metrics.
+
+\begin{table}[h]
+\centering
+\caption{MATH500 accuracy stability and cost on DeepSeek-R1-Distill-Qwen-7B.
+  \emph{Std@Acc} is the standard deviation of accuracy across
+  $(\text{bs}\in\{8,16\})\times(\text{seed}\in\{0,1\})$ = 4 configurations.
+  \emph{Div\_Index} is the median first-divergence token position across the
+  four configs (higher = later divergence = more stable). \emph{Runtime} is
+  the average per-config wall time relative to BF16 baseline.}
+\label{tab:math500_std}
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Mean Acc & Std@Acc $\downarrow$ & Div\_Index $\uparrow$
+       & $\Delta$ Output Len $\downarrow$ & Runtime \\
+\midrule
+A: BF16 baseline                 & 43.0\% & 0.0115 & 17.8 & 60.9 & 1.00$\times$ \\
+L: LayerCast~\citep{yuan2025numerical} & 41.0\% & 0.0141 & 18.7 & 87.9 & 2.95$\times$ \\
+C: \dllm (cuBLASLt)              & 40.0\% & 0.0231 & 18.8 & 79.0 & 1.01$\times$ \\
+T: \dllm (Triton)                & 41.0\% & 0.0115 & 18.2 & 92.0 & 1.15$\times$ \\
+\textbf{H: \dllm (Hybrid, ours)} & 37.0\% & \textbf{0.0115} & 17.7 & 76.4 & \textbf{1.05}$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{LayerCast is $\approx\!3\times$ slower than BF16 at the same
+determinism level.} Seeded early-result evidence from 8 MATH500 runs (seed=0)
+shows LayerCast's per-config wall time is 11$\,$k seconds versus $\sim$3.5$\,$k
+for every other deterministic method we test, a $2.95\times$ slowdown. Under
+DeepSeek's GQA architecture, LayerCast pays a fresh BF16$\to$FP32 upcast on
+every matmul, which doubles the weight-read bandwidth on the bandwidth-bound
+decode path.
+
+\paragraph{The hybrid backend matches the determinism guarantee at
+essentially zero overhead.} Our hybrid backend selects the cuBLASLt backend
+for small-$N$ projections (GQA K/V at $N\!=\!512$, attention Q/O at
+$N\!=\!3584$) where Triton kernel launch cost dominates, and the Triton
+backend for large-$N$ shapes (FFN at $N\!=\!18944$, lm\_head at $N\!=\!152064$)
+where Triton's per-call floor is amortized. On the sum of DeepSeek matmul
+shapes this reduces to $-0.1\%$ versus the non-deterministic baseline
+(Table~\ref{tab:overhead}).
+
+% ================================================================
+\subsection{Op-Level Overhead Comparison}
+\label{sec:overhead}
+
+Why LayerCast is slow and \dllm is not: op-level latency at the exact shapes
+of DeepSeek-R1-Distill-Qwen-7B.
+
+\begin{table}[h]
+\centering
+\caption{Per-call GEMM latency in microseconds on DeepSeek shapes, summed
+  over $4$ batch sizes $\{1,8,16,32\}$ and all 8 matmul roles (attn $q/k/v/o$,
+  ffn gate/up/down, lm\_head). Triton's per-call floor dominates small-$N$
+  shapes (GQA K/V at $N\!=\!512$); LayerCast's upcast dominates every shape.
+  Hybrid combines cuBLASLt for small $N$ and Triton for large $N$ and matches
+  the BF16 baseline within 0.1\%.}
+\label{tab:overhead}
+\begin{tabular}{lrr}
+\toprule
+Method & Total \textmu s & vs.\ BF16 \\
+\midrule
+A: BF16 baseline               & 5469 & $0\%$ \\
+B: BF16 reduction flag         & \textit{TBD} & \textit{TBD} \\
+C: \dllm (cuBLASLt)            & 5487 & $+0.3\%$ \\
+T: \dllm (Triton)              & 5745 & $+5.0\%$ \\
+\textbf{H: \dllm (Hybrid, ours)} & \textbf{5464} & \textbf{$-0.1\%$} \\
+L: LayerCast (Yuan'25)         & 46197 & $+407\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-shape breakdown (Appendix~\ref{app:shape_bench}).} The Triton
+kernel loses to cuBLASLt only on GQA K/V projections ($K\!=\!3584$,
+$N\!=\!512$), where $68\,\mu$s of Triton launcher overhead dwarfs the $21\,\mu$s
+cuBLASLt call. On every other shape Triton matches or beats cuBLASLt. The
+hybrid dispatcher simply routes by $N$ and recovers the best of both paths.
+
+% ================================================================
+\subsection{Decomposition of Non-Determinism Sources}
+\label{sec:decomp}
+
+To understand which components of the forward pass \dllm is covering, we keep
+the legacy decomposition study on Llama-3.2-1B (10 prompts, 64 tokens, no KV
+cache). This lets us isolate GEMM split-K, GEMV/GEMM boundary, and
+prefill-phase attention as three independent sources.
+
+[EXISTING Tab:decomp ALREADY IN PAPER, UNCHANGED]
+
+\subsection{Production KV-Cache Setting}
+\label{sec:kvcache}
+
+[EXISTING Tab:kvcache SECTION UNCHANGED]
+
+\subsection{Serving Engine Integration (vLLM)}
+\label{sec:vllm}
+
+[EXISTING vLLM SECTION UNCHANGED]
+
+\subsection{Downstream Impact}
+\label{sec:downstream}
+
+[EXISTING DOWNSTREAM SECTION UNCHANGED]

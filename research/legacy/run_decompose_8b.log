@@ -1,0 +1,66 @@
+Loading /home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct (eager attn)...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.03s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.02s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.02s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.42it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.22it/s]
+  Loaded on cuda:0
+
+  Condition: A_BF16_baseline
+    p0 bs= 8: ✓  mean|ΔlogP|=0.0056
+    p0 bs=32: ✓  mean|ΔlogP|=0.0059
+    p1 bs= 8: ✓  mean|ΔlogP|=0.0121
+    p1 bs=32: ✓  mean|ΔlogP|=0.0088
+    p2 bs= 4: ✗ (first_div=3, mm=12)  mean|ΔlogP|=0.1417
+    p2 bs= 8: ✓  mean|ΔlogP|=0.0086
+    p2 bs=32: ✗ (first_div=3, mm=12)  mean|ΔlogP|=0.1408
+    p3 bs= 2: ✗ (first_div=13, mm=50)  mean|ΔlogP|=0.2397
+    p3 bs= 8: ✓  mean|ΔlogP|=0.0058
+    p3 bs=32: ✗ (first_div=13, mm=50)  mean|ΔlogP|=0.2367
+    p4 bs= 8: ✓  mean|ΔlogP|=0.0093
+    p4 bs=32: ✓  mean|ΔlogP|=0.0100
+    p5 bs= 8: ✓  mean|ΔlogP|=0.0069
+    p5 bs=32: ✓  mean|ΔlogP|=0.0073
+    p6 bs= 8: ✗ (first_div=50, mm=14)  mean|ΔlogP|=0.0549
+    p6 bs=16: ✗ (first_div=50, mm=14)  mean|ΔlogP|=0.0560
+    p6 bs=32: ✓  mean|ΔlogP|=0.0069
+    p7 bs= 8: ✗ (first_div=35, mm=28)  mean|ΔlogP|=0.1274
+    p7 bs=32: ✗ (first_div=35, mm=28)  mean|ΔlogP|=0.1286
+    p8 bs= 8: ✓  mean|ΔlogP|=0.0126
+    p8 bs=32: ✓  mean|ΔlogP|=0.0108
+    p9 bs= 4: ✗ (first_div=34, mm=30)  mean|ΔlogP|=0.0878
+    p9 bs= 8: ✓  mean|ΔlogP|=0.0118
+    p9 bs=32: ✗ (first_div=34, mm=30)  mean|ΔlogP|=0.0890
+
+  >>> A_BF16_baseline: all_match=False, total_tok_mm=268, avg|ΔlogP|=0.0328
+
+  Condition: B_linear_only
+    p0 bs= 8: ✓  mean|ΔlogP|=0.0042
+    p0 bs=32: ✓  mean|ΔlogP|=0.0042
+    p1 bs= 8: ✓  mean|ΔlogP|=0.0064
+    p1 bs=32: ✓  mean|ΔlogP|=0.0064
+    p2 bs= 8: ✗ (first_div=3, mm=12)  mean|ΔlogP|=0.1392
+    p2 bs=16: ✗ (first_div=3, mm=12)  mean|ΔlogP|=0.1392
+    p2 bs=32: ✗ (first_div=3, mm=12)  mean|ΔlogP|=0.1392
+    p3 bs= 8: ✓  mean|ΔlogP|=0.0061
+    p3 bs=32: ✓  mean|ΔlogP|=0.0061
+    p4 bs= 8: ✓  mean|ΔlogP|=0.0066
+    p4 bs=32: ✓  mean|ΔlogP|=0.0060
+    p5 bs= 8: ✓  mean|ΔlogP|=0.0049
+    p5 bs=32: ✓  mean|ΔlogP|=0.0049
+    p6 bs= 8: ✓  mean|ΔlogP|=0.0042
+    p6 bs=32: ✓  mean|ΔlogP|=0.0042
+    p7 bs= 8: ✓  mean|ΔlogP|=0.0066
+    p7 bs=32: ✓  mean|ΔlogP|=0.0066
+    p8 bs= 8: ✓  mean|ΔlogP|=0.0082
+    p8 bs=32: ✓  mean|ΔlogP|=0.0082
+    p9 bs= 8: ✓  mean|ΔlogP|=0.0080
+    p9 bs=32: ✓  mean|ΔlogP|=0.0080
+
+  >>> B_linear_only: all_match=False, total_tok_mm=36, avg|ΔlogP|=0.0139
+
+=================================================================
+SUMMARY: Decomposition (full re-computation) — Llama-3.1-8B
+=================================================================
+Condition                        All Match?   Tot Tok MM   Avg|ΔlogP|
+----------------------------------------------------------------------
+  A_BF16_baseline                           ✗          268       0.0328
+  B_linear_only                             ✗           36       0.0139
+
+Saved → /home/kec23008/docker-sys/dllm/research/exp_decompose_8b.json

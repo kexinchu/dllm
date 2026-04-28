@@ -1,0 +1,34 @@
+=== loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B (BF16) ===
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.47s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.03s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.09s/it]
+
+--- BF16 ---
+   problem 0: pre_div=256  avg_std=3.016e-03  per-bs t=['6.7', '6.4', '6.5', '6.6', '6.9']
+   problem 1: pre_div=14  avg_std=5.235e-03  per-bs t=['6.4', '6.5', '6.6', '6.7', '7.2']
+   problem 2: pre_div=124  avg_std=3.659e-03  per-bs t=['6.4', '6.4', '6.5', '6.6', '6.9']
+   TOTAL: 99.4s, Avg_Std=3.970e-03
+
+--- SRP-linear ---
+   problem 0: pre_div=256  avg_std=1.981e-03  per-bs t=['19.5', '14.6', '10.1', '14.8', '10.2']
+   problem 1: pre_div=14  avg_std=1.476e-03  per-bs t=['9.9', '10.1', '10.1', '10.2', '10.4']
+   problem 2: pre_div=124  avg_std=3.096e-03  per-bs t=['9.9', '9.9', '10.1', '10.1', '10.2']
+   TOTAL: 170.1s, Avg_Std=2.184e-03
+
+--- SRP-linear+attn ---
+   problem 0: pre_div=256  avg_std=0.000e+00  per-bs t=['11.2', '10.6', '10.7', '10.6', '10.9']
+   problem 1: pre_div=256  avg_std=0.000e+00  per-bs t=['10.6', '10.6', '10.7', '10.9', '11.1']
+   problem 2: pre_div=256  avg_std=0.000e+00  per-bs t=['10.6', '10.6', '10.6', '10.6', '10.9']
+   TOTAL: 161.4s, Avg_Std=0.000e+00
+
+--- SRP-all4 (current) ---
+   problem 0: pre_div=256  avg_std=0.000e+00  per-bs t=['9.8', '9.9', '9.9', '10.0', '10.2']
+   problem 1: pre_div=256  avg_std=0.000e+00  per-bs t=['9.9', '10.0', '10.1', '10.1', '10.3']
+   problem 2: pre_div=256  avg_std=0.000e+00  per-bs t=['9.9', '9.9', '9.9', '10.0', '10.1']
+   TOTAL: 150.2s, Avg_Std=0.000e+00
+
+====================================================================================
+  method                      Avg_Std    total  per-bs mean times (s)
+====================================================================================
+  BF16                      3.970e-03    99.4s  [6.5  6.4  6.5  6.7  7.0]
+  SRP-linear                2.184e-03   170.1s  [13.1  11.5  10.1  11.7  10.3]
+  SRP-linear+attn           0.000e+00   161.4s  [10.8  10.6  10.7  10.7  10.9]
+  SRP-all4 (current)        0.000e+00   150.2s  [9.9  9.9  10.0  10.1  10.2]

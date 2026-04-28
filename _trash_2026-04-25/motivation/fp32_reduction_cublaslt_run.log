@@ -1,0 +1,149 @@
+/usr/local/lib/python3.12/dist-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+`torch_dtype` is deprecated! Use `dtype` instead!
+[W129 23:33:14.457401200 OperatorEntry.cpp:218] Warning: Warning only once for all operators,  other operators may also be overridden.
+  Overriding a previously registered kernel for the same operator and the same dispatch key
+  operator: aten::_addmm_activation(Tensor self, Tensor mat1, Tensor mat2, *, Scalar beta=1, Scalar alpha=1, bool use_gelu=False) -> Tensor
+    registered at /pytorch/build/aten/src/ATen/RegisterSchema.cpp:6
+  dispatch key: AutocastCPU
+  previous kernel: registered at /pytorch/aten/src/ATen/autocast_mode.cpp:327
+       new kernel: registered at /opt/workspace/ipex-cpu-dev/csrc/cpu/autocast/autocast_mode.cpp:112 (function operator())
+================================================================================
+Only-Reduction-FP32 vs Pure BF16 Latency Test
+================================================================================
+Model: /workspace/Models/Llama-3.1-8B-Instruct
+ShareGPT JSON: /workspace/dllm/ShareGPT_V3_unfiltered_cleaned_split.json
+Number of queries: 5
+Max new tokens: 64
+Device: NVIDIA RTX A6000
+
+Loading model and tokenizer...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.04s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:01,  1.00it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.55it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.30it/s]
+Token indices sequence length is longer than the specified maximum sequence length for this model (161271 > 131072). Running this sequence through the model will result in indexing errors
+WARNING:transformers.tokenization_utils_base:Token indices sequence length is longer than the specified maximum sequence length for this model (161271 > 131072). Running this sequence through the model will result in indexing errors
+The following generation flags are not valid and may be ignored: ['top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+WARNING:transformers.generation.configuration_utils:The following generation flags are not valid and may be ignored: ['top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+WARNING:transformers.generation.utils:Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Model loaded.
+
+Loading queries from /workspace/dllm/ShareGPT_V3_unfiltered_cleaned_split.json...
+  Total entries in file: 94145
+  Extracted 92779 human queries
+  Filtered to 91345 queries with <= 2048 tokens
+  Randomly selected 5 queries (seed=42)
+
+
+================================================================================
+TEST 1: Pure BF16 (BF16 storage + BF16 compute)
+================================================================================
+
+================================================================================
+Running inference with: Pure BF16 (BF16 storage + BF16 compute)
+================================================================================
+Number of queries: 5
+Warmup runs: 1, Measurement runs: 2
+
+Warming up...
+Running measurements...
+  Query 1/5: total=2300.52ms (tokenization=1.27ms, inference=2299.21ms)
+  Query 2/5: total=2276.17ms (tokenization=0.96ms, inference=2275.18ms)
+  Query 3/5: total=2312.95ms (tokenization=1.95ms, inference=2310.97ms)
+  Query 4/5: total=2278.53ms (tokenization=0.49ms, inference=2278.02ms)
+  Query 5/5: total=2288.31ms (tokenization=0.89ms, inference=2287.40ms)
+
+Results for Pure BF16 (BF16 storage + BF16 compute):
+  Overall mean latency: 2388.03 ± 294.91 ms
+  Overall mean tokenization: 1.07 ms
+  Overall mean inference: 2386.92 ± 294.68 ms
+  Total time: 23880.28 ms
+
+================================================================================
+TEST 2: Only-Reduction-FP32 (Linear matmul FP32 accum -> BF16)
+================================================================================
+
+================================================================================
+Running inference with: Only-Reduction-FP32 (BF16 + FP32 reduction in Linear)
+================================================================================
+Number of queries: 5
+Warmup runs: 1, Measurement runs: 2
+
+Warming up...
+Running measurements...
+  Query 1/5: total=82931.27ms (tokenization=0.88ms, inference=82930.36ms)
+  Query 2/5: total=82825.23ms (tokenization=0.60ms, inference=82824.61ms)
+  Query 3/5: total=85130.35ms (tokenization=1.61ms, inference=85128.71ms)
+  Query 4/5: total=80690.23ms (tokenization=0.55ms, inference=80689.65ms)
+  Query 5/5: total=81787.10ms (tokenization=0.49ms, inference=81786.59ms)
+
+Results for Only-Reduction-FP32 (BF16 + FP32 reduction in Linear):
+  Overall mean latency: 83273.34 ± 1870.75 ms
+  Overall mean tokenization: 0.92 ms
+  Overall mean inference: 83272.39 ± 1870.54 ms
+  Total time: 832733.41 ms
+
+================================================================================
+DETERMINISM CHECK (Only-Reduction-FP32)
+================================================================================
+  Determinism: 5 runs, same query & seed -> identical (deterministic)
+
+
+================================================================================
+COMPARISON
+================================================================================
+Pure BF16 inference latency:        2386.92 +/- 294.68 ms
+Only-Reduction-FP32 inference:     83272.39 +/- 1870.54 ms
+Slowdown (FP32 reduction vs BF16): 34.89x
+  (LayerCast full FP32 was ~3.44x in layercast_results.json)
+
+Pure BF16 total time:               23880.28 ms
+Only-Reduction-FP32 total time:     832733.41 ms
+Only-Reduction-FP32 deterministic: True
+
+Results saved to: motivation/fp32_reduction_cublaslt_results.json

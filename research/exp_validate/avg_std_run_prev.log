@@ -1,0 +1,134 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+Model: /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B
+N_PROBLEMS=5  BS_LIST=[1, 2, 4, 8, 16]  MAX_NEW=256
+Loaded 5 MATH500 problems
+
+Loading BF16 model ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.29s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]
+
+============================================================================================
+  SCHEME: BF16
+============================================================================================
+   problem 0 (input_len=69, level=2)
+     bs= 1 (  6.7s)
+     bs= 2 (  6.4s)
+     bs= 4 (  6.5s)
+     bs= 8 (  6.6s)
+     bs=16 (  6.9s)
+   problem 1 (input_len=132, level=5)
+     bs= 1 (  6.4s)
+     bs= 2 (  6.5s)
+     bs= 4 (  6.6s)
+     bs= 8 (  6.7s)
+     bs=16 (  7.1s)
+   problem 2 (input_len=68, level=3)
+     bs= 1 (  6.4s)
+     bs= 2 (  6.4s)
+     bs= 4 (  6.5s)
+     bs= 8 (  6.6s)
+     bs=16 (  6.9s)
+   problem 3 (input_len=35, level=3)
+     bs= 1 (  6.4s)
+     bs= 2 (  6.4s)
+     bs= 4 (  6.5s)
+     bs= 8 (  6.6s)
+     bs=16 (  6.8s)
+   problem 4 (input_len=360, level=2)
+     bs= 1 (  6.4s)
+     bs= 2 (  6.6s)
+     bs= 4 (  6.7s)
+     bs= 8 (  7.2s)
+     bs=16 (  8.0s)
+   Avg_Std@top1_prob = 3.615e-03
+   pre_div_idx: min=6, med=56, max=256
+
+============================================================================================
+  SCHEME: SRP-FP32
+============================================================================================
+   problem 0 (input_len=69, level=2)
+     bs= 1 (  6.7s)
+     bs= 2 (  6.5s)
+     bs= 4 (  6.5s)
+     bs= 8 (  6.7s)
+     bs=16 (  7.3s)
+   problem 1 (input_len=132, level=5)
+     bs= 1 (  6.3s)
+     bs= 2 (  6.5s)
+     bs= 4 (  6.6s)
+     bs= 8 (  6.9s)
+     bs=16 (  7.7s)
+   problem 2 (input_len=68, level=3)
+     bs= 1 (  6.3s)
+     bs= 2 (  6.5s)
+     bs= 4 (  6.5s)
+     bs= 8 (  6.7s)
+     bs=16 (  7.3s)
+   problem 3 (input_len=35, level=3)
+     bs= 1 (  6.3s)
+     bs= 2 (  6.4s)
+     bs= 4 (  6.5s)
+     bs= 8 (  6.6s)
+     bs=16 (  7.1s)
+   problem 4 (input_len=360, level=2)
+     bs= 1 (  6.5s)
+     bs= 2 (  6.6s)
+     bs= 4 (  6.9s)
+     bs= 8 (  7.6s)
+     bs=16 (  9.1s)
+   Avg_Std@top1_prob = 5.253e-04
+   pre_div_idx: min=256, med=256, max=256
+
+Loading FP32 model (~32 GB) ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.30s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.98s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.03s/it]
+
+============================================================================================
+  SCHEME: FP32-all
+============================================================================================
+   problem 0 (input_len=69, level=2)
+     bs= 1 ( 11.6s)
+     bs= 2 ( 12.4s)
+     bs= 4 ( 13.0s)
+     bs= 8 ( 14.4s)
+     bs=16 ( 16.5s)
+   problem 1 (input_len=132, level=5)
+     bs= 1 ( 11.7s)
+     bs= 2 ( 12.6s)
+     bs= 4 ( 13.5s)
+     bs= 8 ( 15.3s)
+     bs=16 ( 18.4s)
+   problem 2 (input_len=68, level=3)
+     bs= 1 ( 11.6s)
+     bs= 2 ( 12.3s)
+     bs= 4 ( 13.0s)
+     bs= 8 ( 14.4s)
+     bs=16 ( 16.5s)
+   problem 3 (input_len=35, level=3)
+     bs= 1 ( 11.5s)
+     bs= 2 ( 12.2s)
+     bs= 4 ( 12.8s)
+     bs= 8 ( 13.9s)
+     bs=16 ( 15.5s)
+   problem 4 (input_len=360, level=2)
+     bs= 1 ( 12.1s)
+     bs= 2 ( 13.4s)
+     bs= 4 ( 15.2s)
+     bs= 8 ( 18.7s)
+     bs=16 ( 25.2s)
+   Avg_Std@top1_prob = 3.590e-07
+   pre_div_idx: min=256, med=256, max=256
+
+============================================================================================
+  FINAL SUMMARY
+============================================================================================
+  Scheme          Avg_Std@top1_prob  min pre_div  med pre_div
+  BF16                    3.615e-03            6           56
+  SRP-FP32                5.253e-04          256          256
+  FP32-all                3.590e-07          256          256
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/validate_avg_std.py", line 310, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/validate_avg_std.py", line 303, in main
+    write_markdown(summaries)
+  File "/home/kec23008/docker-sys/dllm/research/validate_avg_std.py", line 210, in write_markdown
+    lines.append(f"| {r['problem_idx']} | {r['level']} | {r['input_len']} | "
+ValueError: Invalid format specifier

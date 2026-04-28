@@ -1,0 +1,1090 @@
+\documentclass{article}
+
+\usepackage{neurips_2025}
+
+% Extra packages beyond what the sty file loads
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{hyperref}
+
+% -----------------------------------------------------------------------
+% Macros
+% -----------------------------------------------------------------------
+\newcommand{\dllm}{\textsc{DetermLLM}\xspace}
+\newcommand{\nats}{\,\text{nats}\xspace}
+\newcommand{\tok}{\,\text{tok/s}\xspace}
+\newcommand{\bfflag}{BF16 reduction flag\xspace}
+\newcommand{\detflag}{torch deterministic mode\xspace}
+\newcommand{\TODO}{\textcolor{red}{\textbf{[TBD]}}}
+
+\definecolor{codegray}{rgb}{0.95,0.95,0.95}
+\lstset{
+  backgroundcolor=\color{codegray},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  showstringspaces=false,
+  frame=none,
+  language=C++
+}
+
+% -----------------------------------------------------------------------
+\title{\dllm: Closing the Dominant Source of Batch\\Non-Determinism in BF16 LLM Inference}
+
+\author{%
+  Anonymous Authors\thanks{Code will be released upon acceptance.}
+}
+
+\begin{document}
+\maketitle
+
+% -----------------------------------------------------------------------
+\begin{abstract}
+BF16 LLM inference is non-deterministic: the same input at different batch
+sizes produces different output tokens. Yuan et al.~\citep{yuan2025numerical}
+(NeurIPS 2025) recently characterized the phenomenon on reasoning models and
+proposed LayerCast, a BF16-weights-FP32-compute baseline, at the cost of
+upcasting weights to FP32 on every matmul.
+
+We target \emph{token-wise} determinism (identical output tokens across
+batch sizes), and trace the dominant obstacle to cuBLAS's dynamic split-K
+selection in GEMM. We close that source with two backends that avoid
+LayerCast's bandwidth penalty. A precision amplification argument shows that
+FP32 reduction drives the non-associativity error below BF16's quantization
+step whenever $K<K_{\max}\!\approx\!7{,}700$; we implement this as a cuBLASLt
+wrapper. A fixed-plan Triton kernel gives bit-exact batch-invariant GEMM
+output by construction at every $K$ (i.e., the matmul result is bit-identical
+across batch sizes, which is a strictly stronger guarantee than token-wise).
+A hybrid backend routes small-$N$ shapes (e.g.\ GQA K/V projections) to
+cuBLASLt and large-$N$ shapes (FFN, lm\_head) to Triton, recovering the best
+path at every shape.
+
+On MATH500 with DeepSeek-R1-Distill-Qwen-7B, the hybrid backend matches the
+best Std@Acc across batch sizes in the comparison (tied with BF16 baseline
+and Triton at $0.0115$, below LayerCast's $0.0141$) while running
+$\mathbf{2.8\times}$ faster than LayerCast. Per-call GEMM overhead on
+DeepSeek shapes sums to $-0.1\%$ versus the non-deterministic BF16 baseline,
+compared with $+407\%$ for LayerCast. Legacy Llama-3.2-1B analysis corroborates
+at the GEMM level: the Triton backend cuts token mismatches $\mathbf{54\times}$
+and log-probability variance $\mathbf{57\times}$, and the $K_{\max}$ bound
+predicts the 1B/8B/Phi-4 residual ordering. An $M$-padding fix closes the
+GEMV/GEMM boundary, adding $2.1\times$ on 1B and $3.1\times$ on 8B in the
+production KV-cache setting. End-to-end token-wise determinism is not yet attained: at the model level,
+every GEMM-only fix---including LayerCast---produces different token
+sequences at $bs\!=\!8$ vs.\ $bs\!=\!16$ ($0/50$ matching token sequences on
+the MATH500 subset), because prefill-phase attention is unpatched by all
+methods. Full token-wise determinism additionally requires a deterministic
+attention path (e.g.\ FA3).
+\end{abstract}
+
+% -----------------------------------------------------------------------
+\section{Introduction}
+\label{sec:intro}
+
+Reproducibility is a basic expectation of numerical computation: the same input
+should give the same output. BF16 LLM inference violates this. Running the same
+model on the same prompt at $bs\!=\!1$ versus $bs\!=\!8$ can produce different
+output tokens, and this is not sampling randomness. It is the structure of GPU
+matrix multiplication.
+
+On Llama-3.2-1B with greedy decoding, 15.5\% of (prompt, step, batch-size)
+comparisons against the $bs\!=\!1$ reference flip the output token. Mean per-token
+log-probabilities shift by $0.080\nats$ across batch sizes 2--64. These are real
+changes in the discrete token sequence, not rounding noise in logits. We observe
+the same behavior in vLLM~\citep{kwon2023vllm} under concurrent load.
+
+\paragraph{Root cause.}
+The culprit is cuBLAS's dynamic split-K heuristic. For a GEMM $C_{ij}=\sum_k
+A_{ik}B_{jk}$, cuBLAS partitions the $K$ dimension across $S$ thread blocks. The
+value of $S$ depends on $M$: at $M\!=\!1$, $S\!=\!0$ and there is no split; at
+$M\!=\!32$, $S\!\in\!\{2,3,4\}$ to better utilize the GPU. Under BF16,
+floating-point non-associativity means $S_1\ne S_2$ gives different outputs. The
+same row of $A$ multiplied by the same $B$ produces a different result depending
+on how many other rows share the batch.
+
+\paragraph{Why prior approaches fall short.}
+Three standard remedies exist. The \detflag\ flag%
+\footnote{\texttt{torch.use\_deterministic\_algorithms}~\citep{pytorch2024det}.}
+is ignored by cuBLAS without \texttt{CUBLAS\_WORKSPACE\_CONFIG} (condition~D,
+Section~\ref{sec:decomp}); with the workspace config set, it disables every
+non-deterministic CUDA op rather than just GEMM reduction, costing $+57$ to
+$+83\%$ latency. The narrower \bfflag\ flag%
+\footnote{\texttt{torch.backends.cuda.matmul.allow\_bf16\_reduced\_precision\_reduction}.}
+restricts the cuBLAS algorithm set but does not force FP32 accumulation, so at
+$M\!\ge\!32$ remaining candidates still reduce in BF16 and produce non-zero
+output deviation (Table~\ref{tab:gemm_error}). LayerCast~\citep{yuan2025numerical}
+keeps BF16 weights in memory but upcasts them to FP32 before every matmul.
+This achieves FP32-level stability but incurs the cost of an FP32 weight
+fetch per call; we measure $2.95\times$ end-to-end slowdown on DeepSeek-R1
+MATH500 (Section~\ref{sec:math500}).
+
+\paragraph{Our approach: precision amplification.}
+Split-K is not the problem. It is a useful parallelism strategy, and disabling it
+costs throughput. The real issue is that BF16 accumulation makes the split-K result
+order-dependent. If every reduction is performed in FP32, the accumulation error is
+bounded by $|\delta|\le 2K\,\varepsilon_{\mathrm{FP32}}\sum_k|A_{ik}B_{jk}|$, which
+we prove falls below BF16's quantization step for any shape with
+$K<K_{\max}\approx7{,}700$. Any two split-K orderings then round to the same BF16
+value, so split-K can vary freely while the output stays identical.
+
+\dllm ships two backends that both deliver this. The cuBLASLt backend is a
+two-phase heuristic that forces \texttt{CUBLAS\_COMPUTE\_32F} accumulation and
+integrates with two lines of Python. The Triton backend is a fixed-plan GEMM
+kernel that removes the heuristic-query cost, sidesteps the $K_{\max}$ bound
+entirely, and delivers bit-exact batch-invariance by construction.
+
+\paragraph{Contributions.}
+We (i) attribute BF16 LLM inference non-determinism to cuBLAS's $M$-dependent
+split-K selection, isolating it from attention and other ops
+(Section~\ref{sec:background});
+(ii) prove that FP32 accumulation masks BF16 non-associativity whenever
+$K\!\le\!K_{\max}$, which covers the cuBLASLt backend
+(Section~\ref{sec:method});
+(iii) ship two backends: a cuBLASLt wrapper and a Triton kernel, both at
+end-to-end overhead within 1\% of the non-deterministic baseline and
+3--4$\times$ faster than torch's deterministic mode, with the Triton kernel
+additionally bit-exact across batch sizes for every tested $K$
+(Section~\ref{sec:overhead});
+(iv) validate across architectures: Llama-3.2-1B mismatches drop
+$\mathbf{54\times}$ under Triton and $37\times$ under cuBLASLt; Phi-4/14B and
+Llama-3.1-8B reach $17.1\times$ and $7.4\times$; an $M$-padding fix adds
+$2.1\times$ on 1B and $3.1\times$ on 8B in the production KV-cache setting
+(Section~\ref{sec:kvcache});
+(v) measure downstream impact: 35\% reduction in RL reward noise, 27\% in
+distillation KL, and 6\% $\to$ 0\% MoE router flip rate on a synthetic
+top-8 test (Section~\ref{sec:downstream}).
+
+% -----------------------------------------------------------------------
+\section{Background and Root Cause Analysis}
+\label{sec:background}
+
+\subsection{Floating-Point Non-Associativity in BF16 GEMM}
+
+For BF16 GEMM $C = AB^\top$ where $A \in \mathbb{R}^{M \times K}$,
+$B \in \mathbb{R}^{N \times K}$, the $(i,j)$-th output element is:
+\begin{equation}
+  C_{ij} = \sum_{k=1}^{K} A_{ik} \cdot B_{jk}.
+  \label{eq:gemm}
+\end{equation}
+This summation is implemented by partitioning $K$ across $S$ thread blocks
+(``split-K''). Each block computes a partial sum over its shard, and a separate
+reduction kernel combines them:
+\begin{equation}
+  C_{ij} = \sum_{s=1}^{S} \underbrace{\sum_{k \in \text{shard}_s} A_{ik} B_{jk}}_{\hat{C}_{ij}^{(s)}}.
+\end{equation}
+In BF16, floating-point non-associativity gives
+$\hat{C}^{(1)} \oplus \hat{C}^{(2)} \ne \hat{C}^{(2)} \oplus \hat{C}^{(1)}$, and
+$\sum_{s=1}^{S_1}(\cdot) \ne \sum_{s=1}^{S_2}(\cdot)$ whenever $S_1 \ne S_2$
+\citep{goldberg1991fp,ieee754}. The second identity is the one that bites at inference
+time: the number of partial sums changes with the batch, so the output changes with
+the batch.
+
+\subsection{Dynamic Split-K Selection}
+
+cuBLAS selects $S$ based on $M$. A single decode request at $M\!=\!1$ runs with no
+split-K. Eight concurrent requests at $M\!=\!8$ may pick $S\!=\!2$ or $S\!=\!4$ to
+better utilize the GPU. A different $S$ produces a different reduction tree, which
+produces different per-element outputs.
+
+\subsection{Measured Non-Determinism}
+\label{sec:measurement}
+
+Table~\ref{tab:gemm_error} shows op-level GEMM deviation for a representative linear
+layer shape, the Llama-3.1-8B attention projection $M\times4096\times4096$. We
+compare row~0 of an $M$-batch against the $M\!=\!1$ reference.
+
+\begin{table}[h]
+\centering
+\caption{Op-level GEMM output deviation ($\ell_\infty$, row 0) versus the $M\!=\!1$
+  reference. ``BF16'' is default cuBLAS. ``BF16 reduction flag'' sets \bfflag. ``\dllm''
+  is FP32 accumulation via the two-phase heuristic. The reduction flag still shows
+  non-zero deviation at $M\!\ge\!32$ because the surviving algorithms use BF16
+  split-K reduction; only \dllm forces FP32 accumulation.}
+\label{tab:gemm_error}
+\begin{tabular}{lrrr}
+\toprule
+$M$ & BF16 default & BF16 reduction flag & \dllm (ours) \\
+\midrule
+2   & 0.0    & 0.0    & \textbf{0.0} \\
+8   & 0.0    & 0.0    & \textbf{0.0} \\
+32  & 0.5    & 0.5    & \textbf{0.0} \\
+64  & 1.0    & 0.5    & \textbf{0.0} \\
+128 & 0.5    & 0.5    & \textbf{0.0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key observation.}
+At $M\!\ge\!32$ the BF16 reduction flag produces the same non-zero deviation as
+default cuBLAS. Large-$M$ algorithms that satisfy the flag still use BF16 split-K
+reduction, so restricting the algorithm set does not by itself force FP32
+accumulation. \dllm's FP32 accumulation drives the deviation to exactly zero at
+every tested $M$.
+
+Logit perturbation compounds at the model level. On Llama-3.1-8B at $bs\!=\!8$,
+$\max|\Delta\text{logit}|\!=\!26.81$, the mean is $2.57$, and 99.8\% of logit
+positions are affected (Appendix~\ref{app:logit_error}). \dllm drives all of these
+to zero. Log-probabilities are more sensitive than argmax. Even when the top-1
+token is stable, $\log P(\text{top-1})$ shifts whenever any logit moves. Only
+about 2.4\% of tokens have a top-2 gap below $0.1\nats$ and are vulnerable to
+argmax flips, so argmax-based tests understate the severity.
+
+% -----------------------------------------------------------------------
+\section{Method: \dllm}
+\label{sec:method}
+
+\subsection{The Precision Amplification Principle}
+\label{sec:theorem}
+
+The goal is not to restrict split-K, which costs parallelism, but to amplify
+precision at the reduction step so any ordering rounds to the same BF16 output.
+
+\begin{theorem}[Precision Amplification for Batch-Invariant GEMM]
+\label{thm:pa}
+Let $C_{ij} = \sum_{k=1}^{K} A_{ik} B_{jk}$ be a BF16 GEMM output element.  Denote by
+$\hat{C}_{ij}^{(\pi)}$ the floating-point sum computed under permutation $\pi$ of the
+$K$ terms using FP32 arithmetic.  Then for any two permutations $\pi_1, \pi_2$:
+\[
+  |\hat{C}_{ij}^{(\pi_1)} - \hat{C}_{ij}^{(\pi_2)}|
+  \;\le\; 2\,\gamma_K^{(32)} \cdot \sum_{k=1}^{K} |A_{ik} B_{jk}|
+\]
+where $\gamma_K^{(32)} = K\,\varepsilon_{\mathrm{FP32}}/(1 - K\,\varepsilon_{\mathrm{FP32}})
+\approx K\,\varepsilon_{\mathrm{FP32}}$ \citep{higham2002accuracy}.  If this bound is
+less than $\varepsilon_{\mathrm{BF16}}/2 \cdot |C_{ij}|$, then
+$\mathrm{round\_bf16}(\hat{C}_{ij}^{(\pi_1)}) = \mathrm{round\_bf16}(\hat{C}_{ij}^{(\pi_2)})$,
+i.e., the BF16-rounded output is \textbf{permutation-invariant}.
+\end{theorem}
+
+\begin{corollary}[Sufficiency for LLM shapes]
+\label{cor:llm}
+For post-LayerNorm activations $A_{ik} \sim \mathcal{N}(0,1)$ and Xavier-initialized
+weights $B_{jk} \sim \mathcal{N}(0, 1/K)$, we have
+$\mathbb{E}[\sum_k |A_{ik} B_{jk}|] \approx \sqrt{K/\pi}$, giving:
+\[
+  |\hat{C}^{(\pi_1)} - \hat{C}^{(\pi_2)}|
+  \;\lesssim\; 2 K \varepsilon_{\mathrm{FP32}} \cdot \sqrt{K/\pi}
+  \;\approx\; 2K^{3/2} \varepsilon_{\mathrm{FP32}} / \sqrt{\pi}.
+\]
+The batch-invariance condition $2K^{3/2}\varepsilon_{\mathrm{FP32}}/\sqrt{\pi} <
+\varepsilon_{\mathrm{BF16}}/2$ holds for:
+\[
+  K \;<\; K_{\max} \;=\; \left(\frac{\sqrt{\pi}\,\varepsilon_{\mathrm{BF16}}}{4\,\varepsilon_{\mathrm{FP32}}}\right)^{2/3}
+  \;\approx\; 7{,}700.
+\]
+Attention projections use $K\!=\!\text{hidden\_dim}$ (4{,}096 for Llama-8B), satisfying
+$K < K_{\max}$ for all tested models.  FFN projections in large models can exceed the
+bound: Llama-3.1-8B has $K_{\mathrm{FFN}}\!=\!14{,}336 > K_{\max}$, explaining the
+lower 7.4$\times$ improvement on 8B vs.\ 37$\times$ on 1B.  For extreme activations
+($\|a\|_\infty \gg 1$), the bound tightens and empirical verification remains necessary.
+\end{corollary}
+
+\textbf{Implication.}
+FP32 accumulation guarantees batch-invariant BF16 outputs for attention projections
+in every standard LLM we examined, since $K\!\le\!8{,}192<K_{\max}$, and for FFN
+projections whenever the hidden dimension is at most 4{,}096. Split-K parallelism
+can be kept, provided all reductions are in FP32. This differs from the
+``disable split-K'' approach in a concrete way: we control the reduction precision
+rather than forbidding the reduction.
+
+\paragraph{Why FP32 accumulation rather than compensated summation.}
+Compensated summation schemes~\citep{demmel2013accurate,rump2010accurate} (Kahan,
+pairwise, block-compensated) give bit-exact reproducibility at a lower precision.
+They are the right tool if one needs the \emph{same} result on every hardware.
+Our goal is weaker: identical BF16 output regardless of split-K count. For this,
+any precision level that hides the non-associativity error under BF16 quantization
+works, and FP32 accumulation is the cheapest way to get there. It costs one
+extra accumulator register per thread and uses the FP32 compute path that GPU
+tensor cores already expose via \texttt{CUBLAS\_COMPUTE\_32F}. Kahan summation
+doubles the arithmetic ops per reduction step, and pairwise summation requires
+a custom kernel with a non-standard memory access pattern. Neither buys us
+anything beyond what FP32 accumulation already does at our $K$ range.
+
+\subsection{Implementation}
+\label{sec:impl}
+
+We provide two backends that both deliver batch-invariant output, trading off
+between deployability and hardness of the guarantee.
+
+\paragraph{Backend 1: Triton kernel (recommended, constructive guarantee).}
+A single Triton GEMM kernel where each output tile is computed by exactly one
+program, with FP32 accumulation inside a sequential reduction over $K$ at fixed
+block size. Different batch sizes launch different grid dimensions but the
+per-element reduction path stays byte-identical, so the output is
+\textbf{bit-exact batch-invariant by construction}, independent of $K$.
+This sidesteps the $K_{\max}$ bound entirely for the covered ops. Autotune runs
+once per $(M_{\text{class}}, N, K)$ at first call and the plan is cached; there
+is no per-call heuristic cost.
+
+\paragraph{Backend 2: Two-phase cuBLASLt heuristic.}
+The second backend is a CUDA extension that wraps cuBLASLt with
+\texttt{CUBLAS\_COMPUTE\_32F}. Phase~1 requests \texttt{REDUCTION\_SCHEME\_NONE}
+(no split-K); Phase~2 falls back to the \texttt{COMPUTE\_TYPE} scheme (split-K
+with FP32 inter-CTA reduction) when Phase~1 returns no candidate. This is the
+path our Theorem~\ref{thm:pa} argument covers: the FP32 reduction error falls
+below BF16's quantization step for $K<K_{\max}$, so different split counts round
+to the same BF16 value. The backend is useful when a Triton toolchain is
+unavailable and works out-of-the-box against the stock cuBLAS library. It pays
+$\sim 25\mu s$ per-call heuristic cost and does not cover $K>K_{\max}$.
+
+\paragraph{Row-major layout (cuBLASLt backend only).}
+cuBLASLt defaults to column-major. Without \texttt{CUBLASLT\_ORDER\_ROW} on
+PyTorch's row-major tensors, element $(i,j)$ of an $[M,K]$ matrix is read at
+offset $i+j\cdot K$, reaching up to $(M\!-\!1)+(K\!-\!1)K\!\approx\!K^2$
+elements past the buffer end. GPU writes are asynchronous; the error surfaces
+later as \texttt{CUBLAS\_STATUS\_INTERNAL\_ERROR} on the next call. The Triton
+backend avoids this because it manages strides explicitly in the kernel.
+
+\paragraph{Coverage.}
+\dllm patches \texttt{F.linear} for all projection GEMMs (attention
+$q/k/v/o$-proj and FFN up/gate/down). For end-to-end token-wise
+determinism across batch compositions, opting into the
+\texttt{attn=True} flag also patches \texttt{torch.matmul} and
+\texttt{torch.bmm}: both operands are upcast BF16$\to$FP32 around the
+attention score matmul (Q$\otimes$K$^\top$) and the score$\times$V
+matmul. FP32 reductions sit far below BF16's quantisation step, so the
+result is invariant to cuBLAS's batch-dependent split-K choice. The
+cost is one extra BF16/FP32 cast per attention call; attention is
+$<\!5\%$ of decode FLOPs, so end-to-end overhead is negligible.
+
+\paragraph{GEMV/GEMM padding fix.}
+Production KV-cache serving needs one extra step. When the flattened batch
+dimension is $M\!=\!1$, \dllm expands the activation to $[2,K]$ by duplicating
+row~0 before the cuBLASLt call and discards the duplicate from the output. cuBLAS
+then always takes the GEMM code path. This eliminates the GEMV/GEMM boundary for
+attention shapes up to $K\!=\!2{,}048$, which covers every attention projection in
+Llama-3.2-1B.
+
+\paragraph{Python interface.}
+\begin{lstlisting}[language=Python, caption={\dllm Python integration.}]
+import determ_llm
+determ_llm.enable()                        # Triton backend, default
+determ_llm.enable(backend='cublaslt')      # cuBLASLt backend (needs no Triton)
+determ_llm.enable(pad_m1=True)             # + GEMV/GEMM padding (cuBLASLt only)
+determ_llm.enable(attn=True)               # + FP32-upcast attention matmul
+# ... existing code unchanged ...
+determ_llm.disable()
+\end{lstlisting}
+
+% -----------------------------------------------------------------------
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Experimental Setup}
+
+All experiments run on a single NVIDIA RTX A6000 (48\,GB), PyTorch 2.6.0,
+CUDA 12.9. For MATH500, a second A6000 is used only to parallelize
+independent eval runs, which does not affect any individual measurement.
+
+For the MATH500 eval we use DeepSeek-R1-Distill-Qwen-7B~\citep{deepseekr1}
+(``DeepSeek-7B'' hereafter) on the first 50 MATH500~\citep{hendrycks2021math}
+problems with greedy decoding, \texttt{max\_new\_tokens}$=2048$, batch sizes
+$\{8,16\}$, and seeds $\{0,1\}$, i.e.\ 4 configurations per method. Metrics
+follow Yuan et al.~\citep{yuan2025numerical}: Std@Acc (standard deviation of
+accuracy across configurations), Avg\_Std@Output\_Length, and Div\_Index.
+The op-level bench measures per-call latency on DeepSeek-7B's 8 projection
+shapes at $M\!\in\!\{1,8,16,32\}$, averaged over 100 timed iterations.
+End-to-end overhead is reported on Phi-4 (14B, BF16) at batch sizes
+$\{1,8,32\}$ over 10 runs of 32 output tokens. The decomposition and
+production KV-cache studies use Llama-3.2-1B-Instruct (and 8B for
+cross-architecture) with 10 prompts, 64 tokens, and batch sizes
+$\{2,\dots,64\}$; the KV-cache protocol prefills each prompt once at
+$bs\!=\!1$ and decodes at $bs\!=\!N$ with a duplicated KV state, matching
+the production path in vLLM and SGLang. The vLLM integration uses vLLM
+0.8.5 (V1, FA2, \texttt{enforce\_eager=True}) on Llama-3.2-1B at
+$n\!\in\!\{2,4,8\}$ concurrent requests.
+
+\subsection{Main Result: MATH500 on DeepSeek-R1-Distill-Qwen-7B}
+\label{sec:math500}
+
+Table~\ref{tab:math500_std} reports MATH500 batch-composition stability
+on DeepSeek-R1-Distill-Qwen-7B across $bs\in\{1,8,32\}$ with $n\!=\!50$
+problems per configuration, using Yuan et al.~\citep{yuan2025numerical}
+metrics: \emph{Std@Acc} (accuracy variation across $bs$), \emph{Div\_Index}
+(median first-divergence token position between $bs$-pairs), and
+\emph{Avg\_Std@top1} (per-token std of the top-1 logprob across $bs$,
+averaged over positions and problems).
+
+\begin{table}[h]
+\centering
+\caption{MATH500 accuracy and determinism on DeepSeek-R1-Distill-Qwen-7B,
+  $n\!=\!50$ problems, $bs\!\in\!\{1,8,32\}$ at seed$=\!0$. Arrows indicate
+  direction of improvement. LayerCast~\citep{yuan2025numerical}
+  is the state-of-the-art prior work.}
+\label{tab:math500_std}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Acc & Std@Acc$\downarrow$ & Div\_Index$\uparrow$ &
+         AvgStd@top1$\downarrow$ & Runtime \\
+\midrule
+A: BF16 baseline                  & 14.0\% & 0.0327 & 88  & 0.1825 & 1.00$\times$ \\
+L: LayerCast                      & 14.7\% & \textbf{0.0094} & 98  & 0.1812 & 3.22$\times$ \\
+\textbf{H: \dllm (Hybrid, ours)}  & 15.3\% & 0.0189 & \textbf{126} & \textbf{0.1807} & \textbf{1.11}$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Headline.} \dllm-Hybrid pushes the median first-divergence
+token $43\%$ later than BF16 ($88\!\to\!126$) and $29\%$ later than
+LayerCast ($98\!\to\!126$) at $1.11\times$ baseline runtime, versus
+LayerCast's $3.22\times$. Per-token logprob variance (Avg\_Std@top1) is
+also lowest under \dllm. On the coarser Std@Acc metric \dllm sits between
+LayerCast and BF16, reflecting that attention non-determinism---which
+neither method patches---still flips a fraction of answers late in
+the $1024$-token reasoning chain. Figure~\ref{fig:sameprefix} shows the
+same wedge in a multi-model view.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figs/fig1_same_prefix_n50.pdf}
+\caption{Probability that the first-$K$ decoded tokens are identical
+  across $bs\!\in\!\{1,8,32\}$ (both $1\!\leftrightarrow\!8$ and
+  $8\!\leftrightarrow\!32$ pairs, $n\!=\!50$ problems). \dllm holds the
+  trajectory longer than BF16 and LayerCast on GQA reasoning models
+  (DeepSeek-7B, Llama-8B); on dense Phi-4 all three methods overlap.}
+\label{fig:sameprefix}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{figs/fig2_div_index_hist_n50.pdf}
+\caption{Div\_Index distribution per model and method ($n\!=\!50$, bs-pairs
+  $1\!\leftrightarrow\!8$ and $8\!\leftrightarrow\!32$, log $x$ axis).
+  BF16 shows a left tail (early divergence) especially on DeepSeek-7B and
+  Llama-8B; \dllm shifts the distribution right, raising the median
+  by $29$--$43\%$ on the GQA models.  Format follows
+  Yuan et al.~\citep{yuan2025numerical}.}
+\label{fig:divhist}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.75\textwidth]{figs/fig4_avgstd_top1_n50.pdf}
+\caption{Avg\_Std@top1\_prob (per-token std of the top-1 logprob across
+  $bs\!\in\!\{1,8,32\}$, averaged over token positions and problems) on
+  MATH500. \dllm matches or beats LayerCast on every model; the gap is
+  largest on Llama-8B (\dllm $0.060$ vs.\ LayerCast $0.076$, BF16 $0.072$).
+  Log $y$ axis because Phi-4 values are $20\times$ smaller.}
+\label{fig:avgstd}
+\end{figure}
+
+\paragraph{LayerCast pays a bandwidth tax that \dllm avoids.}
+LayerCast upcasts every BF16 weight to FP32 at each matmul call, which
+doubles the weight-read memory bandwidth on DeepSeek's GQA workload. Our
+backend keeps weights in BF16 and relies on the tensor-core BF16$\to$FP32
+accumulator to avoid the bandwidth penalty; the mean per-config runtime
+confirms this ($3.22\times$ vs.\ $1.11\times$). We confirm the mechanism
+in the op-level bench of Section~\ref{sec:overhead}.
+
+\paragraph{Mean accuracy spread is within sampling noise.}
+At $n\!=\!50$, the $14.0\text{--}15.3\%$ spread across methods is
+$\le\!0.25\sigma$ of the binomial sampling variance and does not signal
+a correctness issue; the Std@Acc column isolates \emph{within-method}
+consistency, which is the relevant batch-composition indicator.
+
+\paragraph{Cross-architecture determinism is governed by attention.}
+Across three models at $n\!=\!50$, \dllm cuts the median first-divergence
+token lag over BF16 by 29--43\% on the GQA reasoning stacks (DeepSeek-7B:
+$88\!\to\!126$; Llama-8B: $101\!\to\!142$); on the dense Phi-4 stack
+($310\!\to\!382$) \dllm and LayerCast are within 1\% of each other.
+End-to-end token-wise equality across bs$\in\!\{1,8,32\}$ is $0\%$ on
+DeepSeek, $6$--$14\%$ on Llama, and $46$--$52\%$ on Phi-4 regardless of
+method, because neither method patches attention
+Q$\otimes$K$^\top$ and its non-associative softmax reductions accumulate
+enough noise over $1024$ reasoning tokens to flip trajectories. The GEMM
+fix remains the bottleneck for prefix stability and logprob variance,
+as the Avg\_Std@top1 column and Figure~\ref{fig:sameprefix} both show.
+
+\subsection{Overhead Comparison}
+\label{sec:overhead}
+
+We split the overhead analysis into two parts: op-level GEMM latency on
+DeepSeek shapes (Table~\ref{tab:overhead_op}), and end-to-end latency on
+Phi-4 (Table~\ref{tab:overhead_e2e}). The op-level numbers explain why
+LayerCast is expensive and why the hybrid backend succeeds.
+
+\begin{table}[h]
+\centering
+\caption{Per-call GEMM latency summed over DeepSeek-R1-Distill-Qwen-7B's
+  8 projection shapes (attn $q/k/v/o$, ffn gate/up/down, lm\_head) across
+  $M\!\in\!\{1,8,16,32\}$. Triton's $\sim\!67\,\mu$s launch-overhead floor
+  dominates small-$N$ shapes (GQA K/V at $N\!=\!512$); LayerCast's upcast
+  dominates every shape. The hybrid dispatcher routes by $N$ and matches
+  BF16 baseline within 0.1\%.}
+\label{tab:overhead_op}
+\begin{tabular}{lrr}
+\toprule
+Method & Total $\mu s$ & vs.\ BF16 \\
+\midrule
+A: BF16 baseline                      &  5469 & $0\%$ \\
+C: \dllm (cuBLASLt)                   &  5487 & $+0.3\%$ \\
+\textbf{H: \dllm (Hybrid, ours)}      &  \textbf{5464} & \textbf{$-0.1\%$} \\
+T: \dllm (Triton)                     &  5745 & $+5.0\%$ \\
+L: LayerCast~\citep{yuan2025numerical}& 46197 & $+407\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Triton kernel loses to cuBLASLt only on GQA K/V projections
+($K\!=\!3584$, $N\!=\!512$), where the $68\,\mu$s Triton launcher overhead
+dwarfs the $21\,\mu$s cuBLASLt call. On every other shape Triton matches or
+beats cuBLASLt. The hybrid dispatcher routes by $N$ (small-$N$ $\to$
+cuBLASLt, large-$N$ $\to$ Triton) and recovers the best of both paths.
+LayerCast's $407\%$ overhead is the cost of upcasting weights to FP32 at
+every matmul; this is pure memory-bandwidth cost on the bandwidth-bound
+decode workload.
+
+\begin{table}[h]
+\centering
+\caption{End-to-end latency overhead on Phi-4 (14B), RTX A6000, 32 output
+  tokens per request, 10 runs averaged. Negative values indicate speedup.
+  ``*'' marks empirical argmax stability on these prompts rather than
+  numerical determinism.}
+\label{tab:overhead_e2e}
+\begin{tabular}{llrrr}
+\toprule
+\multirow{2}{*}{Approach} & \multirow{2}{*}{Det.}
+  & \multicolumn{3}{c}{Latency overhead vs.\ baseline} \\
+\cmidrule{3-5}
+& & $bs\!=\!1$ & $bs\!=\!8$ & $bs\!=\!32$ \\
+\midrule
+A: BF16 baseline                     & \checkmark* & $0\%$    & $0\%$    & $0\%$    \\
+B: BF16 reduction flag               & \checkmark & $+0.3\%$ & $-0.1\%$ & $+0.4\%$ \\
+C: \dllm, cuBLASLt backend           & \checkmark & $-3.2\%$ & $-0.3\%$ & $+0.3\%$ \\
+\textbf{T: \dllm, Triton backend}    & \checkmark & $\mathbf{-2.8\%}$ & $\mathbf{-0.7\%}$ & $\mathbf{-0.5\%}$ \\
+D: torch deterministic mode          & \checkmark & $+12.9\%$ & $+12.5\%$ & $+7.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On Phi-4 (no GQA, no small-$N$ shapes), both Triton and cuBLASLt backends
+sit within 1\% of the non-deterministic baseline and run $3$--$4\times$
+faster than torch's deterministic mode. The hybrid backend (not shown
+because it reduces to cuBLASLt at all Phi-4 shapes) is identical to the
+cuBLASLt row.
+
+Figure~\ref{fig:pareto} summarizes the runtime-versus-determinism trade-off
+across the three models: \dllm sits near the origin in the (runtime,
+end-to-end determinism) plane while LayerCast is pushed right by its
+$3$--$4\times$ bandwidth tax.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{figs/fig3_pareto_n50.pdf}
+\caption{Runtime vs.\ token-wise determinism on MATH500 ($n\!=\!50$).
+  $x$ is per-config wall time relative to the BF16 baseline; $y$ is the
+  fraction of problems whose token sequences are identical across all
+  three batch sizes. \dllm (red) dominates LayerCast (blue) on runtime
+  at matching or higher determinism.}
+\label{fig:pareto}
+\end{figure}
+
+\subsection{Token-Level Batch-Invariance Decomposition}
+\label{sec:decomp}
+
+To connect the MATH500 stability to the GEMM level, we run a full
+re-computation ablation on Llama-3.2-1B (eager attention, 10 prompts $\times$
+64 tokens, $bs\!\in\!\{2,\dots,64\}$). Each decode step has
+$M\!=\!bs\cdot(L\!+\!t)$, so every GEMM is in the Theorem~\ref{thm:pa}
+regime. Table~\ref{tab:decomp} compares generated tokens against the
+$bs\!=\!1$ reference.
+
+\begin{table}[h]
+\centering
+\caption{Llama-3.2-1B decomposition. The Triton backend cuts
+  token mismatches $\mathbf{54\times}$ (596 to 11) and log-prob variance
+  $\mathbf{57\times}$; the cuBLASLt backend reaches $37\times$. Remaining
+  Triton residuals trace to prefill-phase Q@K$^\top$, which neither backend
+  patches.}
+\label{tab:decomp}
+\begin{tabular}{lrrr}
+\toprule
+Condition & All match? & Tot.\ tok.\ MM & Avg $|\Delta\log P|$ \\
+\midrule
+BF16 baseline                          & \texttimes & 596 & 0.0798\,nats \\
+\dllm (cuBLASLt)                       & \texttimes & 16  & 0.0075\,nats \\
+\textbf{\dllm (Triton)}                & \texttimes & \textbf{11} & \textbf{0.0014\,nats} \\
+torch deterministic mode (warn\_only)  & \texttimes & 596 & 0.0798\,nats \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Cross-architecture runs (cuBLASLt backend) track the $K_{\max}$ bound:
+Phi-4/14B $17.1\times$ (FFN $K\!=\!17{,}920$ exceeds the bound) and
+Llama-3.1-8B $7.4\times$ ($K\!=\!14{,}336$, most degraded). Full numbers are
+in Appendix~\ref{app:kmax}, where we also sweep synthetic GEMMs from
+$K\!=\!2048$ to $K\!=\!16{,}384$ and confirm that the Triton backend stays
+above $99.4\%$ bit-exact agreement across batch sizes at every tested $K$.
+A 50-prompt replication of the main table (Appendix~\ref{app:50p})
+resolves 24 of 33 affected prompts under \dllm; the residual prompt 9
+validates the $K_{\max}$ boundary as the cuBLASLt backend's failure mode
+($K\!=\!8{,}192$ FFN down-projection flips argmax at token 23).
+
+\subsection{Production KV-Cache Experiment}
+\label{sec:kvcache}
+
+We next ask whether \dllm holds in the actual production serving path. A naive
+batched prefill, where all $N$ requests are prefilled together with
+\texttt{use\_cache=True}, leaks non-determinism from unpatched prefill attention
+into the KV cache, and \dllm only reduces token mismatches from 521 to 484
+(Appendix~\ref{app:kvcache_batched}). The production path in vLLM and SGLang is
+different.
+
+\paragraph{Individual prefill, batched decode.}
+To match vLLM and SGLang's production path we prefill each prompt once at
+$bs\!=\!1$ and duplicate the cached KV state $N$ times before decoding at
+$bs\!=\!N$. All rows start from an identical KV cache, so any row-0 mismatch
+isolates batch-induced non-determinism in the decode step (the batched
+\texttt{F.linear} and the decode attention at $M\!=\!1$).
+
+\begin{table}[h]
+\centering
+\caption{Production scenario, individual $bs\!=\!1$ prefill and batched $bs\!=\!N$
+  decode, 10 prompts, 64 tokens. Condition~D adds the $M$-padding fix on top of B.
+  Llama-3.2-1B uses batch sizes 2--64; Llama-3.1-8B uses 2--32 for memory. The
+  8B reduction is larger because attention shapes ($K_{\mathrm{attn}}\!=\!4{,}096$)
+  sit well below $K_{\max}$; the 1B residual is dominated by FFN projections at
+  $K\!=\!8{,}192$, which exceed the bound.}
+\label{tab:kvcache}
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{Llama-3.2-1B} & \multicolumn{2}{c}{Llama-3.1-8B} \\
+\cmidrule{2-3}\cmidrule{4-5}
+Condition & MM & $|\Delta\log P|$ & MM & $|\Delta\log P|$ \\
+\midrule
+A: BF16 baseline                  & 741 & 0.093 & 346 & 0.041 \\
+B: \dllm (F.linear)               & 595 & 0.067 & 240 & 0.037 \\
+D: \dllm (F.linear + padding fix) & \textbf{353} & \textbf{0.050} & \textbf{112} & \textbf{0.014} \\
+Reduction D/A                     & \multicolumn{2}{c}{$\mathbf{2.1\times}$} & \multicolumn{2}{c}{$\mathbf{3.1\times}$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{GEMV/GEMM boundary and padding fix.}
+Condition~B residuals stem from a secondary source: cuBLAS dispatches to a
+GEMV kernel at $M\!=\!1$ and a GEMM kernel at $M\!\ge\!2$, and FP32
+accumulation does not align these two code paths. The gap is
+$\approx\!0.033\nats$ per step and flips near-tie tokens after roughly 52
+steps of KV-cache accumulation. Condition~D pads $M\!=\!1$ inputs to
+$[2,K]$ before the cuBLASLt call, forcing the GEMM path consistently. This
+closes the gap for 1B attention shapes ($K\!\le\!2048$) but not for FFN
+shapes where different $N$ values still pick different split-$K$ counts
+inside GEMM. The Triton backend removes this residual by construction.
+
+\subsection{Serving Engine Integration (vLLM)}
+\label{sec:vllm}
+
+On vLLM 0.8.5 with Llama-3.2-1B and Flash Attention 2, BF16 produces 1--2
+mismatches per batch ($n\!=\!2,4,8$ concurrent requests vs.\ $n\!=\!1$
+reference). \dllm reduces $n\!=\!8$ mismatches from $2$ to $1$; the remaining
+mismatch is Flash Attention 2's PagedAttention kernel, which tiles KV-cache
+traversal by concurrent sequence count and is independent of \texttt{F.linear}.
+Throughput drops from 940 to 553\,tok/s ($+41\%$, higher than the $+10$--$+17\%$
+in Transformers) because vLLM's scheduler amplifies per-call cuBLASLt
+heuristic cost; throughput also varies across runs (473--924\,tok/s) from
+intermittent FP32 fallbacks in Phase~2. Full vLLM determinism additionally
+needs FA3~\citep{shah2024flashattention3} or a fixed-tiling Triton attention
+kernel combined with our GEMM fix.
+
+\subsection{Downstream Impact}
+\label{sec:downstream}
+
+Three additional measurements on Llama-3.1-8B at $bs\!=\!1$ vs.\ $bs\!=\!8$
+quantify what the logit drift costs common training pipelines. The RL reward
+proxy (top-1 $\log P$ across batch sizes) shifts by $2.33\!\times\!10^{-2}$
+nats under BF16 with paired $t$-test $p\!<\!10^{-17}$, which carries into the
+importance ratios RLHF and GRPO use~\citep{ouyang2022instructgpt,schulman2017proximal,shao2024deepseekmath};
+\dllm cuts the shift by $35\%$ to $1.51\!\times\!10^{-2}$. Distillation KL
+between teacher softmax at the two batch sizes drops $27\%$, from
+$6.36\!\times\!10^{-4}$ to $4.63\!\times\!10^{-4}$ nats, affecting $92.4\%$ of
+positions above a $10^{-6}$ noise floor~\citep{hinton2015distilling,gu2024minillm}.
+On a synthetic top-8 MoE router (128 experts, 1{,}000 near-tie positions),
+BF16 flips $6\%$ of expert selections; \dllm flips $0$.
+
+% -----------------------------------------------------------------------
+\section{Related Work}
+\label{sec:related}
+
+Yuan et al.~\citep{yuan2025numerical} (concurrent, NeurIPS 2025) quantify
+BF16 inference variance across runtime configurations and propose
+\textbf{LayerCast}: BF16 weights upcast to FP32 at every matmul. We use the
+same FP32 compute but keep weights in BF16 and rely on the tensor-core
+BF16$\to$FP32 accumulator, avoiding LayerCast's doubled weight-read
+bandwidth ($3.22\times$ slower on DeepSeek MATH500; Section~\ref{sec:math500}).
+We also add the $K_{\max}$ bound (Theorem~\ref{thm:pa}) characterizing when
+FP32 compute guarantees batch-invariant BF16 output.
+\texttt{batch\_invariant\_ops}~\citep{batchinvariantops2024} wraps reductions
+at $\sim\!34\%$ overhead; we target only GEMM split-K and cut overhead
+$3$--$5\times$. cuDNN/cuBLAS deterministic modes~\citep{cublas2024} restrict
+algorithms; we raise reduction precision. Error-free
+summation~\citep{demmel2013accurate,rump2010accurate} is bit-exact but too
+expensive inner-loop. vLLM~\citep{kwon2023vllm}/SGLang~\citep{sglang2024}
+deterministic modes use torch's flag plus workspace config at $+29$ to
+$+83\%$ overhead. FlashAttention-3~\citep{shah2024flashattention3} gives
+deterministic attention; a full stack combines it with our GEMM fix.
+
+\textbf{Limitations and conclusion.}
+\label{sec:discussion}
+Prefill-phase attention and FA2's PagedAttention tile schedule remain open
+(closed by FA3 in the full stack). The hybrid backend matches BF16 at
+$1.11\times$ mean runtime, $2.9\times$ faster than LayerCast, and pushes
+the median first-divergence token $29$--$43\%$ later than BF16 on the
+reasoning models tested (Figure~\ref{fig:sameprefix}).
+
+% -----------------------------------------------------------------------
+\bibliography{references}
+\bibliographystyle{abbrvnat}
+
+% -----------------------------------------------------------------------
+\newpage
+\appendix
+
+\section{Environment and Reproducibility}
+\label{app:env}
+
+\subsection{Software Environment}
+
+\begin{itemize}
+  \item Python 3.10, PyTorch 2.6.0+cu124, CUDA 12.9
+  \item Transformers 4.48.3, vLLM 0.8.5
+  \item \dllm kernel compiled with \texttt{nvcc} (CUDA 12.9, \texttt{-O3 --use\_fast\_math})
+        targeting \texttt{sm\_86} (Ampere)
+\end{itemize}
+
+\subsection{Kernel Compilation}
+
+\begin{lstlisting}[language=bash]
+cd FP32
+python setup_fixed_algo.py build_ext --inplace
+# produces: _gemm_fixed_algo.cpython-310-x86_64-linux-gnu.so
+\end{lstlisting}
+
+\subsection{Running the Overhead Benchmark}
+
+\begin{lstlisting}[language=bash]
+CUDA_VISIBLE_DEVICES=0 \
+  python research/run_overhead_bench.py
+# Output: research/exp_overhead_bench.json
+\end{lstlisting}
+
+\subsection{Running the Log-Probability Experiment}
+
+\begin{lstlisting}[language=bash]
+CUDA_VISIBLE_DEVICES=0 \
+  python research/run_logprob_nondet.py
+# Output: research/exp_logprob_nondet.json
+\end{lstlisting}
+
+\section{cuBLASLt API Details}
+\label{app:api}
+
+The \texttt{CUBLASLT\_MATMUL\_PREF\_REDUCTION\_SCHEME\_MASK} attribute accepts a
+bitmask whose bits correspond to the \texttt{cublasLtReductionScheme\_t} enum:
+
+\begin{center}
+{\small
+\begin{tabular}{lrl}
+\toprule
+Enum value & Bit & Semantics \\
+\midrule
+\texttt{CUBLASLT\_REDUCTION\_SCHEME\_NONE}         & 0x0 & Single-CTA per output tile, no split-K \\
+\texttt{CUBLASLT\_REDUCTION\_SCHEME\_INPLACE}      & 0x1 & Split-K, atomic in-place reduction \\
+\texttt{CUBLASLT\_REDUCTION\_SCHEME\_COMPUTE\_TYPE}& 0x2 & Split-K, reduction in compute type \\
+\texttt{CUBLASLT\_REDUCTION\_SCHEME\_OUTPUT\_TYPE} & 0x4 & Split-K, reduction in output type \\
+\texttt{CUBLASLT\_REDUCTION\_SCHEME\_MASK}         & 0x7 & Allow all schemes (default) \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+
+Setting \texttt{mask = 0} is equivalent to \texttt{CUBLASLT\_REDUCTION\_SCHEME\_NONE}:
+only algorithms with no cross-CTA reduction pass the preference filter.  This is the
+key operation in \dllm.
+
+\section{Proof of Theorem~\ref{thm:pa} and Corollary~\ref{cor:llm}}
+\label{app:proof}
+
+\subsection*{Notation}
+Let $p_k\!=\!A_{ik}B_{jk}$ denote the $k$-th product. We treat each $p_k$ as an
+FP32 value (the product $A_{ik}\cdot B_{jk}$ is computed in FP32 once the operands
+are upcast from BF16; the multiplication rounds once but this error is absorbed into
+the partial products we analyze below). Let $\varepsilon_{32}$ be the FP32 unit
+roundoff and $\varepsilon_{16}$ the BF16 unit roundoff, with
+$\varepsilon_{32}\!=\!2^{-24}$ and $\varepsilon_{16}\!=\!2^{-8}$. Write
+$\gamma_n\!=\!n\varepsilon_{32}/(1-n\varepsilon_{32})$.
+
+\subsection*{Proof of Theorem~\ref{thm:pa}}
+Under any permutation $\pi$ of the indices $\{1,\dots,K\}$, the FP32 floating-point
+sum $\hat C^{(\pi)}\!=\!\widehat{\sum_{k}}p_{\pi(k)}$ satisfies the standard
+backward error bound~\cite[Eq.~4.4]{higham2002accuracy}:
+\begin{equation}
+\Bigl|\hat C^{(\pi)} - \sum_{k=1}^{K} p_k\Bigr|
+\;\le\; \gamma_{K-1}\sum_{k=1}^{K}|p_k|
+\;\le\; \gamma_K\sum_{k=1}^{K}|p_k|.
+\label{eq:perm-bound}
+\end{equation}
+The bound is order-independent: it holds for every $\pi$ with the same right-hand
+side. Applying the triangle inequality to two permutations $\pi_1, \pi_2$,
+\begin{equation}
+\bigl|\hat C^{(\pi_1)} - \hat C^{(\pi_2)}\bigr|
+\;\le\; 2\,\gamma_K\sum_{k=1}^{K}|p_k|,
+\label{eq:pair-bound}
+\end{equation}
+which is the claimed bound.
+
+Now let $\hat y_\pi\!=\!\mathrm{round}_{\text{BF16}}(\hat C^{(\pi)})$. BF16 rounding
+has the property that if two FP32 values $x_1, x_2$ lie within
+$\varepsilon_{16}|C_{ij}|/2$ of each other and neither is in the rounding
+tie-breaking set of $C_{ij}$, then $\mathrm{round}_{\text{BF16}}(x_1)=\mathrm{round}_{\text{BF16}}(x_2)$.
+Combining this with~\eqref{eq:pair-bound}, a sufficient condition for
+$\hat y_{\pi_1}=\hat y_{\pi_2}$ at every $\pi_1,\pi_2$ is
+\begin{equation}
+2\,\gamma_K\sum_{k=1}^{K}|p_k| \;<\; \frac{\varepsilon_{16}}{2}\,|C_{ij}|,
+\label{eq:suff}
+\end{equation}
+which gives the invariance condition of the theorem. The ties-broken-alike
+exception is a measure-zero event for continuous inputs and is negligible in
+practice. $\square$
+
+\subsection*{Proof of Corollary~\ref{cor:llm}}
+Assume $A_{ik}\sim\mathcal N(0,1)$ and $B_{jk}\sim\mathcal N(0,1/K)$, which matches
+post-LayerNorm activations and Xavier-initialized weights. Then
+$A_{ik}B_{jk}\sim\mathcal N(0,1/K)$ pairwise independent, so
+$\mathbb E|p_k|=\sqrt{2/(\pi K)}$ and
+\begin{equation}
+\mathbb E\!\Bigl[\sum_{k=1}^{K}|p_k|\Bigr] = K\sqrt{\frac{2}{\pi K}} = \sqrt{\frac{2K}{\pi}}.
+\label{eq:expected-l1}
+\end{equation}
+By the central limit theorem, $C_{ij}\!\sim\!\mathcal N(0,1)$ for large $K$, so
+$\mathbb E|C_{ij}|\!=\!\sqrt{2/\pi}$. Substituting $\gamma_K\!\approx\!K\varepsilon_{32}$
+into~\eqref{eq:suff} and taking expectations,
+\begin{equation}
+2K\varepsilon_{32}\sqrt{\frac{2K}{\pi}} \;<\; \frac{\varepsilon_{16}}{2}\sqrt{\frac{2}{\pi}},
+\label{eq:expected-suff}
+\end{equation}
+which simplifies to $K^{3/2}\!<\!\varepsilon_{16}/(4\varepsilon_{32})$ and yields
+$K<K_{\max}=(\varepsilon_{16}/(4\varepsilon_{32}))^{2/3}$.
+Plugging in $\varepsilon_{16}/\varepsilon_{32}=2^{16}$ gives
+$K_{\max}=2^{32/3}/4^{2/3}\approx7{,}700$.
+
+\subsection*{When the bound is conservative}
+The proof uses a worst-case Wilkinson bound~\eqref{eq:perm-bound}. In practice the
+achieved error is smaller, for two reasons. First, the rounding errors at each
+step are signed, not of fixed sign, so cancellation reduces the accumulated error
+by approximately $\sqrt{K}$ under the stochastic rounding model. Second, the
+condition number $\kappa(S)=\sum|p_k|/|\sum p_k|$ for post-LayerNorm activations
+is typically around 30--100 for $K\!=\!4096$, rather than its worst-case
+upper-bound $\mathcal O(\sqrt K)$. These two factors together make the empirical
+safe $K$ larger than $K_{\max}$ in many settings (our 8B FFN result at
+$K=14{,}336$ is a concrete case: $K$ exceeds the bound but the fix still helps).
+
+\section{$K_{\max}$ Sweep: Full Data}
+\label{app:kmax}
+
+Table~\ref{tab:kmax_sweep} gives the full $K$-sweep referenced in
+Section~\ref{sec:decomp}. Each row averages 10 trials of a synthetic
+$M\!\times\!K\!\times\!K$ GEMM. We run $M\!=\!2$ and $M\!=\!32$, both inside the
+GEMM code path, and report the fraction of row-0 output cells that match
+bit-for-bit between the two batch sizes.
+
+\begin{table}[h]
+\centering
+\caption{$K_{\max}$ sweep. ``Zero rate'' is the fraction of row-0 output cells
+  that match bit-for-bit between $M\!=\!2$ and $M\!=\!32$. \dllm stays at or near
+  100\% across the whole range, including $K$ well beyond $K_{\max}\!\approx\!7{,}700$.}
+\label{tab:kmax_sweep}
+\begin{tabular}{rrrrr}
+\toprule
+$K$ & BF16 zero rate & \dllm zero rate & BF16 $\ell_\infty$ & \dllm $\ell_\infty$ \\
+\midrule
+2{,}048  & 99.9\% & 99.9\%  & $4.0\!\times\!10^{-4}$ & $4.0\!\times\!10^{-4}$ \\
+4{,}096  & 99.9\% & 99.9\%  & $4.9\!\times\!10^{-3}$ & $4.9\!\times\!10^{-3}$ \\
+5{,}120  & 99.8\% & 99.8\%  & $7.5\!\times\!10^{-3}$ & $7.5\!\times\!10^{-3}$ \\
+6{,}144  & 100\phantom{.0}\% & 100\phantom{.0}\%  & $0.0$ & $0.0$ \\
+7{,}168  & 58.3\% & \textbf{99.8\%} & $1.6\!\times\!10^{-2}$ & $7.4\!\times\!10^{-3}$ \\
+7{,}680  & 73.0\% & \textbf{99.7\%} & $1.6\!\times\!10^{-2}$ & $1.0\!\times\!10^{-2}$ \\
+8{,}192  & 58.3\% & \textbf{99.7\%} & $1.6\!\times\!10^{-2}$ & $9.4\!\times\!10^{-3}$ \\
+10{,}240 & 99.6\% & 99.6\%  & $9.4\!\times\!10^{-3}$ & $9.4\!\times\!10^{-3}$ \\
+12{,}288 & 61.0\% & \textbf{100\phantom{.0}\%} & $1.6\!\times\!10^{-2}$ & $0.0$ \\
+14{,}336 & 59.0\% & \textbf{99.5\%} & $1.7\!\times\!10^{-2}$ & $1.4\!\times\!10^{-2}$ \\
+16{,}384 & 58.9\% & \textbf{99.4\%} & $1.6\!\times\!10^{-2}$ & $1.2\!\times\!10^{-2}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+BF16 drops sharply at $K\!\in\!\{7{,}168,\ 7{,}680,\ 8{,}192\}$ and stays below
+73\% for most $K\!\ge\!7{,}168$. The two intermediate rows ($K\!=\!6{,}144$ and
+$K\!=\!10{,}240$) show that cuBLAS happens to select the same non-split-K
+algorithm for both $M\!=\!2$ and $M\!=\!32$ at those dimensions, which is
+consistent with the split-K heuristic being $(M,N,K)$-specific rather than
+monotonic in $K$.
+
+\section{Row-Major Layout Bug: Formal Analysis}
+\label{app:row_major}
+
+For a matrix $A \in \mathbb{R}^{M \times K}$ stored row-major, element $(i, j)$ resides
+at byte offset $(i \cdot K + j) \cdot \text{sizeof}(\text{elem})$.  The cuBLASLt API
+treats the \emph{leading dimension} as the stride between consecutive rows (row-major) or
+columns (column-major).  Without setting \texttt{CUBLASLT\_ORDER\_ROW}, cuBLASLt defaults
+to column-major with $\mathit{ld} = K$ (the value passed at layout creation).  Under
+column-major, element $(i, j)$ is addressed at offset $i + j \cdot K$.  For
+$M\!=\!2, K\!=\!4096$:
+\[
+  \text{max address (col-major)} = (M\!-\!1) + (K\!-\!1) \cdot K = 1 + 4095 \cdot 4096
+  \approx 16.7\text{M elements},
+\]
+far exceeding the $M \cdot K = 8192$ element buffer.  The kernel writes out-of-bounds
+silently (GPU memory access is asynchronous and does not immediately trap), corrupting
+adjacent tensors.  The next cuBLAS call then fails with
+\texttt{CUBLAS\_STATUS\_INTERNAL\_ERROR} because the workspace or weight tensors have
+been overwritten.
+
+\section{Batched-Prefill KV-Cache Experiment (Confounding Setting)}
+\label{app:kvcache_batched}
+
+Table~\ref{tab:kvcache_batched} shows the confounding batched-prefill setting where all
+$N$ requests are prefilled together.  Prefill attention ($M\!=\!L$) is unpatched, contaminating
+the KV cache before decode begins.  \dllm provides only marginal improvement here, confirming
+this is not a meaningful production evaluation.
+
+\begin{table}[h]
+\centering
+\caption{Batched prefill + KV decode (Llama-3.2-1B, not production-representative).}
+\label{tab:kvcache_batched}
+\begin{tabular}{lrrr}
+\toprule
+Condition & All match? & Tot.\ tok.\ MM & Avg $|\Delta\log P|$ \\
+\midrule
+A: BF16 baseline       & \texttimes & 521 & 0.0661\,nats \\
+B: \dllm (F.linear)    & \texttimes & 486 & 0.0582\,nats \\
+C: \dllm (+ attn)      & \texttimes & 484 & 0.0626\,nats \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{50-Prompt Broader Evaluation}
+\label{app:50p}
+
+Table~\ref{tab:decomp_50p} replicates the 1B decomposition on 50 diverse prompts.
+Of the 33 prompts affected by BF16 non-determinism, \dllm fully resolves 24 (73\%).
+The 10 remaining include 9 pre-existing and 1 counter-direction case (prompt~9: BF16-stable but FP32-unstable), attributable to the FFN down-projection ($K\!=\!8{,}192 > K_{\max}$).
+The 24 resolved prompts accounted for 1,262 token mismatches in A (42\% of baseline total).
+
+\begin{table}[h]
+\centering
+\caption{50-prompt evaluation (Llama-3.2-1B, full re-computation, batch sizes 2--64).
+  Of 33 affected prompts, \dllm fully resolves 24 (73\%).  Padding fix (D) identical to B,
+  as expected in the full re-computation setting.}
+\label{tab:decomp_50p}
+\begin{tabular}{lrrr}
+\toprule
+Condition & Prompts with any MM & Tot.\ tok.\ MM & Avg $|\Delta\log P|$ \\
+\midrule
+A: BF16 baseline        & 33\,/\,50 & 2{,}981 & 0.0849\,nats \\
+B: \dllm (F.linear)     & \textbf{10\,/\,50} & \textbf{1{,}800} & \textbf{0.0571}\,nats \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Kernel Implementations}
+\label{app:kernel}
+
+\subsection{cuBLASLt Backend: Two-Phase Heuristic}
+
+\begin{lstlisting}[language=C++, caption={\texttt{gemm\_fixed\_algo.cu}.}]
+// FP32 accumulation for all reductions
+cublasLtMatmulDescCreate(&desc, CUBLAS_COMPUTE_32F, CUDA_R_32F);
+
+// Phase 1: no split-K (optimal for small M, single CTA per output tile)
+mask = CUBLASLT_REDUCTION_SCHEME_NONE;  // = 0x0
+cublasLtMatmulAlgoGetHeuristic(..., mask, 1, &algo, &nFound);
+
+// Phase 2: FP32 inter-CTA reduction (allows split-K for large M;
+// batch-invariant by Theorem 1: FP32 error << BF16 quantization step)
+if (!nFound) {
+    mask = CUBLASLT_REDUCTION_SCHEME_COMPUTE_TYPE;  // = 0x2
+    cublasLtMatmulAlgoGetHeuristic(..., mask, 1, &algo, &nFound);
+}
+
+// Consistent FP32 fallback (same precision argument applies)
+if (!nFound)
+    return torch::mm(A.to(kFloat), B.t().to(kFloat)).to(kBFloat16);
+\end{lstlisting}
+
+\subsection{Triton Backend: Fixed-Plan GEMM}
+
+\begin{lstlisting}[language=Python, caption={Core of \texttt{triton\_det\_gemm.py}.}]
+@triton.autotune(configs=_autotune_configs(),
+                 key=['M_class', 'N', 'K'])   # cached per (M_class, N, K)
+@triton.jit
+def _det_gemm_kernel(a_ptr, b_ptr, c_ptr, M, N, K, M_class,
+                     stride_am, stride_ak, stride_bn, stride_bk,
+                     stride_cm, stride_cn,
+                     BLOCK_M: tl.constexpr, BLOCK_N: tl.constexpr,
+                     BLOCK_K: tl.constexpr, GROUP_M: tl.constexpr):
+    # One program per output tile. No split-K: the K-reduction below
+    # is a single sequential loop, so the per-element reduction path
+    # is byte-identical regardless of M.
+    pid_m, pid_n = _group_major_schedule(tl.program_id(0), M, N,
+                                         BLOCK_M, BLOCK_N, GROUP_M)
+    offs_m = pid_m * BLOCK_M + tl.arange(0, BLOCK_M)
+    offs_n = pid_n * BLOCK_N + tl.arange(0, BLOCK_N)
+    offs_k = tl.arange(0, BLOCK_K)
+    a_ptrs = a_ptr + offs_m[:, None] * stride_am + offs_k[None, :] * stride_ak
+    b_ptrs = b_ptr + offs_n[:, None] * stride_bn + offs_k[None, :] * stride_bk
+
+    acc = tl.zeros((BLOCK_M, BLOCK_N), dtype=tl.float32)
+    for k in range(0, tl.cdiv(K, BLOCK_K)):
+        a = tl.load(a_ptrs, mask=..., other=0.0)   # BF16 [M, K]
+        b = tl.load(b_ptrs, mask=..., other=0.0)   # BF16 [N, K]
+        acc += tl.dot(a, tl.trans(b))              # HMMA.16816.F32
+        a_ptrs += BLOCK_K * stride_ak
+        b_ptrs += BLOCK_K * stride_bk
+
+    tl.store(c_ptr + offs_m[:, None] * stride_cm + offs_n[None, :] * stride_cn,
+             acc.to(tl.bfloat16), mask=...)
+\end{lstlisting}
+
+The correctness property is straightforward: $\texttt{SPLIT\_K}=1$ plus a
+fixed \texttt{(BLOCK\_M, BLOCK\_N, BLOCK\_K)} chosen by autotune per
+$(M_{\text{class}}, N, K)$ means each output element's reduction instructions
+are the same across batch sizes that fall in the same bucket. Triton's
+\texttt{tl.dot} on Ampere emits \texttt{HMMA.16816.F32} with BF16 operands and
+FP32 accumulator, so precision is FP32 inside and BF16 only on the final
+\texttt{tl.store}. Ampere, Hopper, and Blackwell all support this instruction.
+
+\section{Model-Level Logit Perturbation}
+\label{app:logit_error}
+
+\begin{table}[h]
+\centering
+\caption{Model-level logit perturbation (Llama-3.1-8B, FlashAttention backend,
+  $bs\!=\!1$ reference vs.\ batch size $N$).  With \dllm, linear-layer contributions
+  collapse to zero; residual attention non-determinism is negligible at $bs\!=\!8$.}
+\label{tab:logit_error}
+\begin{tabular}{lrrr}
+\toprule
+Batch size & Max $|\Delta\text{logit}|$ & Mean $|\Delta\text{logit}|$ & Logits affected (\%) \\
+\midrule
+$bs=2$ & 0.219          & 0.022 & 78.5 \\
+$bs=8$ & \textbf{26.81} & 2.57  & 99.8 \\
+$bs=8$ (\dllm) & \textbf{0.0} & 0.0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

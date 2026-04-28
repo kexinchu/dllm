@@ -1,0 +1,68 @@
+{
+  "latency_ms": {
+    "bf16": 0.38133186288177967,
+    "fp32": 13.174509997479618,
+    "deterministic": 17.34694324899465
+  },
+  "determinism": {
+    "bf16": {
+      "std_mean": 0.0,
+      "std_max": 0.0,
+      "max_diff": 0.0
+    },
+    "fp32": {
+      "std_mean": 0.0,
+      "std_max": 0.0,
+      "max_diff": 0.0
+    },
+    "deterministic": {
+      "std_mean": 0.0,
+      "std_max": 0.0,
+      "max_diff": 0.0
+    }
+  },
+  "batch_invariance": {
+    "bf16": [
+      {
+        "M": 1,
+        "std_first_row": 5.519137859344482
+      },
+      {
+        "M": 8,
+        "std_first_row": 5.111911773681641
+      },
+      {
+        "M": 32,
+        "std_first_row": 5.592202663421631
+      }
+    ],
+    "fp32": [
+      {
+        "M": 1,
+        "std_first_row": 5.519137859344482
+      },
+      {
+        "M": 8,
+        "std_first_row": 5.111911773681641
+      },
+      {
+        "M": 32,
+        "std_first_row": 5.592202663421631
+      }
+    ],
+    "deterministic": [
+      {
+        "M": 1,
+        "std_first_row": 5.519137859344482
+      },
+      {
+        "M": 8,
+        "std_first_row": 5.111911773681641
+      },
+      {
+        "M": 32,
+        "std_first_row": 5.592202663421631
+      }
+    ]
+  }
+}

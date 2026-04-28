@@ -1,0 +1,7 @@
+[2026-04-25 01:12:26] START: E4 llama8b math500 (eager, 30 problems)
+[2026-04-25 08:14:39] DONE: E4 llama8b math500 eager
+[2026-04-25 08:14:39] START: E4 llama8b aime25 (eager, 30 problems)
+[2026-04-25 08:26:29] DONE: E4 llama8b aime25 eager
+[2026-04-25 08:26:29] START: E3 deepseek7b prefill
+[2026-04-25 08:30:10] DONE: E3 deepseek7b
+[2026-04-25 08:30:10] GPU 1 eager queue FINISHED

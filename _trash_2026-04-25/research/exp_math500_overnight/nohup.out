@@ -1,0 +1,26 @@
+[2026-04-21 00:30:42] === Overnight MATH500 eval starting ===
+[2026-04-21 00:30:42] GPU: NVIDIA RTX A6000
+[2026-04-21 00:30:42] Free memory: 48536 MiB
+[2026-04-21 00:30:42] Downloading DeepSeek-R1-Distill-Qwen-7B ...
+[2026-04-21 00:33:40] Download complete.
+[2026-04-21 00:33:40] Matrix: 4 methods * 3 batch_sizes * 2 seeds = 24 runs
+[2026-04-21 00:33:40] n_problems=50, gen_len=2048
+[2026-04-21 00:33:40] [1] START bf16_baseline bs=8 seed=0
+[2026-04-21 01:29:58] [1] OK bf16_baseline bs=8 seed=0 duration=3378s
+[2026-04-21 01:29:58] [2] START layercast bs=8 seed=0
+[2026-04-21 04:33:33] [2] OK layercast bs=8 seed=0 duration=11015s
+[2026-04-21 04:33:33] [3] START dllm_cublaslt bs=8 seed=0
+[2026-04-21 05:30:44] [3] OK dllm_cublaslt bs=8 seed=0 duration=3431s
+[2026-04-21 05:30:44] [4] START dllm_triton bs=8 seed=0
+[2026-04-21 06:38:00] [4] OK dllm_triton bs=8 seed=0 duration=4036s
+[2026-04-21 06:38:00] [5] START bf16_baseline bs=16 seed=0
+[2026-04-21 07:53:14] [5] OK bf16_baseline bs=16 seed=0 duration=4514s
+[2026-04-21 07:53:14] [6] START layercast bs=16 seed=0
+[2026-04-21 11:17:18] [6] OK layercast bs=16 seed=0 duration=12244s
+[2026-04-21 11:17:18] [7] START dllm_cublaslt bs=16 seed=0
+[2026-04-21 12:33:28] [7] OK dllm_cublaslt bs=16 seed=0 duration=4570s
+[2026-04-21 12:33:28] [8] START dllm_triton bs=16 seed=0
+[2026-04-21 13:56:49] [8] OK dllm_triton bs=16 seed=0 duration=5001s
+[2026-04-21 13:56:49] [9] START bf16_baseline bs=32 seed=0
+[2026-04-21 15:48:02] [9] OK bf16_baseline bs=32 seed=0 duration=6673s
+[2026-04-21 15:48:02] [10] START layercast bs=32 seed=0

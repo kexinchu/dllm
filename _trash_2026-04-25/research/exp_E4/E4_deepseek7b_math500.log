@@ -1,0 +1,55 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+
+====================================================================================
+  MODEL: deepseek7b  dataset=math500  gen_len=1024  reasoning=True
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.34s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.02s/it]
+  Loaded 30 problems from math500
+
+-- BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=417s  diverge_so_far=5/5
+   [ 10/30] elapsed=822s  diverge_so_far=10/10
+   [ 15/30] elapsed=1215s  diverge_so_far=15/15
+   [ 20/30] elapsed=1634s  diverge_so_far=20/20
+   [ 25/30] elapsed=2049s  diverge_so_far=25/25
+   [ 30/30] elapsed=2464s  diverge_so_far=30/30
+   [BF16] bit-exact=0.0%  diverge_problems=100.0%  div_med=114  acc(bs=1)=20.0%  acc(bs=16)=10.0%  time=2464s
+
+-- FP32flag --
+   [  5/30] elapsed=416s  diverge_so_far=5/5
+   [ 10/30] elapsed=815s  diverge_so_far=10/10
+   [ 15/30] elapsed=1218s  diverge_so_far=15/15
+   [ 20/30] elapsed=1635s  diverge_so_far=20/20
+   [ 25/30] elapsed=2048s  diverge_so_far=25/25
+   [ 30/30] elapsed=2461s  diverge_so_far=30/30
+   [FP32flag] bit-exact=0.0%  diverge_problems=100.0%  div_med=113  acc(bs=1)=20.0%  acc(bs=16)=16.7%  time=2461s
+
+-- LayerCast --
+   [  5/30] elapsed=1724s  diverge_so_far=5/5
+   [ 10/30] elapsed=3416s  diverge_so_far=10/10
+   [ 15/30] elapsed=5126s  diverge_so_far=15/15
+   [ 20/30] elapsed=6866s  diverge_so_far=20/20
+   [ 25/30] elapsed=8598s  diverge_so_far=25/25
+   [ 30/30] elapsed=10324s  diverge_so_far=30/30
+   [LayerCast] bit-exact=0.0%  diverge_problems=100.0%  div_med=114  acc(bs=1)=16.7%  acc(bs=16)=16.7%  time=10324s
+
+-- DetermLLM --
+   [  5/30] elapsed=718s  diverge_so_far=5/5
+   [ 10/30] elapsed=1309s  diverge_so_far=10/10
+   [ 15/30] elapsed=1883s  diverge_so_far=15/15
+   [ 20/30] elapsed=2491s  diverge_so_far=20/20
+   [ 25/30] elapsed=3090s  diverge_so_far=25/25
+   [ 30/30] elapsed=3684s  diverge_so_far=30/30
+   [DetermLLM] bit-exact=0.0%  diverge_problems=100.0%  div_med=127  acc(bs=1)=16.7%  acc(bs=16)=10.0%  time=3684s
+
+-- DetermLLM+attn --
+   [  5/30] elapsed=593s  diverge_so_far=5/5
+   [ 10/30] elapsed=1179s  diverge_so_far=10/10
+   [ 15/30] elapsed=1931s  diverge_so_far=15/15
+   [ 20/30] elapsed=2531s  diverge_so_far=20/20
+   [ 25/30] elapsed=3130s  diverge_so_far=25/25
+   [ 30/30] elapsed=3728s  diverge_so_far=30/30
+   [DetermLLM+attn] bit-exact=0.0%  diverge_problems=100.0%  div_med=127  acc(bs=1)=16.7%  acc(bs=16)=10.0%  time=3729s
+
+  Saved: /home/kec23008/docker-sys/dllm/research/exp_E4/E4_deepseek7b_math500.json

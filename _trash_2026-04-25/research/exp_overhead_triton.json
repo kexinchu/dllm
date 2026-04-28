@@ -1,0 +1,432 @@
+{
+  "A_BF16_baseline": {
+    "name": "BF16 baseline (non-det)",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 1502.602358860895,
+        "std_ms": 0.7187266660574241
+      },
+      "8": {
+        "mean_ms": 1499.8408398590982,
+        "std_ms": 0.5277796239887239
+      },
+      "32": {
+        "mean_ms": 1637.8526675980538,
+        "std_ms": 0.46932342666862026
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": 0.0,
+      "8": 0.0,
+      "32": 0.0
+    }
+  },
+  "B_FP32_flag": {
+    "name": "FP32 flag only",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 1506.6118642687798,
+        "std_ms": 0.13754752960603506
+      },
+      "8": {
+        "mean_ms": 1498.471255414188,
+        "std_ms": 0.28012825450319945
+      },
+      "32": {
+        "mean_ms": 1643.6976906377822,
+        "std_ms": 0.5016545964925518
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": 0.2668374227047243,
+      "8": -0.09131531883336264,
+      "32": 0.3568711127295954
+    }
+  },
+  "C_DetermLLM_cublaslt": {
+    "name": "DetermLLM cuBLASLt",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 1454.2652809526771,
+        "std_ms": 0.3063605600407735
+      },
+      "8": {
+        "mean_ms": 1494.7916296776384,
+        "std_ms": 0.8843368896267794
+      },
+      "32": {
+        "mean_ms": 1643.2573502417654,
+        "std_ms": 1.3107881130166628
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": -3.216890857596,
+      "8": -0.3366497329099327,
+      "32": 0.32998588643737836
+    }
+  },
+  "F_DetermLLM_triton": {
+    "name": "DetermLLM Triton (ours)",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 1460.3086754214019,
+        "std_ms": 14.296078387268741
+      },
+      "8": {
+        "mean_ms": 1489.984243735671,
+        "std_ms": 1.5428339036319874
+      },
+      "32": {
+        "mean_ms": 1628.906025690958,
+        "std_ms": 0.4668411585763208
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": -2.8146956638318787,
+      "8": -0.6571761390597342,
+      "32": -0.5462421672039808
+    }
+  },
+  "D_TorchDet": {
+    "name": "torch.use_deterministic_algorithms",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 1697.049892693758,
+        "std_ms": 20.177452414932873
+      },
+      "8": {
+        "mean_ms": 1687.3680860269815,
+        "std_ms": 2.7917498666047096
+      },
+      "32": {
+        "mean_ms": 1764.0342471655458,
+        "std_ms": 16.109043350813778
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": 12.940717994098684,
+      "8": 12.503143079201685,
+      "32": 7.704086091732543
+    }
+  }
+}

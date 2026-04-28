@@ -1,0 +1,51 @@
+{
+  "engine": "vllm",
+  "num_runs": 1000,
+  "scenario_b_chunked_prefill": {
+    "chunk_128": {
+      "total": 1000,
+      "first_token_flip": 0,
+      "flip_pct": "0.00%",
+      "flip_examples": []
+    },
+    "chunk_64": {
+      "total": 1000,
+      "first_token_flip": 2,
+      "flip_pct": "0.20%",
+      "flip_examples": [
+        {
+          "idx": 181,
+          "prompt": "tion: Summarize the main points in three sentences.\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " \n"
+        },
+        {
+          "idx": 828,
+          "prompt": "on: What are the limitations of current approaches?\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " While"
+        }
+      ]
+    },
+    "chunk_32": {
+      "total": 1000,
+      "first_token_flip": 2,
+      "flip_pct": "0.20%",
+      "flip_examples": [
+        {
+          "idx": 181,
+          "prompt": "tion: Summarize the main points in three sentences.\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " \n"
+        },
+        {
+          "idx": 828,
+          "prompt": "on: What are the limitations of current approaches?\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " While"
+        }
+      ]
+    }
+  },
+  "elapsed_seconds": 334.5
+}

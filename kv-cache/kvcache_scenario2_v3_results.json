@@ -1,0 +1,232 @@
+{
+  "config": {
+    "model": "/home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct",
+    "num_runs": 1000
+  },
+  "scenario2": {
+    "total_tests": 1000,
+    "total_differ": 1000,
+    "differ_pct": "100.0%",
+    "total_first_token_flip": 19,
+    "first_token_flip_pct": "1.90%",
+    "max_diff": "2.812500e-01",
+    "diff_distribution": {
+      "p50": "1.562500e-01",
+      "p90": "2.031250e-01",
+      "p99": "2.500000e-01"
+    },
+    "flip_examples": [
+      {
+        "case_idx": 23,
+        "suffix": "How does the immune system work?",
+        "token_fresh": " \n\n",
+        "token_cached": " \n",
+        "logit_diff": 0.1796875,
+        "top2_margin": 0.125
+      },
+      {
+        "case_idx": 79,
+        "suffix": "How does GPS navigation work?",
+        "token_fresh": " \n",
+        "token_cached": " GPS",
+        "logit_diff": 0.1875,
+        "top2_margin": 0.0
+      },
+      {
+        "case_idx": 108,
+        "suffix": "What is DNA replication?",
+        "token_fresh": " DNA",
+        "token_cached": " \n\n",
+        "logit_diff": 0.1357421875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 195,
+        "suffix": "How does a compiler work?",
+        "token_fresh": " A",
+        "token_cached": " \n\n",
+        "logit_diff": 0.21875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 233,
+        "suffix": "How does the immune system work?",
+        "token_fresh": " \n\n",
+        "token_cached": " \n",
+        "logit_diff": 0.1796875,
+        "top2_margin": 0.125
+      },
+      {
+        "case_idx": 289,
+        "suffix": "How does GPS navigation work?",
+        "token_fresh": " \n",
+        "token_cached": " GPS",
+        "logit_diff": 0.1875,
+        "top2_margin": 0.0
+      },
+      {
+        "case_idx": 318,
+        "suffix": "What is DNA replication?",
+        "token_fresh": " DNA",
+        "token_cached": " \n\n",
+        "logit_diff": 0.1357421875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 405,
+        "suffix": "How does a compiler work?",
+        "token_fresh": " A",
+        "token_cached": " \n\n",
+        "logit_diff": 0.21875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 443,
+        "suffix": "How does the immune system work?",
+        "token_fresh": " \n\n",
+        "token_cached": " \n",
+        "logit_diff": 0.1796875,
+        "top2_margin": 0.125
+      },
+      {
+        "case_idx": 499,
+        "suffix": "How does GPS navigation work?",
+        "token_fresh": " \n",
+        "token_cached": " GPS",
+        "logit_diff": 0.1875,
+        "top2_margin": 0.0
+      },
+      {
+        "case_idx": 528,
+        "suffix": "What is DNA replication?",
+        "token_fresh": " DNA",
+        "token_cached": " \n\n",
+        "logit_diff": 0.1357421875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 615,
+        "suffix": "How does a compiler work?",
+        "token_fresh": " A",
+        "token_cached": " \n\n",
+        "logit_diff": 0.21875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 653,
+        "suffix": "How does the immune system work?",
+        "token_fresh": " \n\n",
+        "token_cached": " \n",
+        "logit_diff": 0.1796875,
+        "top2_margin": 0.125
+      },
+      {
+        "case_idx": 709,
+        "suffix": "How does GPS navigation work?",
+        "token_fresh": " \n",
+        "token_cached": " GPS",
+        "logit_diff": 0.1875,
+        "top2_margin": 0.0
+      },
+      {
+        "case_idx": 738,
+        "suffix": "What is DNA replication?",
+        "token_fresh": " DNA",
+        "token_cached": " \n\n",
+        "logit_diff": 0.1357421875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 825,
+        "suffix": "How does a compiler work?",
+        "token_fresh": " A",
+        "token_cached": " \n\n",
+        "logit_diff": 0.21875,
+        "top2_margin": 0.0625
+      },
+      {
+        "case_idx": 863,
+        "suffix": "How does the immune system work?",
+        "token_fresh": " \n\n",
+        "token_cached": " \n",
+        "logit_diff": 0.1796875,
+        "top2_margin": 0.125
+      },
+      {
+        "case_idx": 919,
+        "suffix": "How does GPS navigation work?",
+        "token_fresh": " \n",
+        "token_cached": " GPS",
+        "logit_diff": 0.1875,
+        "top2_margin": 0.0
+      },
+      {
+        "case_idx": 948,
+        "suffix": "What is DNA replication?",
+        "token_fresh": " DNA",
+        "token_cached": " \n\n",
+        "logit_diff": 0.1357421875,
+        "top2_margin": 0.0625
+      }
+    ],
+    "per_prefix_length": {
+      "10": {
+        "count": 150,
+        "differ": 150,
+        "differ_pct": "100.0%",
+        "flip": 0,
+        "flip_pct": "0.0%",
+        "max_diff": "2.031250e-01"
+      },
+      "11": {
+        "count": 150,
+        "differ": 150,
+        "differ_pct": "100.0%",
+        "flip": 5,
+        "flip_pct": "3.3%",
+        "max_diff": "2.343750e-01"
+      },
+      "12": {
+        "count": 150,
+        "differ": 150,
+        "differ_pct": "100.0%",
+        "flip": 5,
+        "flip_pct": "3.3%",
+        "max_diff": "2.812500e-01"
+      },
+      "20": {
+        "count": 150,
+        "differ": 150,
+        "differ_pct": "100.0%",
+        "flip": 0,
+        "flip_pct": "0.0%",
+        "max_diff": "2.031250e-01"
+      },
+      "24": {
+        "count": 150,
+        "differ": 150,
+        "differ_pct": "100.0%",
+        "flip": 5,
+        "flip_pct": "3.3%",
+        "max_diff": "2.187500e-01"
+      },
+      "88": {
+        "count": 120,
+        "differ": 120,
+        "differ_pct": "100.0%",
+        "flip": 4,
+        "flip_pct": "3.3%",
+        "max_diff": "2.187500e-01"
+      },
+      "115": {
+        "count": 130,
+        "differ": 130,
+        "differ_pct": "100.0%",
+        "flip": 0,
+        "flip_pct": "0.0%",
+        "max_diff": "2.187500e-01"
+      }
+    }
+  },
+  "elapsed_seconds": 92.9
+}

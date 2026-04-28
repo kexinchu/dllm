@@ -1,0 +1,229 @@
+Loading /home/kec23008/docker-sys/Models/Llama-3.2-1B-Instruct (eager attn)...
+  Loaded on cuda:0
+
+  Condition: A_BF16_baseline
+    p0 bs= 2: ✗ (first_div=53, mm=11)  mean|ΔlogP|=0.0425
+    p0 bs= 4: ✗ (first_div=53, mm=11)  mean|ΔlogP|=0.0431
+    p0 bs= 8: ✗ (first_div=53, mm=11)  mean|ΔlogP|=0.0463
+    p0 bs=16: ✗ (first_div=53, mm=11)  mean|ΔlogP|=0.0409
+    p0 bs=64: ✗ (first_div=53, mm=11)  mean|ΔlogP|=0.0414
+    p1 bs= 2: ✗ (first_div=40, mm=2)  mean|ΔlogP|=0.0372
+    p1 bs= 4: ✗ (first_div=40, mm=2)  mean|ΔlogP|=0.0350
+    p1 bs= 8: ✗ (first_div=40, mm=2)  mean|ΔlogP|=0.0315
+    p1 bs=64: ✗ (first_div=40, mm=2)  mean|ΔlogP|=0.0340
+    p2 bs= 2: ✗ (first_div=13, mm=51)  mean|ΔlogP|=0.4277
+    p2 bs=16: ✗ (first_div=13, mm=51)  mean|ΔlogP|=0.4263
+    p2 bs=32: ✗ (first_div=13, mm=51)  mean|ΔlogP|=0.4257
+    p2 bs=64: ✗ (first_div=13, mm=51)  mean|ΔlogP|=0.4274
+    p3 bs= 8: ✗ (first_div=33, mm=31)  mean|ΔlogP|=0.1626
+    p3 bs=16: ✗ (first_div=33, mm=31)  mean|ΔlogP|=0.1643
+    p4 bs= 4: ✗ (first_div=36, mm=1)  mean|ΔlogP|=0.0099
+    p4 bs= 8: ✗ (first_div=36, mm=1)  mean|ΔlogP|=0.0123
+    p4 bs=16: ✗ (first_div=36, mm=1)  mean|ΔlogP|=0.0102
+    p4 bs=32: ✗ (first_div=36, mm=1)  mean|ΔlogP|=0.0113
+    p4 bs=64: ✗ (first_div=36, mm=1)  mean|ΔlogP|=0.0106
+    p5 bs= 8: ✗ (first_div=30, mm=33)  mean|ΔlogP|=0.2827
+    p5 bs=16: ✗ (first_div=30, mm=33)  mean|ΔlogP|=0.2775
+    p6 bs=16: ✗ (first_div=52, mm=12)  mean|ΔlogP|=0.0817
+    p7 bs= 2: ✗ (first_div=32, mm=32)  mean|ΔlogP|=0.2478
+    p7 bs=16: ✗ (first_div=32, mm=32)  mean|ΔlogP|=0.2563
+    p7 bs=32: ✗ (first_div=32, mm=32)  mean|ΔlogP|=0.2590
+    p7 bs=64: ✗ (first_div=46, mm=18)  mean|ΔlogP|=0.1047
+    p8 bs= 8: ✗ (first_div=55, mm=9)  mean|ΔlogP|=0.0872
+    p10 bs=64: ✗ (first_div=37, mm=27)  mean|ΔlogP|=0.1627
+    p11 bs= 8: ✗ (first_div=39, mm=24)  mean|ΔlogP|=0.1161
+    p11 bs=16: ✗ (first_div=39, mm=24)  mean|ΔlogP|=0.1136
+    p11 bs=32: ✗ (first_div=39, mm=24)  mean|ΔlogP|=0.1137
+    p13 bs= 8: ✗ (first_div=50, mm=14)  mean|ΔlogP|=0.0498
+    p13 bs=16: ✗ (first_div=24, mm=2)  mean|ΔlogP|=0.0192
+    p16 bs= 4: ✗ (first_div=51, mm=12)  mean|ΔlogP|=0.0971
+    p16 bs= 8: ✗ (first_div=51, mm=11)  mean|ΔlogP|=0.0839
+    p16 bs=16: ✗ (first_div=51, mm=12)  mean|ΔlogP|=0.0802
+    p17 bs= 2: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.1718
+    p17 bs= 8: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2120
+    p18 bs= 8: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.4151
+    p19 bs=16: ✗ (first_div=26, mm=34)  mean|ΔlogP|=0.2717
+    p20 bs= 2: ✗ (first_div=53, mm=7)  mean|ΔlogP|=0.0565
+    p20 bs= 8: ✗ (first_div=46, mm=18)  mean|ΔlogP|=0.1283
+    p20 bs=32: ✗ (first_div=46, mm=18)  mean|ΔlogP|=0.1268
+    p20 bs=64: ✗ (first_div=46, mm=18)  mean|ΔlogP|=0.1262
+    p21 bs= 2: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.2836
+    p21 bs= 4: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.2828
+    p21 bs= 8: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.2809
+    p21 bs=16: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.2702
+    p21 bs=32: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.2804
+    p21 bs=64: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.2684
+    p22 bs=16: ✗ (first_div=56, mm=8)  mean|ΔlogP|=0.0648
+    p23 bs= 8: ✗ (first_div=38, mm=26)  mean|ΔlogP|=0.1645
+    p23 bs=16: ✗ (first_div=38, mm=26)  mean|ΔlogP|=0.1692
+    p23 bs=64: ✗ (first_div=48, mm=16)  mean|ΔlogP|=0.1153
+    p24 bs= 2: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.3966
+    p24 bs= 8: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1341
+    p24 bs=16: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1351
+    p25 bs=32: ✗ (first_div=31, mm=33)  mean|ΔlogP|=0.2117
+    p27 bs= 2: ✗ (first_div=46, mm=1)  mean|ΔlogP|=0.0232
+    p27 bs= 4: ✗ (first_div=46, mm=1)  mean|ΔlogP|=0.0247
+    p27 bs= 8: ✗ (first_div=46, mm=1)  mean|ΔlogP|=0.0207
+    p27 bs=16: ✗ (first_div=46, mm=1)  mean|ΔlogP|=0.0236
+    p27 bs=32: ✗ (first_div=46, mm=1)  mean|ΔlogP|=0.0210
+    p28 bs= 2: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8388
+    p28 bs= 4: ✗ (first_div=22, mm=41)  mean|ΔlogP|=0.4580
+    p28 bs= 8: ✗ (first_div=6, mm=57)  mean|ΔlogP|=0.7978
+    p28 bs=32: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8404
+    p28 bs=64: ✗ (first_div=22, mm=41)  mean|ΔlogP|=0.3708
+    p29 bs= 8: ✗ (first_div=2, mm=62)  mean|ΔlogP|=0.6574
+    p29 bs=16: ✗ (first_div=2, mm=62)  mean|ΔlogP|=0.6533
+    p33 bs= 4: ✗ (first_div=51, mm=13)  mean|ΔlogP|=0.1001
+    p37 bs= 2: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.3093
+    p37 bs= 4: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.3083
+    p37 bs= 8: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.3078
+    p37 bs=64: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.3076
+    p38 bs= 2: ✗ (first_div=29, mm=33)  mean|ΔlogP|=0.2768
+    p38 bs= 4: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3387
+    p38 bs= 8: ✗ (first_div=29, mm=34)  mean|ΔlogP|=0.3327
+    p38 bs=16: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3397
+    p38 bs=32: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3369
+    p38 bs=64: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3412
+    p39 bs= 2: ✗ (first_div=38, mm=26)  mean|ΔlogP|=0.1738
+    p39 bs= 4: ✗ (first_div=56, mm=8)  mean|ΔlogP|=0.0472
+    p39 bs= 8: ✗ (first_div=40, mm=9)  mean|ΔlogP|=0.0668
+    p39 bs=16: ✗ (first_div=40, mm=9)  mean|ΔlogP|=0.0738
+    p39 bs=32: ✗ (first_div=40, mm=9)  mean|ΔlogP|=0.0739
+    p39 bs=64: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4633
+    p40 bs= 2: ✗ (first_div=3, mm=58)  mean|ΔlogP|=0.4063
+    p40 bs= 4: ✗ (first_div=63, mm=1)  mean|ΔlogP|=0.0092
+    p40 bs=16: ✗ (first_div=3, mm=58)  mean|ΔlogP|=0.4056
+    p44 bs= 2: ✗ (first_div=59, mm=5)  mean|ΔlogP|=0.0461
+    p44 bs= 4: ✗ (first_div=59, mm=5)  mean|ΔlogP|=0.0472
+    p44 bs= 8: ✗ (first_div=59, mm=5)  mean|ΔlogP|=0.0469
+    p44 bs=16: ✗ (first_div=59, mm=5)  mean|ΔlogP|=0.0505
+    p44 bs=32: ✗ (first_div=59, mm=5)  mean|ΔlogP|=0.0501
+    p44 bs=64: ✗ (first_div=59, mm=5)  mean|ΔlogP|=0.0501
+    p47 bs= 2: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.3987
+    p47 bs= 4: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4001
+    p47 bs= 8: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.3960
+    p47 bs=16: ✗ (first_div=23, mm=41)  mean|ΔlogP|=0.2606
+    p47 bs=32: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.3996
+    p47 bs=64: ✗ (first_div=23, mm=41)  mean|ΔlogP|=0.2606
+    p49 bs= 2: ✗ (first_div=9, mm=54)  mean|ΔlogP|=0.4155
+    p49 bs= 8: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3296
+    p49 bs=16: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3314
+    p49 bs=32: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3309
+    p49 bs=64: ✗ (first_div=24, mm=40)  mean|ΔlogP|=0.3414
+
+  >>> A_BF16_baseline: all_match=False, total_tok_mm=2981, avg|ΔlogP|=0.0849, prompts_with_mm=33/50
+
+  Condition: B_linear_only
+    p0 bs=64: ✗ (first_div=53, mm=11)  mean|ΔlogP|=0.0409
+    p2 bs= 4: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0256
+    p2 bs= 8: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0248
+    p2 bs=16: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0247
+    p2 bs=32: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0247
+    p2 bs=64: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0253
+    p9 bs= 2: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2863
+    p9 bs= 4: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2888
+    p9 bs= 8: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2884
+    p9 bs=16: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2895
+    p9 bs=32: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2895
+    p9 bs=64: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2894
+    p17 bs= 8: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p17 bs=16: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p17 bs=32: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p17 bs=64: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p21 bs= 2: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2131
+    p21 bs= 4: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2138
+    p21 bs= 8: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2145
+    p21 bs=16: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2146
+    p21 bs=32: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2146
+    p21 bs=64: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2146
+    p24 bs= 8: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1302
+    p24 bs=16: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1306
+    p24 bs=32: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1304
+    p24 bs=64: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1309
+    p28 bs= 2: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8374
+    p28 bs= 4: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8357
+    p28 bs= 8: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8357
+    p28 bs=16: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8358
+    p28 bs=32: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8358
+    p28 bs=64: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8351
+    p38 bs= 4: ✗ (first_div=1, mm=62)  mean|ΔlogP|=0.5395
+    p38 bs= 8: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3384
+    p38 bs=16: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3383
+    p38 bs=32: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3383
+    p38 bs=64: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3383
+    p47 bs= 2: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4353
+    p47 bs= 4: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4353
+    p47 bs= 8: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4365
+    p47 bs=16: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4364
+    p47 bs=32: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4364
+    p47 bs=64: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4364
+    p49 bs= 2: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3311
+    p49 bs= 8: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3391
+    p49 bs=16: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3393
+    p49 bs=32: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3393
+    p49 bs=64: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3401
+
+  >>> B_linear_only: all_match=False, total_tok_mm=1800, avg|ΔlogP|=0.0571, prompts_with_mm=10/50
+
+  Condition: D_linear_pad_m1
+    p0 bs=64: ✗ (first_div=53, mm=11)  mean|ΔlogP|=0.0409
+    p2 bs= 4: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0256
+    p2 bs= 8: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0248
+    p2 bs=16: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0247
+    p2 bs=32: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0247
+    p2 bs=64: ✗ (first_div=28, mm=1)  mean|ΔlogP|=0.0253
+    p9 bs= 2: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2863
+    p9 bs= 4: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2888
+    p9 bs= 8: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2884
+    p9 bs=16: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2895
+    p9 bs=32: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2895
+    p9 bs=64: ✗ (first_div=23, mm=40)  mean|ΔlogP|=0.2894
+    p17 bs= 8: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p17 bs=16: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p17 bs=32: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p17 bs=64: ✗ (first_div=37, mm=26)  mean|ΔlogP|=0.2108
+    p21 bs= 2: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2131
+    p21 bs= 4: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2138
+    p21 bs= 8: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2145
+    p21 bs=16: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2146
+    p21 bs=32: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2146
+    p21 bs=64: ✗ (first_div=19, mm=45)  mean|ΔlogP|=0.2146
+    p24 bs= 8: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1302
+    p24 bs=16: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1306
+    p24 bs=32: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1304
+    p24 bs=64: ✗ (first_div=44, mm=20)  mean|ΔlogP|=0.1309
+    p28 bs= 2: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8374
+    p28 bs= 4: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8357
+    p28 bs= 8: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8357
+    p28 bs=16: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8358
+    p28 bs=32: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8358
+    p28 bs=64: ✗ (first_div=6, mm=58)  mean|ΔlogP|=0.8351
+    p38 bs= 4: ✗ (first_div=1, mm=62)  mean|ΔlogP|=0.5395
+    p38 bs= 8: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3384
+    p38 bs=16: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3383
+    p38 bs=32: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3383
+    p38 bs=64: ✗ (first_div=29, mm=32)  mean|ΔlogP|=0.3383
+    p47 bs= 2: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4353
+    p47 bs= 4: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4353
+    p47 bs= 8: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4365
+    p47 bs=16: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4364
+    p47 bs=32: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4364
+    p47 bs=64: ✗ (first_div=7, mm=57)  mean|ΔlogP|=0.4364
+    p49 bs= 2: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3311
+    p49 bs= 8: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3391
+    p49 bs=16: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3393
+    p49 bs=32: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3393
+    p49 bs=64: ✗ (first_div=22, mm=42)  mean|ΔlogP|=0.3401
+
+  >>> D_linear_pad_m1: all_match=False, total_tok_mm=1800, avg|ΔlogP|=0.0571, prompts_with_mm=10/50
+
+======================================================================
+SUMMARY: Decomposition (full re-computation) — Llama-3.2-1B, 50 prompts
+======================================================================
+Condition                    All Match?   Tot MM   Avg|ΔlogP|  Prompts w/ MM
+----------------------------------------------------------------------------
+  A_BF16_baseline                       ✗     2981       0.0849             33/50
+  B_linear_only                         ✗     1800       0.0571             10/50
+  D_linear_pad_m1                       ✗     1800       0.0571             10/50
+
+Saved → /home/kec23008/docker-sys/dllm/research/exp_decompose_50p.json

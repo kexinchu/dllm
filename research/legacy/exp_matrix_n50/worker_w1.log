@@ -1,0 +1,282 @@
+[2026-04-22 21:38:45] [w1] === Matrix-n50 worker w1 on GPU 1 starting ===
+[2026-04-22 21:38:45] [w1] Matrix-n50: 27 configs
+[2026-04-22 21:38:45] [w1] [1] SKIP ds7_math_bf16_bs1 (claimed by other)
+[2026-04-22 21:38:45] [w1] [2] START ds7_math_bf16_bs8  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=bf16_baseline bs=8
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=8 | seed=0 | n=50 | gen=1024]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.11s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.81s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.85s/it]
+  model loaded in 4.9s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=0.0% elapsed=176s
+  [ 10/50] acc=10.0% elapsed=339s
+  [ 15/50] acc=13.3% elapsed=506s
+  [ 20/50] acc=10.0% elapsed=681s
+  [ 25/50] acc=8.0% elapsed=853s
+  [ 30/50] acc=6.7% elapsed=1025s
+  [ 35/50] acc=5.7% elapsed=1189s
+  [ 40/50] acc=5.0% elapsed=1359s
+  [ 45/50] acc=6.7% elapsed=1526s
+  [ 50/50] acc=10.0% elapsed=1696s
+
+  RESULT: acc=10.0% avg_len=1010 rt=1696s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/ds7_math_bf16_bs8.json
+[2026-04-22 22:07:13] [w1] [2] OK ds7_math_bf16_bs8 duration=1708s
+[2026-04-22 22:07:13] [w1] [3] SKIP ds7_math_bf16_bs32 (claimed by other)
+[2026-04-22 22:07:13] [w1] [4] START ds7_math_lc_bs1  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=layercast bs=1
+[DeepSeek-R1-Distill-Qwen-7B | math500 | layercast | bs=1 | seed=0 | n=50 | gen=1024]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.28s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]
+  model loaded in 5.3s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=20.0% elapsed=526s
+  [ 10/50] acc=30.0% elapsed=1088s
+  [ 15/50] acc=26.7% elapsed=1626s
+  [ 20/50] acc=20.0% elapsed=2190s
+  [ 25/50] acc=16.0% elapsed=2752s
+  [ 30/50] acc=13.3% elapsed=3315s
+  [ 35/50] acc=11.4% elapsed=3878s
+  [ 40/50] acc=10.0% elapsed=4440s
+  [ 45/50] acc=11.1% elapsed=4986s
+  [ 50/50] acc=14.0% elapsed=5549s
+
+  RESULT: acc=14.0% avg_len=1009 rt=5549s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/ds7_math_lc_bs1.json
+[2026-04-22 23:39:52] [w1] [4] OK ds7_math_lc_bs1 duration=5559s
+[2026-04-22 23:39:52] [w1] [5] SKIP ds7_math_lc_bs8 (claimed by other)
+[2026-04-22 23:39:52] [w1] [6] START ds7_math_lc_bs32  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=layercast bs=32
+[DeepSeek-R1-Distill-Qwen-7B | math500 | layercast | bs=32 | seed=0 | n=50 | gen=1024]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.22s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.94s/it]
+  model loaded in 5.2s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=20.0% elapsed=766s
+  [ 10/50] acc=30.0% elapsed=1496s
+  [ 15/50] acc=26.7% elapsed=2189s
+  [ 20/50] acc=20.0% elapsed=2958s
+  [ 25/50] acc=16.0% elapsed=3704s
+  [ 30/50] acc=16.7% elapsed=4442s
+  [ 35/50] acc=14.3% elapsed=5178s
+  [ 40/50] acc=15.0% elapsed=5915s
+  [ 45/50] acc=15.6% elapsed=6664s
+  [ 50/50] acc=16.0% elapsed=7401s
+
+  RESULT: acc=16.0% avg_len=1013 rt=7401s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/ds7_math_lc_bs32.json
+[2026-04-23 01:43:24] [w1] [6] OK ds7_math_lc_bs32 duration=7412s
+[2026-04-23 01:43:24] [w1] [7] SKIP ds7_math_hy_bs1 (done)
+[2026-04-23 01:43:24] [w1] [8] SKIP ds7_math_hy_bs8 (done)
+[2026-04-23 01:43:24] [w1] [9] SKIP ds7_math_hy_bs32 (claimed by other)
+[2026-04-23 01:43:24] [w1] [10] START llm8_math_bf16_bs1  model=Llama-3.1-8B-Instruct ds=math500 method=bf16_baseline bs=1
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=1 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.01it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.04it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.55it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.32it/s]
+  model loaded in 4.2s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=20.0% elapsed=61s
+  [ 10/50] acc=10.0% elapsed=112s
+  [ 15/50] acc=13.3% elapsed=164s
+  [ 20/50] acc=20.0% elapsed=223s
+  [ 25/50] acc=16.0% elapsed=282s
+  [ 30/50] acc=16.7% elapsed=342s
+  [ 35/50] acc=20.0% elapsed=399s
+  [ 40/50] acc=25.0% elapsed=452s
+  [ 45/50] acc=28.9% elapsed=509s
+  [ 50/50] acc=32.0% elapsed=558s
+
+  RESULT: acc=32.0% avg_len=368 rt=558s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/llm8_math_bf16_bs1.json
+[2026-04-23 01:52:51] [w1] [10] OK llm8_math_bf16_bs1 duration=567s
+[2026-04-23 01:52:51] [w1] [11] START llm8_math_bf16_bs8  model=Llama-3.1-8B-Instruct ds=math500 method=bf16_baseline bs=8
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=8 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.55it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.32it/s]
+  model loaded in 4.2s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=20.0% elapsed=67s
+  [ 10/50] acc=10.0% elapsed=133s
+  [ 15/50] acc=20.0% elapsed=189s
+  [ 20/50] acc=25.0% elapsed=258s
+  [ 25/50] acc=24.0% elapsed=330s
+  [ 30/50] acc=20.0% elapsed=391s
+  [ 35/50] acc=17.1% elapsed=456s
+  [ 40/50] acc=22.5% elapsed=506s
+  [ 45/50] acc=26.7% elapsed=573s
+  [ 50/50] acc=30.0% elapsed=628s
+
+  RESULT: acc=30.0% avg_len=363 rt=628s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/llm8_math_bf16_bs8.json
+[2026-04-23 02:03:27] [w1] [11] OK llm8_math_bf16_bs8 duration=636s
+[2026-04-23 02:03:27] [w1] [12] START llm8_math_bf16_bs32  model=Llama-3.1-8B-Instruct ds=math500 method=bf16_baseline bs=32
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=32 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.03it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.06it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.08it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.57it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.34it/s]
+  model loaded in 4.2s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=20.0% elapsed=122s
+  [ 10/50] acc=20.0% elapsed=232s
+  [ 15/50] acc=26.7% elapsed=321s
+  [ 20/50] acc=35.0% elapsed=429s
+  [ 25/50] acc=36.0% elapsed=536s
+  [ 30/50] acc=33.3% elapsed=635s
+  [ 35/50] acc=34.3% elapsed=720s
+  [ 40/50] acc=37.5% elapsed=807s
+  [ 45/50] acc=40.0% elapsed=911s
+  [ 50/50] acc=42.0% elapsed=995s
+
+  RESULT: acc=42.0% avg_len=361 rt=995s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/llm8_math_bf16_bs32.json
+[2026-04-23 02:20:11] [w1] [12] OK llm8_math_bf16_bs32 duration=1004s
+[2026-04-23 02:20:11] [w1] [13] START llm8_math_lc_bs1  model=Llama-3.1-8B-Instruct ds=math500 method=layercast bs=1
+[Llama-3.1-8B-Instruct | math500 | layercast | bs=1 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.08it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.55it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.33it/s]
+  model loaded in 4.2s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=20.0% elapsed=236s
+  [ 10/50] acc=10.0% elapsed=455s
+  [ 15/50] acc=20.0% elapsed=664s
+  [ 20/50] acc=25.0% elapsed=868s
+  [ 25/50] acc=28.0% elapsed=1112s
+  [ 30/50] acc=26.7% elapsed=1338s
+  [ 35/50] acc=25.7% elapsed=1546s
+  [ 40/50] acc=30.0% elapsed=1744s
+  [ 45/50] acc=33.3% elapsed=1966s
+  [ 50/50] acc=36.0% elapsed=2161s
+
+  RESULT: acc=36.0% avg_len=371 rt=2161s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/llm8_math_lc_bs1.json
+[2026-04-23 02:56:22] [w1] [13] OK llm8_math_lc_bs1 duration=2171s
+[2026-04-23 02:56:22] [w1] [14] SKIP llm8_math_lc_bs8 (claimed by other)
+[2026-04-23 02:56:22] [w1] [15] START llm8_math_lc_bs32  model=Llama-3.1-8B-Instruct ds=math500 method=layercast bs=32
+[Llama-3.1-8B-Instruct | math500 | layercast | bs=32 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.01it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.55it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.32it/s]
+  model loaded in 4.8s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=20.0% elapsed=335s
+  [ 10/50] acc=20.0% elapsed=610s
+  [ 15/50] acc=20.0% elapsed=883s
+  [ 20/50] acc=25.0% elapsed=1170s
+  [ 25/50] acc=20.0% elapsed=1475s
+  [ 30/50] acc=20.0% elapsed=1820s
+  [ 35/50] acc=22.9% elapsed=2067s
+  [ 40/50] acc=30.0% elapsed=2281s
+  [ 45/50] acc=33.3% elapsed=2546s
+  [ 50/50] acc=36.0% elapsed=2787s
+
+  RESULT: acc=36.0% avg_len=355 rt=2787s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/llm8_math_lc_bs32.json
+[2026-04-23 03:42:59] [w1] [15] OK llm8_math_lc_bs32 duration=2797s
+[2026-04-23 03:42:59] [w1] [16] SKIP llm8_math_hy_bs1 (done)
+[2026-04-23 03:42:59] [w1] [17] SKIP llm8_math_hy_bs8 (done)
+[2026-04-23 03:42:59] [w1] [18] SKIP llm8_math_hy_bs32 (claimed by other)
+[2026-04-23 03:43:00] [w1] [19] START phi4_math_bf16_bs1  model=Phi-4 ds=math500 method=bf16_baseline bs=1
+[Phi-4 | math500 | bf16_baseline | bs=1 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.03it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.03it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.05it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.07it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]
+  model loaded in 6.8s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=60.0% elapsed=115s
+  [ 10/50] acc=60.0% elapsed=229s
+  [ 15/50] acc=46.7% elapsed=331s
+  [ 20/50] acc=40.0% elapsed=445s
+  [ 25/50] acc=32.0% elapsed=555s
+  [ 30/50] acc=36.7% elapsed=655s
+  [ 35/50] acc=37.1% elapsed=752s
+  [ 40/50] acc=42.5% elapsed=855s
+  [ 45/50] acc=44.4% elapsed=964s
+  [ 50/50] acc=48.0% elapsed=1058s
+
+  RESULT: acc=48.0% avg_len=429 rt=1058s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/phi4_math_bf16_bs1.json
+[2026-04-23 04:00:49] [w1] [19] OK phi4_math_bf16_bs1 duration=1069s
+[2026-04-23 04:00:49] [w1] [20] SKIP phi4_math_bf16_bs8 (claimed by other)
+[2026-04-23 04:00:49] [w1] [21] START phi4_math_bf16_bs32  model=Phi-4 ds=math500 method=bf16_baseline bs=32
+[Phi-4 | math500 | bf16_baseline | bs=32 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.06s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.03it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.08it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.11it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.11it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.10it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.08it/s]
+  model loaded in 7.0s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=60.0% elapsed=220s
+  [ 10/50] acc=60.0% elapsed=419s
+  [ 15/50] acc=46.7% elapsed=604s
+  [ 20/50] acc=40.0% elapsed=823s
+  [ 25/50] acc=32.0% elapsed=1024s
+  [ 30/50] acc=36.7% elapsed=1212s
+  [ 35/50] acc=37.1% elapsed=1382s
+  [ 40/50] acc=42.5% elapsed=1556s
+  [ 45/50] acc=44.4% elapsed=1751s
+  [ 50/50] acc=48.0% elapsed=1907s
+
+  RESULT: acc=48.0% avg_len=429 rt=1907s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/phi4_math_bf16_bs32.json
+[2026-04-23 04:32:49] [w1] [21] OK phi4_math_bf16_bs32 duration=1920s
+[2026-04-23 04:32:49] [w1] [22] SKIP phi4_math_lc_bs1 (claimed by other)
+[2026-04-23 04:32:49] [w1] [23] START phi4_math_lc_bs8  model=Phi-4 ds=math500 method=layercast bs=8
+[Phi-4 | math500 | layercast | bs=8 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.01it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.03it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.05it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.07it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]
+  model loaded in 6.7s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=60.0% elapsed=529s
+  [ 10/50] acc=60.0% elapsed=1046s
+  [ 15/50] acc=53.3% elapsed=1553s
+  [ 20/50] acc=45.0% elapsed=2075s
+  [ 25/50] acc=36.0% elapsed=2590s
+  [ 30/50] acc=40.0% elapsed=3078s
+  [ 35/50] acc=40.0% elapsed=3545s
+  [ 40/50] acc=45.0% elapsed=4024s
+  [ 45/50] acc=46.7% elapsed=4528s
+  [ 50/50] acc=50.0% elapsed=4960s
+
+  RESULT: acc=50.0% avg_len=430 rt=4960s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/phi4_math_lc_bs8.json
+[2026-04-23 05:55:41] [w1] [23] OK phi4_math_lc_bs8 duration=4972s
+[2026-04-23 05:55:41] [w1] [24] SKIP phi4_math_lc_bs32 (claimed by other)
+[2026-04-23 05:55:41] [w1] [25] START phi4_math_hy_bs1  model=Phi-4 ds=math500 method=dllm_hybrid bs=1
+[Phi-4 | math500 | dllm_hybrid | bs=1 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.02s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:03,  1.00it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.03it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.05it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.03it/s]
+  model loaded in 6.9s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=60.0% elapsed=328s
+  [ 10/50] acc=60.0% elapsed=444s
+  [ 15/50] acc=53.3% elapsed=553s
+  [ 20/50] acc=45.0% elapsed=664s
+  [ 25/50] acc=36.0% elapsed=775s
+  [ 30/50] acc=40.0% elapsed=880s
+  [ 35/50] acc=40.0% elapsed=983s
+  [ 40/50] acc=42.5% elapsed=1086s
+  [ 45/50] acc=44.4% elapsed=1195s
+  [ 50/50] acc=48.0% elapsed=1289s
+
+  RESULT: acc=48.0% avg_len=432 rt=1289s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/phi4_math_hy_bs1.json
+[2026-04-23 06:17:23] [w1] [25] OK phi4_math_hy_bs1 duration=1302s
+[2026-04-23 06:17:23] [w1] [26] START phi4_math_hy_bs8  model=Phi-4 ds=math500 method=dllm_hybrid bs=8
+[Phi-4 | math500 | dllm_hybrid | bs=8 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.01it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.03it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.06it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.08it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]
+  model loaded in 6.7s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=60.0% elapsed=297s
+  [ 10/50] acc=60.0% elapsed=430s
+  [ 15/50] acc=53.3% elapsed=556s
+  [ 20/50] acc=45.0% elapsed=692s
+  [ 25/50] acc=36.0% elapsed=820s
+  [ 30/50] acc=40.0% elapsed=941s
+  [ 35/50] acc=40.0% elapsed=1051s
+  [ 40/50] acc=42.5% elapsed=1169s
+  [ 45/50] acc=44.4% elapsed=1295s
+  [ 50/50] acc=48.0% elapsed=1400s
+
+  RESULT: acc=48.0% avg_len=432 rt=1400s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/phi4_math_hy_bs8.json
+[2026-04-23 06:40:55] [w1] [26] OK phi4_math_hy_bs8 duration=1412s
+[2026-04-23 06:40:55] [w1] [27] START phi4_math_hy_bs32  model=Phi-4 ds=math500 method=dllm_hybrid bs=32
+[Phi-4 | math500 | dllm_hybrid | bs=32 | seed=0 | n=50 | gen=512]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.02s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:03,  1.00it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.02it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.04it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.03it/s]
+  model loaded in 6.8s on cuda:0
+  dataset math500: 50 problems loaded
+  [  5/50] acc=60.0% elapsed=435s
+  [ 10/50] acc=60.0% elapsed=632s
+  [ 15/50] acc=46.7% elapsed=815s
+  [ 20/50] acc=40.0% elapsed=1033s
+  [ 25/50] acc=32.0% elapsed=1233s
+  [ 30/50] acc=36.7% elapsed=1419s
+  [ 35/50] acc=37.1% elapsed=1588s
+  [ 40/50] acc=42.5% elapsed=1759s
+  [ 45/50] acc=44.4% elapsed=1953s
+  [ 50/50] acc=48.0% elapsed=2109s
+
+  RESULT: acc=48.0% avg_len=429 rt=2109s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_n50/phi4_math_hy_bs32.json
+[2026-04-23 07:16:17] [w1] [27] OK phi4_math_hy_bs32 duration=2122s
+[2026-04-23 07:16:17] [w1] === Matrix-n50 worker w1 done ===

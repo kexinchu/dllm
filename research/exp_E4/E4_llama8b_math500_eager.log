@@ -1,0 +1,55 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+
+====================================================================================
+  MODEL: llama8b  dataset=math500  gen_len=512  reasoning=False
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.02s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.01it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.50it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.28it/s]
+  Loaded 30 problems from math500
+
+-- BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=227s  diverge_so_far=5/5
+   [ 10/30] elapsed=437s  diverge_so_far=9/10
+   [ 15/30] elapsed=626s  diverge_so_far=12/15
+   [ 20/30] elapsed=851s  diverge_so_far=17/20
+   [ 25/30] elapsed=1085s  diverge_so_far=22/25
+   [ 30/30] elapsed=1297s  diverge_so_far=27/30
+   [BF16] bit-exact=21.7%  diverge_problems=90.0%  div_med=122  acc(bs=1)=16.7%  acc(bs=16)=23.3%  time=1297s
+
+-- FP32flag --
+   [  5/30] elapsed=229s  diverge_so_far=5/5
+   [ 10/30] elapsed=442s  diverge_so_far=9/10
+   [ 15/30] elapsed=622s  diverge_so_far=12/15
+   [ 20/30] elapsed=830s  diverge_so_far=16/20
+   [ 25/30] elapsed=1049s  diverge_so_far=20/25
+   [ 30/30] elapsed=1249s  diverge_so_far=25/30
+   [FP32flag] bit-exact=28.3%  diverge_problems=83.3%  div_med=152  acc(bs=1)=26.7%  acc(bs=16)=23.3%  time=1249s
+
+-- LayerCast --
+   [  5/30] elapsed=771s  diverge_so_far=5/5
+   [ 10/30] elapsed=1488s  diverge_so_far=10/10
+   [ 15/30] elapsed=2155s  diverge_so_far=13/15
+   [ 20/30] elapsed=2831s  diverge_so_far=17/20
+   [ 25/30] elapsed=3620s  diverge_so_far=22/25
+   [ 30/30] elapsed=4416s  diverge_so_far=26/30
+   [LayerCast] bit-exact=21.7%  diverge_problems=86.7%  div_med=143  acc(bs=1)=26.7%  acc(bs=16)=23.3%  time=4416s
+
+-- DetermLLM --
+   [  5/30] elapsed=421s  diverge_so_far=4/5
+   [ 10/30] elapsed=710s  diverge_so_far=9/10
+   [ 15/30] elapsed=968s  diverge_so_far=13/15
+   [ 20/30] elapsed=1228s  diverge_so_far=18/20
+   [ 25/30] elapsed=1543s  diverge_so_far=22/25
+   [ 30/30] elapsed=1828s  diverge_so_far=27/30
+   [DetermLLM] bit-exact=23.3%  diverge_problems=90.0%  div_med=152  acc(bs=1)=23.3%  acc(bs=16)=20.0%  time=1828s
+
+-- DetermLLM+attn --
+   [  5/30] elapsed=14587s  diverge_so_far=5/5
+   [ 10/30] elapsed=15063s  diverge_so_far=7/10
+   [ 15/30] elapsed=15401s  diverge_so_far=10/15
+   [ 20/30] elapsed=15800s  diverge_so_far=13/20
+   [ 25/30] elapsed=16193s  diverge_so_far=17/25
+   [ 30/30] elapsed=16531s  diverge_so_far=21/30
+   [DetermLLM+attn] bit-exact=40.0%  diverge_problems=70.0%  div_med=269  acc(bs=1)=20.0%  acc(bs=16)=20.0%  time=16532s
+
+  Saved: /home/kec23008/docker-sys/dllm/research/exp_E4/E4_llama8b_math500.json

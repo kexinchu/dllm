@@ -1,0 +1,102 @@
+[
+  {
+    "name": "BF16 baseline",
+    "N": 1000,
+    "unique": 5,
+    "diff_count": 800,
+    "deterministic": false,
+    "first_diff_idx": 69,
+    "total_time_s": 7466.377263240982,
+    "per_run_ms": 7466.377263240982,
+    "ref_hash": "c6bdafeb504d589f",
+    "per_bs_diff": {
+      "1": 0,
+      "2": 200,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    },
+    "per_bs_total": {
+      "1": 200,
+      "2": 200,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    }
+  },
+  {
+    "name": "FP32 flag (cuBLAS)",
+    "N": 1000,
+    "unique": 5,
+    "diff_count": 800,
+    "deterministic": false,
+    "first_diff_idx": 69,
+    "total_time_s": 7106.135849178769,
+    "per_run_ms": 7106.135849178769,
+    "ref_hash": "79d29031cebf1bd4",
+    "per_bs_diff": {
+      "1": 0,
+      "2": 200,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    },
+    "per_bs_total": {
+      "1": 200,
+      "2": 200,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    }
+  },
+  {
+    "name": "LayerCast",
+    "N": 1000,
+    "unique": 5,
+    "diff_count": 800,
+    "deterministic": false,
+    "first_diff_idx": 23,
+    "total_time_s": 30588.430905055255,
+    "per_run_ms": 30588.430905055255,
+    "ref_hash": "aa32f1b085515c8b",
+    "per_bs_diff": {
+      "1": 0,
+      "2": 200,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    },
+    "per_bs_total": {
+      "1": 200,
+      "2": 200,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    }
+  },
+  {
+    "name": "DetermLLM",
+    "N": 1000,
+    "unique": 4,
+    "diff_count": 600,
+    "deterministic": false,
+    "first_diff_idx": 69,
+    "total_time_s": 11139.46884806268,
+    "per_run_ms": 11139.46884806268,
+    "ref_hash": "4f1e213ee0616e5b",
+    "per_bs_diff": {
+      "1": 0,
+      "2": 0,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    },
+    "per_bs_total": {
+      "1": 200,
+      "2": 200,
+      "4": 200,
+      "8": 200,
+      "16": 200
+    }
+  }
+]

@@ -1,0 +1,56 @@
+GPU: NVIDIA RTX A6000  free=34.4 GB
+
+====================================================================================
+  MODEL: DeepSeek-R1-Qwen-7B
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.27s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.94s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.99s/it]
+
+-- scheme: BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   bs= 1: TTFT=   70.3ms  TPOT= 55.39ms  thr=   18.0 tok/s  peak=14.22 GB
+   bs= 8: TTFT=  185.3ms  TPOT= 56.69ms  thr=  139.9 tok/s  peak=14.35 GB
+   bs=32: TTFT=  565.2ms  TPOT= 59.21ms  thr=  523.0 tok/s  peak=14.79 GB
+
+-- scheme: FP32flag --
+   bs= 1: TTFT=   70.5ms  TPOT= 53.13ms  thr=   18.8 tok/s  peak=14.22 GB
+   bs= 8: TTFT=  184.3ms  TPOT= 55.18ms  thr=  143.7 tok/s  peak=14.35 GB
+   bs=32: TTFT=  573.7ms  TPOT= 61.33ms  thr=  505.3 tok/s  peak=14.79 GB
+
+-- scheme: LayerCast --
+   bs= 1: TTFT=  272.1ms  TPOT=230.14ms  thr=    4.3 tok/s  peak=16.25 GB
+   bs= 8: TTFT=  884.6ms  TPOT=238.49ms  thr=   33.2 tok/s  peak=16.38 GB
+   bs=32: TTFT= 2957.1ms  TPOT=245.26ms  thr=  125.1 tok/s  peak=16.82 GB
+
+-- scheme: DetermLLM --
+   bs= 1: TTFT=   71.8ms  TPOT= 55.03ms  thr=   18.2 tok/s  peak=14.21 GB
+   bs= 8: TTFT=   89.1ms  TPOT= 38.62ms  thr=  206.1 tok/s  peak=14.34 GB
+   bs=32: TTFT=  308.0ms  TPOT= 38.91ms  thr=  800.8 tok/s  peak=14.79 GB
+
+-- scheme: DetermLLM+attn --
+   bs= 1: TTFT=   41.1ms  TPOT= 38.64ms  thr=   25.9 tok/s  peak=14.21 GB
+   bs= 8: TTFT=   88.8ms  TPOT= 38.39ms  thr=  207.3 tok/s  peak=14.35 GB
+   bs=32: TTFT=  307.9ms  TPOT= 38.11ms  thr=  817.0 tok/s  peak=14.79 GB
+
+====================================================================================================
+  E7 OVERHEAD SUMMARY  (median of 3 runs)
+====================================================================================================
+
+  [DeepSeek-R1-Qwen-7B]
+  Scheme              bs    TTFT ms    TPOT ms   Thr tok/s   Peak GB    TTFT×    TPOT×
+  BF16                 1       70.3      55.39        18.0     14.22    1.00x    1.00x
+  BF16                 8      185.3      56.69       139.9     14.35    1.00x    1.00x
+  BF16                32      565.2      59.21       523.0     14.79    1.00x    1.00x
+  FP32flag             1       70.5      53.13        18.8     14.22    1.00x    0.96x
+  FP32flag             8      184.3      55.18       143.7     14.35    0.99x    0.97x
+  FP32flag            32      573.7      61.33       505.3     14.79    1.02x    1.04x
+  LayerCast            1      272.1     230.14         4.3     16.25    3.87x    4.15x
+  LayerCast            8      884.6     238.49        33.2     16.38    4.77x    4.21x
+  LayerCast           32     2957.1     245.26       125.1     16.82    5.23x    4.14x
+  DetermLLM            1       71.8      55.03        18.2     14.21    1.02x    0.99x
+  DetermLLM            8       89.1      38.62       206.1     14.34    0.48x    0.68x
+  DetermLLM           32      308.0      38.91       800.8     14.79    0.54x    0.66x
+  DetermLLM+attn       1       41.1      38.64        25.9     14.21    0.59x    0.70x
+  DetermLLM+attn       8       88.8      38.39       207.3     14.35    0.48x    0.68x
+  DetermLLM+attn      32      307.9      38.11       817.0     14.79    0.54x    0.64x
+
+  Saved: /home/kec23008/docker-sys/dllm/research/exp_E7/E7_all.json

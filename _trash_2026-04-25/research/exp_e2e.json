@@ -1,0 +1,443 @@
+{
+  "metadata": {
+    "gpu": "NVIDIA RTX A6000",
+    "num_gpus": 2,
+    "torch_version": "2.6.0+cu124",
+    "cuda_version": "12.4"
+  },
+  "exp1_generation_determinism": {
+    "bf16_default": {
+      "total_runs": 1000,
+      "unique_outputs": 2,
+      "deterministic": false,
+      "elapsed_seconds": 894.3,
+      "hash_distribution": {
+        "cebe7b358dbe41e6": 900,
+        "a6adb0e61b6330e7": 100
+      },
+      "per_bs_uniqueness": {
+        "1": {
+          "unique": 1,
+          "total": 100
+        },
+        "2": {
+          "unique": 1,
+          "total": 100
+        },
+        "3": {
+          "unique": 1,
+          "total": 100
+        },
+        "4": {
+          "unique": 1,
+          "total": 100
+        },
+        "5": {
+          "unique": 1,
+          "total": 100
+        },
+        "7": {
+          "unique": 1,
+          "total": 100
+        },
+        "8": {
+          "unique": 1,
+          "total": 100
+        },
+        "9": {
+          "unique": 1,
+          "total": 100
+        },
+        "15": {
+          "unique": 1,
+          "total": 100
+        },
+        "16": {
+          "unique": 1,
+          "total": 100
+        }
+      },
+      "sample_outputs": {
+        "cebe7b358dbe41e6": " Deterministic inference in large language models?\nDeterministic inference in large language models?\nDeterministic infer",
+        "a6adb0e61b6330e7": " Deterministic inference in large language models?\nDeterministic inference in large language models?\nDeterministic infer"
+      }
+    },
+    "fp32_accum": {
+      "total_runs": 1000,
+      "unique_outputs": 1,
+      "deterministic": true,
+      "elapsed_seconds": 902.0,
+      "hash_distribution": {
+        "cebe7b358dbe41e6": 1000
+      },
+      "per_bs_uniqueness": {
+        "1": {
+          "unique": 1,
+          "total": 100
+        },
+        "2": {
+          "unique": 1,
+          "total": 100
+        },
+        "3": {
+          "unique": 1,
+          "total": 100
+        },
+        "4": {
+          "unique": 1,
+          "total": 100
+        },
+        "5": {
+          "unique": 1,
+          "total": 100
+        },
+        "7": {
+          "unique": 1,
+          "total": 100
+        },
+        "8": {
+          "unique": 1,
+          "total": 100
+        },
+        "9": {
+          "unique": 1,
+          "total": 100
+        },
+        "15": {
+          "unique": 1,
+          "total": 100
+        },
+        "16": {
+          "unique": 1,
+          "total": 100
+        }
+      },
+      "sample_outputs": {
+        "cebe7b358dbe41e6": " Deterministic inference in large language models?\nDeterministic inference in large language models?\nDeterministic infer"
+      }
+    }
+  },
+  "exp2_argmax_flip_rate": {
+    "bf16_default": {
+      "total_flips": 1,
+      "total_tokens": 756,
+      "flip_rate_pct": 0.132275,
+      "per_prompt": [
+        {
+          "prompt_idx": 0,
+          "token_length": 20,
+          "flips": 0,
+          "tokens_checked": 80,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 1,
+          "token_length": 18,
+          "flips": 0,
+          "tokens_checked": 72,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 2,
+          "token_length": 19,
+          "flips": 1,
+          "tokens_checked": 76,
+          "flip_rate": 0.013157894736842105
+        },
+        {
+          "prompt_idx": 3,
+          "token_length": 19,
+          "flips": 0,
+          "tokens_checked": 76,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 4,
+          "token_length": 20,
+          "flips": 0,
+          "tokens_checked": 80,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 5,
+          "token_length": 19,
+          "flips": 0,
+          "tokens_checked": 76,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 6,
+          "token_length": 17,
+          "flips": 0,
+          "tokens_checked": 68,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 7,
+          "token_length": 17,
+          "flips": 0,
+          "tokens_checked": 68,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 8,
+          "token_length": 18,
+          "flips": 0,
+          "tokens_checked": 72,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 9,
+          "token_length": 22,
+          "flips": 0,
+          "tokens_checked": 88,
+          "flip_rate": 0.0
+        }
+      ]
+    },
+    "fp32_accum": {
+      "total_flips": 5,
+      "total_tokens": 756,
+      "flip_rate_pct": 0.661376,
+      "per_prompt": [
+        {
+          "prompt_idx": 0,
+          "token_length": 20,
+          "flips": 0,
+          "tokens_checked": 80,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 1,
+          "token_length": 18,
+          "flips": 2,
+          "tokens_checked": 72,
+          "flip_rate": 0.027777777777777776
+        },
+        {
+          "prompt_idx": 2,
+          "token_length": 19,
+          "flips": 2,
+          "tokens_checked": 76,
+          "flip_rate": 0.02631578947368421
+        },
+        {
+          "prompt_idx": 3,
+          "token_length": 19,
+          "flips": 0,
+          "tokens_checked": 76,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 4,
+          "token_length": 20,
+          "flips": 0,
+          "tokens_checked": 80,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 5,
+          "token_length": 19,
+          "flips": 0,
+          "tokens_checked": 76,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 6,
+          "token_length": 17,
+          "flips": 0,
+          "tokens_checked": 68,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 7,
+          "token_length": 17,
+          "flips": 0,
+          "tokens_checked": 68,
+          "flip_rate": 0.0
+        },
+        {
+          "prompt_idx": 8,
+          "token_length": 18,
+          "flips": 1,
+          "tokens_checked": 72,
+          "flip_rate": 0.013888888888888888
+        },
+        {
+          "prompt_idx": 9,
+          "token_length": 22,
+          "flips": 0,
+          "tokens_checked": 88,
+          "flip_rate": 0.0
+        }
+      ]
+    }
+  },
+  "exp3_qwen_moe_determinism": {
+    "status": "SKIPPED",
+    "error": "Qwen3-30B-A3B INT4 (AutoRound) loads but generation is impractically slow without gptqmodel backend. Model loaded in ~16 min across 2x A6000 GPUs, but a single 32-token generation did not complete in 30+ minutes. The AutoRound quantization falls back to a CPU-heavy dequantization path without the gptqmodel library (pip install gptqmodel), making inference infeasible.",
+    "load_time_seconds": 989.3,
+    "model_loaded": true,
+    "generation_completed": false,
+    "gpu_memory_used_mb": [
+      13298,
+      14102
+    ]
+  },
+  "exp4_latency": {
+    "bf16_default": {
+      "n_runs": 20,
+      "mean_ms": 871.02,
+      "std_ms": 8.4,
+      "min_ms": 861.27,
+      "max_ms": 896.58,
+      "all_latencies_ms": [
+        869.44,
+        872.54,
+        873.63,
+        872.03,
+        883.69,
+        868.44,
+        865.03,
+        866.01,
+        867.05,
+        883.56,
+        864.89,
+        871.27,
+        896.58,
+        861.27,
+        865.25,
+        868.51,
+        877.46,
+        865.6,
+        862.67,
+        865.43
+      ]
+    },
+    "fp32_accum": {
+      "n_runs": 20,
+      "mean_ms": 859.17,
+      "std_ms": 6.46,
+      "min_ms": 849.3,
+      "max_ms": 872.87,
+      "all_latencies_ms": [
+        855.29,
+        863.58,
+        849.3,
+        858.59,
+        860.91,
+        859.6,
+        854.17,
+        850.93,
+        866.44,
+        872.54,
+        857.16,
+        858.48,
+        858.78,
+        852.81,
+        859.23,
+        866.48,
+        872.87,
+        858.54,
+        849.83,
+        857.8
+      ]
+    },
+    "overhead_ratio": {
+      "fp32_accum_vs_bf16_pct": -1.36,
+      "description": "FP32 accum is -1.36% vs BF16 default"
+    }
+  },
+  "exp5_long_sequence": {
+    "bf16_default": {
+      "prompt_token_length": 188,
+      "comparisons": [
+        {
+          "batch_size": 1,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "argmax_flips": 0,
+          "total_positions": 188,
+          "flip_rate_pct": 0.0
+        },
+        {
+          "batch_size": 2,
+          "max_diff": 0.3359375,
+          "mean_diff": 0.026851724833250046,
+          "argmax_flips": 2,
+          "total_positions": 188,
+          "flip_rate_pct": 1.0638
+        },
+        {
+          "batch_size": 4,
+          "max_diff": 0.78125,
+          "mean_diff": 0.029406435787677765,
+          "argmax_flips": 2,
+          "total_positions": 188,
+          "flip_rate_pct": 1.0638
+        },
+        {
+          "batch_size": 8,
+          "max_diff": 0.9375,
+          "mean_diff": 0.02842271886765957,
+          "argmax_flips": 4,
+          "total_positions": 188,
+          "flip_rate_pct": 2.1277
+        },
+        {
+          "batch_size": 16,
+          "max_diff": 0.6640625,
+          "mean_diff": 0.0281395111232996,
+          "argmax_flips": 3,
+          "total_positions": 188,
+          "flip_rate_pct": 1.5957
+        }
+      ]
+    },
+    "fp32_accum": {
+      "prompt_token_length": 188,
+      "comparisons": [
+        {
+          "batch_size": 1,
+          "max_diff": 0.0,
+          "mean_diff": 0.0,
+          "argmax_flips": 0,
+          "total_positions": 188,
+          "flip_rate_pct": 0.0
+        },
+        {
+          "batch_size": 2,
+          "max_diff": 0.5,
+          "mean_diff": 0.025410190224647522,
+          "argmax_flips": 1,
+          "total_positions": 188,
+          "flip_rate_pct": 0.5319
+        },
+        {
+          "batch_size": 4,
+          "max_diff": 0.4375,
+          "mean_diff": 0.025891242548823357,
+          "argmax_flips": 4,
+          "total_positions": 188,
+          "flip_rate_pct": 2.1277
+        },
+        {
+          "batch_size": 8,
+          "max_diff": 0.5,
+          "mean_diff": 0.025410190224647522,
+          "argmax_flips": 1,
+          "total_positions": 188,
+          "flip_rate_pct": 0.5319
+        },
+        {
+          "batch_size": 16,
+          "max_diff": 0.5,
+          "mean_diff": 0.025410190224647522,
+          "argmax_flips": 1,
+          "total_positions": 188,
+          "flip_rate_pct": 0.5319
+        }
+      ]
+    }
+  }
+}

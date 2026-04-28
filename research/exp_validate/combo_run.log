@@ -1,0 +1,53 @@
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.14s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.83s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.88s/it]
+  N_PROB=5
+
+=== BF16 ===
+  problem 0: pre_div=256 avg_std=3.016e-03 t=['8.0', '7.4', '7.5', '7.6', '8.0']
+  problem 1: pre_div=14 avg_std=5.235e-03 t=['7.6', '7.5', '7.6', '7.8', '8.3']
+  problem 2: pre_div=124 avg_std=3.659e-03 t=['7.4', '7.7', '7.5', '7.7', '8.0']
+  problem 3: pre_div=56 avg_std=3.377e-03 t=['7.4', '7.7', '7.5', '7.6', '7.9']
+  problem 4: pre_div=6 avg_std=2.790e-03 t=['7.4', '7.5', '8.2', '8.3', '9.2']
+  TOTAL: 194.0s  Avg_Std=3.615e-03
+/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/library.py:349: UserWarning: Warning only once for all operators,  other operators may also be overridden.
+  Overriding a previously registered kernel for the same operator and the same dispatch key
+  operator: aten::_log_softmax(Tensor self, int dim, bool half_to_float) -> Tensor
+    registered at /pytorch/build/aten/src/ATen/RegisterSchema.cpp:6
+  dispatch key: CUDA
+  previous kernel: registered at /pytorch/build/aten/src/ATen/RegisterCPU.cpp:30477
+       new kernel: registered at /dev/null:102 (Triggered internally at /pytorch/aten/src/ATen/core/dispatch/OperatorEntry.cpp:154.)
+  self.m.impl(
+[W426 15:22:27.522614279 Context.cpp:336] Warning: torch.backends.cuda.preferred_blas_library is an experimental feature. If you see any error or unexpected behavior when this flag is set please file an issue on GitHub. (function operator())
+
+=== vLLM-BI alone (no attention patch) ===
+  problem 0: pre_div=256 avg_std=3.149e-03 t=['13.3', '12.8', '12.8', '12.9', '12.9']
+  problem 1: pre_div=14 avg_std=4.052e-03 t=['12.7', '12.8', '13.0', '13.0', '13.3']
+  problem 2: pre_div=124 avg_std=3.110e-03 t=['12.7', '12.8', '12.9', '12.9', '13.1']
+  problem 3: pre_div=56 avg_std=1.966e-03 t=['12.7', '12.9', '12.9', '12.9', '13.0']
+  problem 4: pre_div=6 avg_std=3.950e-03 t=['12.7', '13.0', '13.0', '13.4', '13.7']
+  TOTAL: 324.2s  Avg_Std=3.245e-03
+
+=== vLLM-BI + Triton attn ===
+  problem 0: pre_div=256 avg_std=3.093e-03 t=['15.6', '13.7', '15.3', '13.8', '13.9']
+  problem 1: pre_div=14 avg_std=3.356e-03 t=['15.1', '13.7', '15.3', '13.8', '14.8']
+  problem 2: pre_div=124 avg_std=3.053e-03 t=['13.6', '13.8', '13.9', '13.8', '14.1']
+  problem 3: pre_div=256 avg_std=3.033e-03 t=['13.6', '13.8', '13.8', '14.3', '13.6']
+  problem 4: pre_div=9 avg_std=5.405e-03 t=['13.4', '13.9', '13.7', '14.2', '14.7']
+  TOTAL: 353.5s  Avg_Std=3.588e-03
+
+=== vLLM-BI + full SRP overlay ===
+  problem 0: pre_div=256 avg_std=1.639e-08 t=['19.9', '15.2', '10.1', '14.9', '10.2']
+  problem 1: pre_div=256 avg_std=2.268e-08 t=['9.9', '10.3', '9.8', '9.9', '11.1']
+  problem 2: pre_div=256 avg_std=1.867e-08 t=['9.7', '9.7', '10.1', '9.7', '10.4']
+  problem 3: pre_div=256 avg_std=1.770e-08 t=['14.9', '9.7', '9.6', '9.6', '10.3']
+  problem 4: pre_div=256 avg_std=2.435e-08 t=['9.7', '9.8', '10.4', '10.7', '12.6']
+  TOTAL: 278.2s  Avg_Std=1.996e-08
+
+====================================================================================
+FINAL
+====================================================================================
+  method                                      total      Avg_Std   overhead
+  BF16                                       194.0s    3.615e-03      +0.0%
+  vLLM-BI alone (no attention patch)         324.2s    3.245e-03     +67.1%
+  vLLM-BI + Triton attn                      353.5s    3.588e-03     +82.2%
+  vLLM-BI + full SRP overlay                 278.2s    1.996e-08     +43.4%

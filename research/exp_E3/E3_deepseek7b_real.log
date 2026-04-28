@@ -1,0 +1,54 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.17s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]
+Loaded 50 MATH500 problems
+
+-- BF16 --
+   [ 10/50] elapsed=3s  running avg_std=3.081e-02  skip=0
+   [ 20/50] elapsed=5s  running avg_std=2.693e-02  skip=0
+   [ 30/50] elapsed=7s  running avg_std=2.996e-02  skip=0
+   [ 40/50] elapsed=8s  running avg_std=3.105e-02  skip=0
+   [ 50/50] elapsed=10s  running avg_std=3.129e-02  skip=0
+   [BF16] avg_std=3.129e-02  median=2.980e-02  avg_maxdiff=3.741e-01
+
+-- FP32flag --
+   [ 10/50] elapsed=2s  running avg_std=3.077e-02  skip=0
+   [ 20/50] elapsed=5s  running avg_std=2.764e-02  skip=0
+   [ 30/50] elapsed=7s  running avg_std=2.881e-02  skip=0
+   [ 40/50] elapsed=8s  running avg_std=3.017e-02  skip=0
+   [ 50/50] elapsed=9s  running avg_std=3.067e-02  skip=0
+   [FP32flag] avg_std=3.067e-02  median=3.112e-02  avg_maxdiff=3.664e-01
+
+-- LayerCast --
+   [ 10/50] elapsed=11s  running avg_std=2.596e-02  skip=0
+   [ 20/50] elapsed=24s  running avg_std=2.350e-02  skip=0
+   [ 30/50] elapsed=33s  running avg_std=2.633e-02  skip=0
+   [ 40/50] elapsed=39s  running avg_std=2.790e-02  skip=0
+   [ 50/50] elapsed=48s  running avg_std=2.937e-02  skip=0
+   [LayerCast] avg_std=2.937e-02  median=2.734e-02  avg_maxdiff=3.956e-01
+
+-- DetermLLM --
+   [ 10/50] elapsed=102s  running avg_std=5.251e-03  skip=0
+   [ 20/50] elapsed=105s  running avg_std=2.847e-03  skip=0
+   [ 30/50] elapsed=107s  running avg_std=3.075e-03  skip=0
+   [ 40/50] elapsed=108s  running avg_std=2.306e-03  skip=0
+   [ 50/50] elapsed=110s  running avg_std=1.927e-03  skip=0
+   [DetermLLM] avg_std=1.927e-03  median=0.000e+00  avg_maxdiff=2.723e-02
+
+-- DetermLLM+attn --
+   [ 10/50] elapsed=213s  running avg_std=4.762e-03  skip=0
+   [ 20/50] elapsed=299s  running avg_std=2.381e-03  skip=0
+   [ 30/50] elapsed=393s  running avg_std=2.598e-03  skip=0
+   [ 40/50] elapsed=451s  running avg_std=1.949e-03  skip=0
+   [ 50/50] elapsed=527s  running avg_std=1.559e-03  skip=0
+   [DetermLLM+attn] avg_std=1.559e-03  median=0.000e+00  avg_maxdiff=1.870e-02
+
+====================================================================================
+  E3 SUMMARY (Llama-8B, N=50 MATH500, bs=[1, 4, 8])
+====================================================================================
+  Scheme               Avg_Std@top1       Median     AvgMaxDiff    vs BF16
+  BF16                    3.129e-02    2.980e-02      3.741e-01     1.000x
+  FP32flag                3.067e-02    3.112e-02      3.664e-01     0.980x
+  LayerCast               2.937e-02    2.734e-02      3.956e-01     0.939x
+  DetermLLM               1.927e-03    0.000e+00      2.723e-02     0.062x
+  DetermLLM+attn          1.559e-03    0.000e+00      1.870e-02     0.050x

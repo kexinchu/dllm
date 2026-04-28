@@ -1,0 +1,17 @@
+[2026-04-21 19:18:37] [w0] === Worker w0 on GPU 0 starting ===
+[2026-04-21 19:18:37] [w0] START dllm_hybrid bs=8 seed=0
+[2026-04-21 20:18:05] [w0] OK dllm_hybrid bs=8 seed=0 duration=3568s
+[2026-04-21 20:18:05] [w0] SKIP dllm_hybrid bs=16 seed=0 (claimed by other worker)
+[2026-04-21 20:18:05] [w0] START dllm_hybrid bs=8 seed=1
+[2026-04-21 21:17:30] [w0] OK dllm_hybrid bs=8 seed=1 duration=3565s
+[2026-04-21 21:17:30] [w0] SKIP dllm_hybrid bs=16 seed=1 (claimed by other worker)
+[2026-04-21 21:17:30] [w0] START bf16_baseline bs=8 seed=1
+[2026-04-21 22:13:50] [w0] OK bf16_baseline bs=8 seed=1 duration=3380s
+[2026-04-21 22:13:50] [w0] SKIP bf16_baseline bs=16 seed=1 (claimed by other worker)
+[2026-04-21 22:13:50] [w0] START dllm_cublaslt bs=8 seed=1
+[2026-04-21 23:11:02] [w0] OK dllm_cublaslt bs=8 seed=1 duration=3432s
+[2026-04-21 23:11:02] [w0] START dllm_cublaslt bs=16 seed=1
+[2026-04-22 00:27:16] [w0] OK dllm_cublaslt bs=16 seed=1 duration=4574s
+[2026-04-22 00:27:16] [w0] SKIP dllm_triton bs=8 seed=1 (already done)
+[2026-04-22 00:27:16] [w0] SKIP dllm_triton bs=16 seed=1 (claimed by other worker)
+[2026-04-22 00:27:16] [w0] === Worker w0 done. ===

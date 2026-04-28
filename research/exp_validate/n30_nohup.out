@@ -1,0 +1,9 @@
+
+[Phase 1/3] HF kernels.py (3 methods, ~75 min)
+Tue Apr 28 01:12:30 AM EDT 2026
+[Phase 1 exit=0]
+Tue Apr 28 02:21:10 AM EDT 2026
+
+[Phase 2/3] vLLM native BF16 (~18 min)
+Tue Apr 28 02:21:10 AM EDT 2026
+research/run_n30_overnight.sh: line 29: LD_LIBRARY_PATH: unbound variable

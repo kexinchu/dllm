@@ -1,0 +1,7 @@
+# ninja log v7
+0	93164	1769725747551141154	/workspace/dllm/build/temp.linux-x86_64-cpython-312/FP32/csrc/gemm_fp32_accum_cuda.o	3da02bdb409bf053
+43	91778	1769726083162965243	/workspace/dllm/build/temp.linux-x86_64-cpython-312/FP32/csrc/gemm_fp32_accum_cuda.o	3da02bdb409bf053
+55	92387	1769726083206967318	/workspace/dllm/build/temp.linux-x86_64-cpython-312/FP32/csrc/gemm_fp32_accum_cuda.o	3da02bdb409bf053
+37	94717	1769726146717961436	/workspace/dllm/build/temp.linux-x86_64-cpython-312/FP32/csrc/gemm_fp32_accum_cuda.o	3da02bdb409bf053
+8	98262	1769726580883733530	/workspace/dllm/build/temp.linux-x86_64-cpython-312/FP32/csrc/gemm_fp32_accum_cuda.o	3da02bdb409bf053
+46	98574	1769729461714272496	/workspace/dllm/build/temp.linux-x86_64-cpython-312/FP32/csrc/gemm_fp32_accum_cuda.o	3da02bdb409bf053

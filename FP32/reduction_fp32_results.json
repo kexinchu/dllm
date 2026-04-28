@@ -1,0 +1,15 @@
+{
+  "latency_ms": {
+    "bf16_naive_ms": 0.060494353994727135,
+    "bf16_atomic_ms": 1.50730474665761,
+    "fp32_then_bf16_ms": 0.057305412366986275,
+    "deterministic_ms": 0.05659523047506809
+  },
+  "determinism_bf16_std": 0.3749096393585205,
+  "determinism_fp32_std": 0.0,
+  "determinism_det_std": 0.0,
+  "gemm_fp32_accum_ms": 7.857709941454232,
+  "gemm_bf16_linear_ms": 1.1049150908365846,
+  "gemm_correctness_max_diff": 0.5,
+  "gemm_deterministic_std_mean": 0.0
+}

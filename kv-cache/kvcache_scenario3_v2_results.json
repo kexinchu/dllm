@@ -1,0 +1,42 @@
+{
+  "config": {
+    "model": "/home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct",
+    "num_runs": 1000
+  },
+  "scenario3": {
+    "total_tests": 1000,
+    "summary": {
+      "chunk_128": {
+        "total_differ": 988,
+        "differ_pct": "98.8%",
+        "total_argmax_flip": 34,
+        "argmax_flip_pct": "3.4%",
+        "p50_diff": "2.187500e-01",
+        "p90_diff": "3.125000e-01",
+        "p99_diff": "1.390625e+01",
+        "max_diff": "1.905469e+01"
+      },
+      "chunk_64": {
+        "total_differ": 1000,
+        "differ_pct": "100.0%",
+        "total_argmax_flip": 32,
+        "argmax_flip_pct": "3.2%",
+        "p50_diff": "2.187500e-01",
+        "p90_diff": "3.125000e-01",
+        "p99_diff": "1.603125e+01",
+        "max_diff": "2.319531e+01"
+      },
+      "chunk_32": {
+        "total_differ": 1000,
+        "differ_pct": "100.0%",
+        "total_argmax_flip": 34,
+        "argmax_flip_pct": "3.4%",
+        "p50_diff": "2.187500e-01",
+        "p90_diff": "3.125000e-01",
+        "p99_diff": "1.550000e+01",
+        "max_diff": "2.307031e+01"
+      }
+    }
+  },
+  "elapsed_seconds": 442.8
+}

@@ -1,0 +1,84 @@
+[2026-04-22 15:52:48] [w0] === Matrix worker w0 on GPU 0 starting ===
+[2026-04-22 15:52:48] [w0] Matrix: 54 configs
+[2026-04-22 15:52:48] [w0] [1] START ds7_math_bf16_bs1  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=bf16_baseline bs=1
+[2026-04-22 15:57:35] [w0] [1] OK ds7_math_bf16_bs1 duration=287s
+[2026-04-22 15:57:35] [w0] [2] SKIP ds7_math_bf16_bs8 (claimed by other)
+[2026-04-22 15:57:35] [w0] [3] START ds7_math_bf16_bs32  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=bf16_baseline bs=32
+[2026-04-22 16:07:25] [w0] [3] OK ds7_math_bf16_bs32 duration=590s
+[2026-04-22 16:07:25] [w0] [4] SKIP ds7_math_lc_bs1 (claimed by other)
+[2026-04-22 16:07:25] [w0] [5] START ds7_math_lc_bs8  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=layercast bs=8
+[2026-04-22 16:27:53] [w0] [5] OK ds7_math_lc_bs8 duration=1228s
+[2026-04-22 16:27:53] [w0] [6] START ds7_math_lc_bs32  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=layercast bs=32
+[2026-04-22 16:52:59] [w0] [6] OK ds7_math_lc_bs32 duration=1506s
+[2026-04-22 16:52:59] [w0] [7] SKIP ds7_math_hy_bs1 (claimed by other)
+[2026-04-22 16:52:59] [w0] [8] START ds7_math_hy_bs8  model=DeepSeek-R1-Distill-Qwen-7B ds=math500 method=dllm_hybrid bs=8
+[2026-04-22 17:00:13] [w0] [8] OK ds7_math_hy_bs8 duration=434s
+[2026-04-22 17:00:13] [w0] [9] SKIP ds7_math_hy_bs32 (claimed by other)
+[2026-04-22 17:00:13] [w0] [10] START ds7_gsm_bf16_bs1  model=DeepSeek-R1-Distill-Qwen-7B ds=gsm8k method=bf16_baseline bs=1
+[2026-04-22 17:04:46] [w0] [10] OK ds7_gsm_bf16_bs1 duration=273s
+[2026-04-22 17:04:46] [w0] [11] START ds7_gsm_bf16_bs8  model=DeepSeek-R1-Distill-Qwen-7B ds=gsm8k method=bf16_baseline bs=8
+[2026-04-22 17:10:22] [w0] [11] OK ds7_gsm_bf16_bs8 duration=336s
+[2026-04-22 17:10:22] [w0] [12] START ds7_gsm_bf16_bs32  model=DeepSeek-R1-Distill-Qwen-7B ds=gsm8k method=bf16_baseline bs=32
+[2026-04-22 17:19:41] [w0] [12] OK ds7_gsm_bf16_bs32 duration=559s
+[2026-04-22 17:19:41] [w0] [13] SKIP ds7_gsm_lc_bs1 (claimed by other)
+[2026-04-22 17:19:41] [w0] [14] START ds7_gsm_lc_bs8  model=DeepSeek-R1-Distill-Qwen-7B ds=gsm8k method=layercast bs=8
+[2026-04-22 17:38:46] [w0] [14] OK ds7_gsm_lc_bs8 duration=1145s
+[2026-04-22 17:38:46] [w0] [15] SKIP ds7_gsm_lc_bs32 (claimed by other)
+[2026-04-22 17:38:46] [w0] [16] START ds7_gsm_hy_bs1  model=DeepSeek-R1-Distill-Qwen-7B ds=gsm8k method=dllm_hybrid bs=1
+[2026-04-22 17:45:46] [w0] [16] OK ds7_gsm_hy_bs1 duration=420s
+[2026-04-22 17:45:46] [w0] [17] START ds7_gsm_hy_bs8  model=DeepSeek-R1-Distill-Qwen-7B ds=gsm8k method=dllm_hybrid bs=8
+[2026-04-22 17:52:57] [w0] [17] OK ds7_gsm_hy_bs8 duration=431s
+[2026-04-22 17:52:57] [w0] [18] START ds7_gsm_hy_bs32  model=DeepSeek-R1-Distill-Qwen-7B ds=gsm8k method=dllm_hybrid bs=32
+[2026-04-22 18:03:37] [w0] [18] OK ds7_gsm_hy_bs32 duration=640s
+[2026-04-22 18:03:37] [w0] [19] SKIP llm8_math_bf16_bs1 (done)
+[2026-04-22 18:03:37] [w0] [20] SKIP llm8_math_bf16_bs8 (done)
+[2026-04-22 18:03:37] [w0] [21] SKIP llm8_math_bf16_bs32 (done)
+[2026-04-22 18:03:37] [w0] [22] SKIP llm8_math_lc_bs1 (claimed by other)
+[2026-04-22 18:03:37] [w0] [23] START llm8_math_lc_bs8  model=Llama-3.1-8B-Instruct ds=math500 method=layercast bs=8
+[2026-04-22 18:11:56] [w0] [23] OK llm8_math_lc_bs8 duration=499s
+[2026-04-22 18:11:56] [w0] [24] SKIP llm8_math_lc_bs32 (claimed by other)
+[2026-04-22 18:11:56] [w0] [25] START llm8_math_hy_bs1  model=Llama-3.1-8B-Instruct ds=math500 method=dllm_hybrid bs=1
+[2026-04-22 18:16:02] [w0] [25] OK llm8_math_hy_bs1 duration=246s
+[2026-04-22 18:16:02] [w0] [26] START llm8_math_hy_bs8  model=Llama-3.1-8B-Instruct ds=math500 method=dllm_hybrid bs=8
+[2026-04-22 18:19:58] [w0] [26] OK llm8_math_hy_bs8 duration=236s
+[2026-04-22 18:19:58] [w0] [27] START llm8_math_hy_bs32  model=Llama-3.1-8B-Instruct ds=math500 method=dllm_hybrid bs=32
+[2026-04-22 18:26:01] [w0] [27] OK llm8_math_hy_bs32 duration=363s
+[2026-04-22 18:26:01] [w0] [28] SKIP llm8_gsm_bf16_bs1 (done)
+[2026-04-22 18:26:01] [w0] [29] SKIP llm8_gsm_bf16_bs8 (done)
+[2026-04-22 18:26:01] [w0] [30] SKIP llm8_gsm_bf16_bs32 (claimed by other)
+[2026-04-22 18:26:01] [w0] [31] START llm8_gsm_lc_bs1  model=Llama-3.1-8B-Instruct ds=gsm8k method=layercast bs=1
+[2026-04-22 18:31:07] [w0] [31] OK llm8_gsm_lc_bs1 duration=305s
+[2026-04-22 18:31:07] [w0] [32] SKIP llm8_gsm_lc_bs8 (claimed by other)
+[2026-04-22 18:31:07] [w0] [33] START llm8_gsm_lc_bs32  model=Llama-3.1-8B-Instruct ds=gsm8k method=layercast bs=32
+[2026-04-22 18:37:01] [w0] [33] OK llm8_gsm_lc_bs32 duration=354s
+[2026-04-22 18:37:01] [w0] [34] SKIP llm8_gsm_hy_bs1 (done)
+[2026-04-22 18:37:01] [w0] [35] SKIP llm8_gsm_hy_bs8 (claimed by other)
+[2026-04-22 18:37:01] [w0] [36] START llm8_gsm_hy_bs32  model=Llama-3.1-8B-Instruct ds=gsm8k method=dllm_hybrid bs=32
+[2026-04-22 18:41:50] [w0] [36] OK llm8_gsm_hy_bs32 duration=289s
+[2026-04-22 18:41:50] [w0] [37] SKIP phi4_math_bf16_bs1 (done)
+[2026-04-22 18:41:51] [w0] [38] SKIP phi4_math_bf16_bs8 (claimed by other)
+[2026-04-22 18:41:51] [w0] [39] START phi4_math_bf16_bs32  model=Phi-4 ds=math500 method=bf16_baseline bs=32
+[2026-04-22 18:49:03] [w0] [39] OK phi4_math_bf16_bs32 duration=432s
+[2026-04-22 18:49:03] [w0] [40] SKIP phi4_math_lc_bs1 (claimed by other)
+[2026-04-22 18:49:03] [w0] [41] START phi4_math_lc_bs8  model=Phi-4 ds=math500 method=layercast bs=8
+[2026-04-22 19:06:42] [w0] [41] OK phi4_math_lc_bs8 duration=1059s
+[2026-04-22 19:06:42] [w0] [42] SKIP phi4_math_lc_bs32 (claimed by other)
+[2026-04-22 19:06:42] [w0] [43] START phi4_math_hy_bs1  model=Phi-4 ds=math500 method=dllm_hybrid bs=1
+[2026-04-22 19:14:19] [w0] [43] OK phi4_math_hy_bs1 duration=457s
+[2026-04-22 19:14:19] [w0] [44] START phi4_math_hy_bs8  model=Phi-4 ds=math500 method=dllm_hybrid bs=8
+[2026-04-22 19:21:41] [w0] [44] OK phi4_math_hy_bs8 duration=442s
+[2026-04-22 19:21:41] [w0] [45] START phi4_math_hy_bs32  model=Phi-4 ds=math500 method=dllm_hybrid bs=32
+[2026-04-22 19:32:27] [w0] [45] OK phi4_math_hy_bs32 duration=646s
+[2026-04-22 19:32:27] [w0] [46] SKIP phi4_gsm_bf16_bs1 (done)
+[2026-04-22 19:32:27] [w0] [47] SKIP phi4_gsm_bf16_bs8 (done)
+[2026-04-22 19:32:27] [w0] [48] SKIP phi4_gsm_bf16_bs32 (claimed by other)
+[2026-04-22 19:32:27] [w0] [49] START phi4_gsm_lc_bs1  model=Phi-4 ds=gsm8k method=layercast bs=1
+[2026-04-22 19:42:35] [w0] [49] OK phi4_gsm_lc_bs1 duration=608s
+[2026-04-22 19:42:35] [w0] [50] SKIP phi4_gsm_lc_bs8 (claimed by other)
+[2026-04-22 19:42:35] [w0] [51] START phi4_gsm_lc_bs32  model=Phi-4 ds=gsm8k method=layercast bs=32
+[2026-04-22 19:55:10] [w0] [51] OK phi4_gsm_lc_bs32 duration=755s
+[2026-04-22 19:55:10] [w0] [52] SKIP phi4_gsm_hy_bs1 (done)
+[2026-04-22 19:55:10] [w0] [53] SKIP phi4_gsm_hy_bs8 (claimed by other)
+[2026-04-22 19:55:10] [w0] [54] START phi4_gsm_hy_bs32  model=Phi-4 ds=gsm8k method=dllm_hybrid bs=32
+[2026-04-22 20:03:03] [w0] [54] OK phi4_gsm_hy_bs32 duration=473s
+[2026-04-22 20:03:03] [w0] === Matrix worker w0 done ===

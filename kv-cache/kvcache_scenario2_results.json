@@ -1,0 +1,197 @@
+{
+  "config": {
+    "model": "/home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct",
+    "num_runs": 1000
+  },
+  "scenario2": {
+    "total_tests": 1000,
+    "total_differ": 1000,
+    "differ_pct": "100.0%",
+    "total_argmax_flip": 550,
+    "argmax_flip_pct": "55.00%",
+    "max_diff": "1.878125e+01",
+    "per_query": [
+      {
+        "prefix_len": 82,
+        "suffix": "What is the capital of France?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "4.906250e+00"
+      },
+      {
+        "prefix_len": 82,
+        "suffix": "Explain quantum computing in simple terms.",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "8.007812e+00"
+      },
+      {
+        "prefix_len": 82,
+        "suffix": "What are the main differences between Python and Java?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "6.429688e+00"
+      },
+      {
+        "prefix_len": 82,
+        "suffix": "How does photosynthesis work?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "1.463574e+01"
+      },
+      {
+        "prefix_len": 82,
+        "suffix": "What is the theory of relativity?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "9.976562e+00"
+      },
+      {
+        "prefix_len": 95,
+        "suffix": "sorts a list of integers using quicksort.",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "3.531250e+00"
+      },
+      {
+        "prefix_len": 95,
+        "suffix": "finds the longest common subsequence of two strings.",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "3.234375e+00"
+      },
+      {
+        "prefix_len": 95,
+        "suffix": "implements a binary search tree.",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "5.578125e+00"
+      },
+      {
+        "prefix_len": 95,
+        "suffix": "calculates the fibonacci sequence using dynamic programming.",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "2.691406e+00"
+      },
+      {
+        "prefix_len": 95,
+        "suffix": "reverses a linked list in place.",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "1.878125e+01"
+      },
+      {
+        "prefix_len": 278,
+        "suffix": "What is your outlook on the US economy?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "1.570312e+01"
+      },
+      {
+        "prefix_len": 278,
+        "suffix": "Should I invest in bonds or equities right now?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "5.062500e+00"
+      },
+      {
+        "prefix_len": 278,
+        "suffix": "Explain the impact of rising interest rates.",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "1.513885e+01"
+      },
+      {
+        "prefix_len": 278,
+        "suffix": "What causes inflation?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "1.656250e+01"
+      },
+      {
+        "prefix_len": 278,
+        "suffix": "How do trade deficits affect currency values?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "1.145312e+01"
+      },
+      {
+        "prefix_len": 772,
+        "suffix": "What was the main innovation of transformers?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "5.093750e+00"
+      },
+      {
+        "prefix_len": 772,
+        "suffix": "Why are transformers better than RNNs?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "8.093750e+00"
+      },
+      {
+        "prefix_len": 772,
+        "suffix": "What are the components of the transformer architecture?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "5.906250e+00"
+      },
+      {
+        "prefix_len": 772,
+        "suffix": "How do transformers handle position information?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 0,
+        "max_diff": "9.541016e+00"
+      },
+      {
+        "prefix_len": 772,
+        "suffix": "When was the transformer introduced?",
+        "runs": 50,
+        "differ_count": 50,
+        "differ_pct": "100.0%",
+        "argmax_flip": 50,
+        "max_diff": "6.562500e+00"
+      }
+    ]
+  },
+  "elapsed_seconds": 151.7
+}

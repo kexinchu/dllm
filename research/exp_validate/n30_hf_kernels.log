@@ -1,0 +1,121 @@
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.36s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.06s/it]
+  N_PROB=30  BS=[1, 2, 4, 8, 16]  MAX_NEW=256
+
+=== BF16 ===
+  problem 0: pre_div=256  avg_std=3.016e-03  t=['6.7', '6.4', '6.5', '6.6', '6.9']
+  problem 1: pre_div=14  avg_std=5.235e-03  t=['6.4', '6.4', '6.6', '6.8', '7.1']
+  problem 2: pre_div=124  avg_std=3.659e-03  t=['6.4', '6.4', '6.5', '6.6', '6.9']
+  problem 3: pre_div=56  avg_std=3.377e-03  t=['6.4', '6.4', '6.5', '6.6', '6.8']
+  problem 4: pre_div=6  avg_std=2.790e-03  t=['6.4', '6.6', '6.8', '7.2', '8.0']
+  problem 5: pre_div=49  avg_std=1.229e-03  t=['6.4', '6.5', '6.5', '6.6', '6.9']
+  problem 6: pre_div=4  avg_std=4.435e-03  t=['6.4', '6.4', '6.5', '6.6', '6.8']
+  problem 7: pre_div=188  avg_std=3.699e-03  t=['6.4', '6.5', '6.5', '6.7', '7.0']
+  problem 8: pre_div=47  avg_std=3.222e-03  t=['7.0', '6.4', '6.5', '6.6', '6.9']
+  problem 9: pre_div=192  avg_std=4.239e-03  t=['6.4', '6.5', '6.6', '6.8', '7.3']
+  problem 10: pre_div=179  avg_std=4.233e-03  t=['6.4', '6.5', '6.5', '6.6', '6.9']
+  problem 11: pre_div=64  avg_std=2.798e-03  t=['6.4', '6.4', '6.5', '6.7', '7.0']
+  problem 12: pre_div=4  avg_std=2.372e-04  t=['6.4', '6.4', '6.5', '7.3', '7.0']
+  problem 13: pre_div=35  avg_std=2.828e-03  t=['6.4', '6.5', '6.6', '6.9', '7.4']
+  problem 14: pre_div=44  avg_std=5.344e-03  t=['6.4', '6.5', '6.6', '6.8', '7.2']
+  problem 15: pre_div=232  avg_std=2.958e-03  t=['6.4', '6.5', '6.6', '6.9', '7.4']
+  problem 16: pre_div=6  avg_std=4.749e-03  t=['6.4', '6.4', '6.5', '6.6', '6.9']
+  problem 17: pre_div=114  avg_std=3.467e-03  t=['6.4', '6.5', '6.6', '6.9', '7.5']
+  problem 18: pre_div=108  avg_std=5.048e-03  t=['6.4', '6.5', '6.6', '6.8', '7.3']
+  problem 19: pre_div=15  avg_std=4.171e-03  t=['6.4', '6.4', '6.5', '6.7', '7.6']
+  problem 20: pre_div=59  avg_std=4.534e-03  t=['6.4', '6.4', '6.5', '6.6', '6.8']
+  problem 21: pre_div=80  avg_std=3.570e-03  t=['6.4', '6.4', '6.5', '6.6', '6.9']
+  problem 22: pre_div=7  avg_std=4.272e-03  t=['6.4', '6.5', '6.6', '6.8', '7.2']
+  problem 23: pre_div=49  avg_std=3.678e-03  t=['6.4', '6.4', '6.5', '7.2', '6.9']
+  problem 24: pre_div=113  avg_std=2.819e-03  t=['6.4', '6.5', '6.6', '6.7', '7.2']
+  problem 25: pre_div=131  avg_std=1.904e-03  t=['6.4', '6.4', '6.6', '6.7', '7.1']
+  problem 26: pre_div=127  avg_std=4.292e-03  t=['6.4', '6.4', '6.5', '6.7', '7.0']
+  problem 27: pre_div=25  avg_std=3.767e-03  t=['6.4', '6.4', '6.6', '6.7', '7.1']
+  problem 28: pre_div=49  avg_std=3.034e-03  t=['6.4', '6.4', '6.5', '7.4', '6.9']
+  problem 29: pre_div=256  avg_std=3.478e-03  t=['6.4', '6.4', '6.5', '6.7', '7.1']
+  TOTAL: 998.8s  Avg_Std@top1=3.536e-03
+
+=== SRP-FP32 (HF Triton) ===
+  problem 0: pre_div=256  avg_std=0.000e+00  t=['19.5', '14.1', '9.5', '14.1', '10.0']
+  problem 1: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.5', '9.6', '9.9']
+  problem 2: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.6', '9.6', '9.7']
+  problem 3: pre_div=256  avg_std=0.000e+00  t=['14.1', '9.4', '9.4', '9.5', '9.5']
+  problem 4: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.7', '9.7', '10.1', '11.0']
+  problem 5: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.6', '9.6', '9.7']
+  problem 6: pre_div=256  avg_std=0.000e+00  t=['9.6', '10.4', '9.6', '9.6', '9.6']
+  problem 7: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.6', '9.7', '9.7', '9.8']
+  problem 8: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.6', '9.6', '9.7']
+  problem 9: pre_div=256  avg_std=0.000e+00  t=['9.5', '10.2', '9.6', '9.8', '10.2']
+  problem 10: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.5', '9.5', '9.6']
+  problem 11: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.5', '9.6', '9.7']
+  problem 12: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.6', '9.6', '9.6', '9.8']
+  problem 13: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.7', '9.8', '10.1']
+  problem 14: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.6', '9.6', '9.8', '9.9']
+  problem 15: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.6', '9.7', '9.8', '10.2']
+  problem 16: pre_div=256  avg_std=0.000e+00  t=['9.5', '10.5', '9.5', '9.6', '9.6']
+  problem 17: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.6', '9.6', '9.8', '10.3']
+  problem 18: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.6', '9.7', '10.1']
+  problem 19: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.6', '9.7', '9.7']
+  problem 20: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.5', '9.5', '9.5']
+  problem 21: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.5', '9.6', '9.7']
+  problem 22: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.6', '9.6', '9.8', '10.9']
+  problem 23: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.6', '9.6', '9.7']
+  problem 24: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.5', '9.7', '9.8']
+  problem 25: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.5', '9.6', '9.9']
+  problem 26: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.6', '9.6', '9.7']
+  problem 27: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.5', '9.6', '9.8']
+  problem 28: pre_div=256  avg_std=0.000e+00  t=['9.4', '9.5', '9.6', '9.6', '9.7']
+  problem 29: pre_div=256  avg_std=0.000e+00  t=['9.5', '9.5', '9.6', '10.4', '9.9']
+  TOTAL: 1470.5s  Avg_Std@top1=0.000e+00
+
+=== vLLM batch_invariant ===
+/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/library.py:349: UserWarning: Warning only once for all operators,  other operators may also be overridden.
+  Overriding a previously registered kernel for the same operator and the same dispatch key
+  operator: aten::_log_softmax(Tensor self, int dim, bool half_to_float) -> Tensor
+    registered at /pytorch/build/aten/src/ATen/RegisterSchema.cpp:6
+  dispatch key: CUDA
+  previous kernel: registered at /pytorch/build/aten/src/ATen/RegisterCPU.cpp:30477
+       new kernel: registered at /dev/null:136 (Triggered internally at /pytorch/aten/src/ATen/core/dispatch/OperatorEntry.cpp:154.)
+  self.m.impl(
+[W428 01:53:50.363771700 Context.cpp:336] Warning: torch.backends.cuda.preferred_blas_library is an experimental feature. If you see any error or unexpected behavior when this flag is set please file an issue on GitHub. (function operator())
+  problem 0: pre_div=256  avg_std=3.167e-04  t=['10.9', '10.8', '10.8', '10.9', '11.1']
+  problem 1: pre_div=188  avg_std=1.757e-03  t=['10.8', '10.9', '10.9', '11.0', '11.3']
+  problem 2: pre_div=256  avg_std=6.461e-04  t=['10.7', '10.8', '10.9', '10.9', '11.0']
+  problem 3: pre_div=256  avg_std=1.797e-04  t=['10.8', '10.8', '10.8', '10.8', '10.9']
+  problem 4: pre_div=9  avg_std=7.682e-04  t=['10.8', '10.9', '11.1', '11.5', '12.1']
+  problem 5: pre_div=256  avg_std=5.786e-04  t=['10.8', '10.9', '10.9', '10.9', '11.0']
+  problem 6: pre_div=256  avg_std=3.500e-04  t=['10.8', '10.9', '10.9', '10.9', '11.0']
+  problem 7: pre_div=256  avg_std=3.628e-04  t=['10.7', '10.8', '10.9', '10.9', '11.1']
+  problem 8: pre_div=256  avg_std=2.175e-04  t=['10.8', '11.3', '11.0', '10.9', '11.0']
+  problem 9: pre_div=250  avg_std=2.685e-03  t=['10.8', '10.9', '11.9', '11.0', '11.3']
+  problem 10: pre_div=256  avg_std=4.083e-04  t=['10.8', '10.7', '10.7', '10.8', '10.8']
+  problem 11: pre_div=256  avg_std=1.074e-03  t=['11.2', '10.7', '10.7', '10.8', '11.0']
+  problem 12: pre_div=185  avg_std=3.601e-04  t=['10.7', '10.8', '11.4', '10.7', '11.0']
+  problem 13: pre_div=256  avg_std=1.153e-03  t=['10.6', '10.7', '10.8', '10.9', '11.3']
+  problem 14: pre_div=44  avg_std=1.831e-03  t=['10.7', '10.7', '10.7', '10.8', '11.0']
+  problem 15: pre_div=236  avg_std=8.985e-04  t=['10.6', '10.7', '10.7', '11.0', '11.3']
+  problem 16: pre_div=256  avg_std=3.121e-04  t=['10.6', '10.7', '10.6', '10.6', '10.7']
+  problem 17: pre_div=114  avg_std=1.026e-03  t=['11.9', '11.0', '11.0', '11.2', '11.7']
+  problem 18: pre_div=108  avg_std=1.912e-03  t=['10.8', '10.9', '11.0', '11.1', '11.4']
+  problem 19: pre_div=239  avg_std=4.538e-04  t=['10.8', '10.8', '10.9', '11.0', '11.1']
+  problem 20: pre_div=236  avg_std=3.553e-05  t=['10.9', '10.9', '10.8', '10.9', '10.9']
+  problem 21: pre_div=256  avg_std=2.813e-04  t=['10.8', '10.8', '10.9', '11.0', '11.1']
+  problem 22: pre_div=110  avg_std=1.536e-03  t=['10.9', '10.9', '10.9', '11.0', '11.3']
+  problem 23: pre_div=256  avg_std=1.105e-04  t=['10.8', '10.8', '10.9', '10.8', '11.0']
+  problem 24: pre_div=171  avg_std=1.493e-05  t=['10.7', '10.8', '10.9', '11.0', '11.2']
+  problem 25: pre_div=256  avg_std=2.879e-04  t=['10.8', '10.9', '11.0', '11.0', '11.2']
+  problem 26: pre_div=240  avg_std=6.675e-04  t=['10.9', '10.9', '10.9', '11.0', '11.0']
+  problem 27: pre_div=256  avg_std=6.655e-04  t=['10.8', '11.0', '10.9', '11.0', '11.1']
+  problem 28: pre_div=256  avg_std=2.864e-04  t=['10.7', '10.9', '10.8', '10.8', '11.0']
+  problem 29: pre_div=256  avg_std=6.132e-04  t=['10.8', '10.9', '10.9', '10.9', '11.2']
+  TOTAL: 1639.5s  Avg_Std@top1=7.263e-04
+
+====================================================================================
+FINAL
+====================================================================================
+  method                       total      Avg_Std   overhead
+  BF16                        998.8s    3.536e-03      +0.0%
+  SRP-FP32 (HF Triton)       1470.5s    0.000e+00     +47.2%
+  vLLM batch_invariant       1639.5s    7.263e-04     +64.1%
+
+Saved: /home/kec23008/docker-sys/dllm/research/exp_validate/vllm_kernels_results_n30.json

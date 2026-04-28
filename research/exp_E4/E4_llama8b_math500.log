@@ -1,0 +1,75 @@
+GPU: NVIDIA RTX A6000  free=20.9 GB
+
+====================================================================================
+  MODEL: llama8b  dataset=math500  gen_len=512  reasoning=False
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.01s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.02it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.52it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.29it/s]
+  Loaded 50 problems from math500
+
+-- BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/50] elapsed=243s  diverge_so_far=5/5
+   [ 10/50] elapsed=421s  diverge_so_far=10/10
+   [ 15/50] elapsed=587s  diverge_so_far=13/15
+   [ 20/50] elapsed=766s  diverge_so_far=18/20
+   [ 25/50] elapsed=962s  diverge_so_far=22/25
+   [ 30/50] elapsed=1158s  diverge_so_far=27/30
+   [ 35/50] elapsed=1334s  diverge_so_far=31/35
+   [ 40/50] elapsed=1475s  diverge_so_far=33/40
+   [ 45/50] elapsed=1660s  diverge_so_far=36/45
+   [ 50/50] elapsed=1825s  diverge_so_far=40/50
+   [BF16] bit-exact=28.0%  diverge_problems=80.0%  div_med=134  acc(bs=1)=32.0%  acc(bs=16)=40.0%  time=1825s
+
+-- FP32flag --
+   [  5/50] elapsed=197s  diverge_so_far=5/5
+   [ 10/50] elapsed=390s  diverge_so_far=9/10
+   [ 15/50] elapsed=553s  diverge_so_far=13/15
+   [ 20/50] elapsed=727s  diverge_so_far=18/20
+   [ 25/50] elapsed=960s  diverge_so_far=23/25
+   [ 30/50] elapsed=1142s  diverge_so_far=26/30
+   [ 35/50] elapsed=1298s  diverge_so_far=29/35
+   [ 40/50] elapsed=1440s  diverge_so_far=32/40
+   [ 45/50] elapsed=1628s  diverge_so_far=37/45
+   [ 50/50] elapsed=1785s  diverge_so_far=41/50
+   [FP32flag] bit-exact=29.0%  diverge_problems=82.0%  div_med=133  acc(bs=1)=36.0%  acc(bs=16)=32.0%  time=1785s
+
+-- LayerCast --
+   [  5/50] elapsed=864s  diverge_so_far=4/5
+   [ 10/50] elapsed=1666s  diverge_so_far=8/10
+   [ 15/50] elapsed=2401s  diverge_so_far=11/15
+   [ 20/50] elapsed=3168s  diverge_so_far=16/20
+   [ 25/50] elapsed=4021s  diverge_so_far=21/25
+   [ 30/50] elapsed=4871s  diverge_so_far=25/30
+   [ 35/50] elapsed=5588s  diverge_so_far=30/35
+   [ 40/50] elapsed=6214s  diverge_so_far=34/40
+   [ 45/50] elapsed=6971s  diverge_so_far=37/45
+   [ 50/50] elapsed=7667s  diverge_so_far=42/50
+   [LayerCast] bit-exact=30.0%  diverge_problems=84.0%  div_med=144  acc(bs=1)=34.0%  acc(bs=16)=42.0%  time=7667s
+
+-- DetermLLM --
+   [  5/50] elapsed=400s  diverge_so_far=5/5
+   [ 10/50] elapsed=645s  diverge_so_far=9/10
+   [ 15/50] elapsed=867s  diverge_so_far=11/15
+   [ 20/50] elapsed=1090s  diverge_so_far=15/20
+   [ 25/50] elapsed=1336s  diverge_so_far=20/25
+   [ 30/50] elapsed=1606s  diverge_so_far=24/30
+   [ 35/50] elapsed=1810s  diverge_so_far=28/35
+   [ 40/50] elapsed=2016s  diverge_so_far=31/40
+   [ 45/50] elapsed=2257s  diverge_so_far=35/45
+   [ 50/50] elapsed=2474s  diverge_so_far=39/50
+   [DetermLLM] bit-exact=42.0%  diverge_problems=78.0%  div_med=263  acc(bs=1)=36.0%  acc(bs=16)=34.0%  time=2474s
+
+-- DetermLLM+attn --
+   [  5/50] elapsed=263s  diverge_so_far=5/5
+   [ 10/50] elapsed=505s  diverge_so_far=9/10
+   [ 15/50] elapsed=725s  diverge_so_far=11/15
+   [ 20/50] elapsed=946s  diverge_so_far=15/20
+   [ 25/50] elapsed=1193s  diverge_so_far=20/25
+   [ 30/50] elapsed=1461s  diverge_so_far=24/30
+   [ 35/50] elapsed=1666s  diverge_so_far=28/35
+   [ 40/50] elapsed=1873s  diverge_so_far=31/40
+   [ 45/50] elapsed=2114s  diverge_so_far=35/45
+   [ 50/50] elapsed=2330s  diverge_so_far=39/50
+   [DetermLLM+attn] bit-exact=42.0%  diverge_problems=78.0%  div_med=263  acc(bs=1)=36.0%  acc(bs=16)=34.0%  time=2330s
+
+  Saved: /home/kec23008/docker-sys/dllm/research/exp_E4/E4_llama8b_math500.json

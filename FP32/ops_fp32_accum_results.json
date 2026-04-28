@@ -1,0 +1,14 @@
+{
+  "rmsnorm": {
+    "correctness_max_diff": 0.03125,
+    "determinism_std_mean": 0.0
+  },
+  "softmax": {
+    "correctness_max_diff": 0.0,
+    "determinism_std_mean": 0.0
+  },
+  "attention": {
+    "correctness_max_diff": 0.015625,
+    "determinism_std_mean": 0.0
+  }
+}

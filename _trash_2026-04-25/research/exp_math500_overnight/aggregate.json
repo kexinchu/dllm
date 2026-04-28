@@ -1,0 +1,116 @@
+{
+  "std_acc": {
+    "bf16_baseline": {
+      "mean": 0.43,
+      "std": 0.011547005383792526,
+      "min": 0.42,
+      "max": 0.44,
+      "n_configs": 4
+    },
+    "dllm_cublaslt": {
+      "mean": 0.4,
+      "std": 0.023094010767585018,
+      "min": 0.38,
+      "max": 0.42,
+      "n_configs": 4
+    },
+    "dllm_hybrid": {
+      "mean": 0.37,
+      "std": 0.011547005383792526,
+      "min": 0.36,
+      "max": 0.38,
+      "n_configs": 4
+    },
+    "dllm_triton": {
+      "mean": 0.41000000000000003,
+      "std": 0.011547005383792493,
+      "min": 0.4,
+      "max": 0.42,
+      "n_configs": 4
+    },
+    "layercast": {
+      "mean": 0.41000000000000003,
+      "std": 0.014142135623730925,
+      "min": 0.4,
+      "max": 0.42,
+      "n_configs": 2
+    }
+  },
+  "length_var": {
+    "bf16_baseline": {
+      "mean_std": 60.93354741027311,
+      "median_std": 0.0
+    },
+    "dllm_cublaslt": {
+      "mean_std": 78.99306383052459,
+      "median_std": 0.28867513459481287
+    },
+    "dllm_hybrid": {
+      "mean_std": 76.3603466030199,
+      "median_std": 0.0
+    },
+    "dllm_triton": {
+      "mean_std": 91.98344488729118,
+      "median_std": 0.28867513459481287
+    },
+    "layercast": {
+      "mean_std": 87.8650886302404,
+      "median_std": 3.5355339059327378
+    }
+  },
+  "div_index": {
+    "bf16_baseline": {
+      "median": 20.0,
+      "mean": 17.78,
+      "min": 0,
+      "max": 20
+    },
+    "dllm_cublaslt": {
+      "median": 20.0,
+      "mean": 18.78,
+      "min": 6,
+      "max": 20
+    },
+    "dllm_hybrid": {
+      "median": 20.0,
+      "mean": 17.72,
+      "min": 4,
+      "max": 20
+    },
+    "dllm_triton": {
+      "median": 20.0,
+      "mean": 18.2,
+      "min": 4,
+      "max": 20
+    },
+    "layercast": {
+      "median": 20.0,
+      "mean": 18.72,
+      "min": 6,
+      "max": 20
+    }
+  },
+  "runtime": {
+    "bf16_baseline": {
+      "mean_s": 3937.1700426340103,
+      "std_s": 657.6962035212789
+    },
+    "dllm_cublaslt": {
+      "mean_s": 3990.6585395932198,
+      "std_s": 658.7677414766157
+    },
+    "dllm_hybrid": {
+      "mean_s": 4140.365597724915,
+      "std_s": 676.0182626907093
+    },
+    "dllm_triton": {
+      "mean_s": 4518.204750597477,
+      "std_s": 547.2882608218869
+    },
+    "layercast": {
+      "mean_s": 11618.47257912159,
+      "std_s": 869.1061684648439
+    }
+  },
+  "n_runs": 18
+}

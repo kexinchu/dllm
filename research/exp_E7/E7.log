@@ -1,0 +1,59 @@
+GPU: NVIDIA RTX A6000  free=20.9 GB
+
+====================================================================================
+  MODEL: Llama-3.1-8B
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.19s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.13s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.27it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.08it/s]
+
+-- scheme: BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   bs= 1: TTFT=   37.4ms  TPOT= 29.89ms  thr=   33.4 tok/s  peak=15.01 GB
+   bs= 8: TTFT=   99.7ms  TPOT= 31.40ms  thr=  252.6 tok/s  peak=15.29 GB
+   bs=32: TTFT=  350.0ms  TPOT= 36.24ms  thr=  854.0 tok/s  peak=16.25 GB
+
+-- scheme: FP32flag --
+   bs= 1: TTFT=   39.2ms  TPOT= 29.64ms  thr=   33.7 tok/s  peak=15.01 GB
+   bs= 8: TTFT=  102.9ms  TPOT= 31.75ms  thr=  249.7 tok/s  peak=15.29 GB
+   bs=32: TTFT=  355.0ms  TPOT= 36.32ms  thr=  852.0 tok/s  peak=16.25 GB
+
+-- scheme: LayerCast --
+   bs= 1: TTFT=  153.1ms  TPOT=132.03ms  thr=    7.6 tok/s  peak=16.96 GB
+   bs= 8: TTFT=  532.9ms  TPOT=139.79ms  thr=   56.6 tok/s  peak=17.24 GB
+   bs=32: TTFT= 1851.8ms  TPOT=146.27ms  thr=  209.2 tok/s  peak=18.21 GB
+
+-- scheme: DetermLLM --
+   bs= 1: TTFT=   45.6ms  TPOT= 43.08ms  thr=   23.2 tok/s  peak=15.01 GB
+   bs= 8: TTFT=  102.9ms  TPOT= 42.82ms  thr=  185.8 tok/s  peak=15.29 GB
+   bs=32: TTFT=  384.2ms  TPOT= 43.01ms  thr=  721.7 tok/s  peak=16.25 GB
+
+-- scheme: DetermLLM+attn --
+   bs= 1: TTFT=   45.0ms  TPOT= 42.83ms  thr=   23.3 tok/s  peak=15.01 GB
+   bs= 8: TTFT=  103.2ms  TPOT= 42.51ms  thr=  187.1 tok/s  peak=15.29 GB
+   bs=32: TTFT=  381.5ms  TPOT= 42.87ms  thr=  724.0 tok/s  peak=16.25 GB
+
+====================================================================================
+  MODEL: DeepSeek-R1-Qwen-7B
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/exp_E7_overhead.py", line 276, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/exp_E7_overhead.py", line 265, in main
+    r = run_model(name, path, out, include_fp32full=not args.no_fp32full)
+  File "/home/kec23008/docker-sys/dllm/research/exp_E7_overhead.py", line 159, in run_model
+    model = AutoModelForCausalLM.from_pretrained(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 5048, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 5468, in _load_pretrained_model
+    _error_msgs, disk_offload_index = load_shard_file(args)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 843, in load_shard_file
+    disk_offload_index = _load_state_dict_into_meta_model(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_utils.py", line 748, in _load_state_dict_into_meta_model
+    param = param[...]
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 47.40 GiB of which 16.06 MiB is free. Process 2674516 has 27.64 GiB memory in use. Including non-PyTorch memory, this process has 19.73 GiB memory in use. Of the allocated memory 19.36 GiB is allocated by PyTorch, and 26.15 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,1 @@
+run_attn_parallel.sh: line 17: 855321 Killed                  CUDA_VISIBLE_DEVICES=$GPU "$PY" run_math500_eval.py --method "$method" --batch-size "$bs" --seed "$seed" --n-problems 50 --gen-len 2048 --out "$OUT_FILE" >> "$LOG" 2>&1

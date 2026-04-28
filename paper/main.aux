@@ -1,0 +1,197 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yuan2025numerical}
+\citation{kwon2023vllm}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{pytorch2024det}
+\citation{yuan2025numerical}
+\citation{batchinvariantops2024}
+\@writefile{toc}{\contentsline {paragraph}{Root cause.}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why prior approaches fall short.}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Our approach: precision amplification.}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section.1}\protected@file@percent }
+\citation{goldberg1991fp,ieee754}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Root Cause Analysis}{3}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{3}{Background and Root Cause Analysis}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Floating-Point Non-Associativity in BF16 GEMM}{3}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:gemm}{{1}{3}{Floating-Point Non-Associativity in BF16 GEMM}{equation.2.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dynamic Split-K Selection}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Measured Non-Determinism}{3}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:measurement}{{2.3}{3}{Measured Non-Determinism}{subsection.2.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Op-level GEMM output deviation ($\ell _\infty $, row 0) versus the $M\!=\!1$ reference. ``BF16'' is default cuBLAS. ``BF16 reduction flag'' sets BF16 reduction flag\xspace  . ``\textsc  {DetermLLM}\xspace  '' is FP32 accumulation via the two-phase heuristic. The reduction flag still shows non-zero deviation at $M\!\ge \!32$ because the surviving algorithms use BF16 split-K reduction; only \textsc  {DetermLLM}\xspace  forces FP32 accumulation.\relax }}{3}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:gemm_error}{{1}{3}{Op-level GEMM output deviation ($\ell _\infty $, row 0) versus the $M\!=\!1$ reference. ``BF16'' is default cuBLAS. ``BF16 reduction flag'' sets \bfflag . ``\dllm '' is FP32 accumulation via the two-phase heuristic. The reduction flag still shows non-zero deviation at $M\!\ge \!32$ because the surviving algorithms use BF16 split-K reduction; only \dllm forces FP32 accumulation.\relax }{table.caption.1}{}}
+\citation{higham2002accuracy}
+\citation{demmel2013accurate,rump2010accurate}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method: \textsc  {DetermLLM}\xspace  }{4}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Method: \dllm }{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}The Precision Amplification Principle}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:theorem}{{3.1}{4}{The Precision Amplification Principle}{subsection.3.1}{}}
+\newlabel{thm:pa}{{1}{4}{Precision Amplification for Batch-Invariant GEMM}{theorem.1}{}}
+\newlabel{cor:llm}{{2}{4}{Sufficiency for LLM shapes}{theorem.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Why FP32 accumulation rather than compensated summation.}{4}{theorem.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Implementation}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:impl}{{3.2}{4}{Implementation}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Backend 1: Triton kernel (recommended, constructive guarantee).}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Backend 2: Two-phase cuBLASLt heuristic.}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Row-major layout (cuBLASLt backend only).}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Coverage.}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GEMV/GEMM padding fix.}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Python interface.}{5}{subsection.3.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}\textsc  {DetermLLM}\xspace  Python integration.}{5}{lstlisting.1}\protected@file@percent }
+\citation{deepseekr1}
+\citation{hendrycks2021math}
+\citation{yuan2025numerical}
+\citation{yuan2025numerical}
+\citation{yuan2025numerical}
+\citation{yuan2025numerical}
+\citation{yuan2025numerical}
+\citation{yuan2025numerical}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{6}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{6}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Result: MATH500 on DeepSeek-R1-Distill-Qwen-7B}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:math500}{{4.2}{6}{Main Result: MATH500 on DeepSeek-R1-Distill-Qwen-7B}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces MATH500 accuracy and determinism on DeepSeek-R1-Distill-Qwen-7B, $n\!=\!50$ problems, $bs\!\in \!\{1,8,32\}$ at seed$=\!0$. Arrows indicate direction of improvement. LayerCast\nobreakspace  {}\citep  {yuan2025numerical} is the state-of-the-art prior work.\relax }}{6}{table.caption.2}\protected@file@percent }
+\newlabel{tab:math500_std}{{2}{6}{MATH500 accuracy and determinism on DeepSeek-R1-Distill-Qwen-7B, $n\!=\!50$ problems, $bs\!\in \!\{1,8,32\}$ at seed$=\!0$. Arrows indicate direction of improvement. LayerCast~\citep {yuan2025numerical} is the state-of-the-art prior work.\relax }{table.caption.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Headline.}{6}{table.caption.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LayerCast pays a bandwidth tax that \textsc  {DetermLLM}\xspace  avoids.}{6}{figure.caption.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mean accuracy spread is within sampling noise.}{6}{figure.caption.5}\protected@file@percent }
+\citation{yuan2025numerical}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Probability that the first-$K$ decoded tokens are identical across $bs\!\in \!\{1,8,32\}$ (both $1\!\leftrightarrow \!8$ and $8\!\leftrightarrow \!32$ pairs, $n\!=\!50$ problems). \textsc  {DetermLLM}\xspace  holds the trajectory longer than BF16 and LayerCast on GQA reasoning models (DeepSeek-7B, Llama-8B); on dense Phi-4 all three methods overlap.\relax }}{7}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:sameprefix}{{1}{7}{Probability that the first-$K$ decoded tokens are identical across $bs\!\in \!\{1,8,32\}$ (both $1\!\leftrightarrow \!8$ and $8\!\leftrightarrow \!32$ pairs, $n\!=\!50$ problems). \dllm holds the trajectory longer than BF16 and LayerCast on GQA reasoning models (DeepSeek-7B, Llama-8B); on dense Phi-4 all three methods overlap.\relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Div\_Index distribution per model and method ($n\!=\!50$, bs-pairs $1\!\leftrightarrow \!8$ and $8\!\leftrightarrow \!32$, log $x$ axis). BF16 shows a left tail (early divergence) especially on DeepSeek-7B and Llama-8B; \textsc  {DetermLLM}\xspace  shifts the distribution right, raising the median by $29$--$43\%$ on the GQA models. Format follows Yuan et al.\nobreakspace  {}\citep  {yuan2025numerical}.\relax }}{7}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:divhist}{{2}{7}{Div\_Index distribution per model and method ($n\!=\!50$, bs-pairs $1\!\leftrightarrow \!8$ and $8\!\leftrightarrow \!32$, log $x$ axis). BF16 shows a left tail (early divergence) especially on DeepSeek-7B and Llama-8B; \dllm shifts the distribution right, raising the median by $29$--$43\%$ on the GQA models. Format follows Yuan et al.~\citep {yuan2025numerical}.\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture determinism is governed by attention.}{7}{figure.caption.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Overhead Comparison}{7}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:overhead}{{4.3}{7}{Overhead Comparison}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Avg\_Std@top1\_prob (per-token std of the top-1 logprob across $bs\!\in \!\{1,8,32\}$, averaged over token positions and problems) on MATH500. \textsc  {DetermLLM}\xspace  matches or beats LayerCast on every model; the gap is largest on Llama-8B (\textsc  {DetermLLM}\xspace  $0.060$ vs.\ LayerCast $0.076$, BF16 $0.072$). Log $y$ axis because Phi-4 values are $20\times $ smaller.\relax }}{8}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:avgstd}{{3}{8}{Avg\_Std@top1\_prob (per-token std of the top-1 logprob across $bs\!\in \!\{1,8,32\}$, averaged over token positions and problems) on MATH500. \dllm matches or beats LayerCast on every model; the gap is largest on Llama-8B (\dllm $0.060$ vs.\ LayerCast $0.076$, BF16 $0.072$). Log $y$ axis because Phi-4 values are $20\times $ smaller.\relax }{figure.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-call GEMM latency summed over DeepSeek-R1-Distill-Qwen-7B's 8 projection shapes (attn $q/k/v/o$, ffn gate/up/down, lm\_head) across $M\!\in \!\{1,8,16,32\}$. Triton's $\sim \!67\,\mu $s launch-overhead floor dominates small-$N$ shapes (GQA K/V at $N\!=\!512$); LayerCast's upcast dominates every shape. The hybrid dispatcher routes by $N$ and matches BF16 baseline within 0.1\%.\relax }}{8}{table.caption.6}\protected@file@percent }
+\newlabel{tab:overhead_op}{{3}{8}{Per-call GEMM latency summed over DeepSeek-R1-Distill-Qwen-7B's 8 projection shapes (attn $q/k/v/o$, ffn gate/up/down, lm\_head) across $M\!\in \!\{1,8,16,32\}$. Triton's $\sim \!67\,\mu $s launch-overhead floor dominates small-$N$ shapes (GQA K/V at $N\!=\!512$); LayerCast's upcast dominates every shape. The hybrid dispatcher routes by $N$ and matches BF16 baseline within 0.1\%.\relax }{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Token-Level Batch-Invariance Decomposition}{8}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:decomp}{{4.4}{8}{Token-Level Batch-Invariance Decomposition}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Production KV-Cache Experiment}{8}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:kvcache}{{4.5}{8}{Production KV-Cache Experiment}{subsection.4.5}{}}
+\citation{shah2024flashattention3}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces End-to-end latency overhead on Phi-4 (14B), RTX A6000, 32 output tokens per request, 10 runs averaged. Negative values indicate speedup. ``*'' marks empirical argmax stability on these prompts rather than numerical determinism.\relax }}{9}{table.caption.7}\protected@file@percent }
+\newlabel{tab:overhead_e2e}{{4}{9}{End-to-end latency overhead on Phi-4 (14B), RTX A6000, 32 output tokens per request, 10 runs averaged. Negative values indicate speedup. ``*'' marks empirical argmax stability on these prompts rather than numerical determinism.\relax }{table.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Runtime vs.\ token-wise determinism on MATH500 ($n\!=\!50$). $x$ is per-config wall time relative to the BF16 baseline; $y$ is the fraction of problems whose token sequences are identical across all three batch sizes. \textsc  {DetermLLM}\xspace  (red) dominates LayerCast (blue) on runtime at matching or higher determinism.\relax }}{9}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:pareto}{{4}{9}{Runtime vs.\ token-wise determinism on MATH500 ($n\!=\!50$). $x$ is per-config wall time relative to the BF16 baseline; $y$ is the fraction of problems whose token sequences are identical across all three batch sizes. \dllm (red) dominates LayerCast (blue) on runtime at matching or higher determinism.\relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Individual prefill, batched decode.}{9}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GEMV/GEMM boundary and padding fix.}{9}{table.caption.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Serving Engine Integration (vLLM)}{9}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:vllm}{{4.6}{9}{Serving Engine Integration (vLLM)}{subsection.4.6}{}}
+\citation{batchinvariantops2024}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Llama-3.2-1B decomposition. The Triton backend cuts token mismatches $\mathbf  {54\times }$ (596 to 11) and log-prob variance $\mathbf  {57\times }$; the cuBLASLt backend reaches $37\times $. Remaining Triton residuals trace to prefill-phase Q@K$^\top $, which neither backend patches.\relax }}{10}{table.caption.9}\protected@file@percent }
+\newlabel{tab:decomp}{{5}{10}{Llama-3.2-1B decomposition. The Triton backend cuts token mismatches $\mathbf {54\times }$ (596 to 11) and log-prob variance $\mathbf {57\times }$; the cuBLASLt backend reaches $37\times $. Remaining Triton residuals trace to prefill-phase Q@K$^\top $, which neither backend patches.\relax }{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Production scenario, individual $bs\!=\!1$ prefill and batched $bs\!=\!N$ decode, 10 prompts, 64 tokens. Condition\nobreakspace  {}D adds the $M$-padding fix on top of B. Llama-3.2-1B uses batch sizes 2--64; Llama-3.1-8B uses 2--32 for memory. The 8B reduction is larger because attention shapes ($K_{\mathrm  {attn}}\!=\!4{,}096$) sit well below $K_{\qopname  \relax m{max}}$; the 1B residual is dominated by FFN projections at $K\!=\!8{,}192$, which exceed the bound.\relax }}{10}{table.caption.10}\protected@file@percent }
+\newlabel{tab:kvcache}{{6}{10}{Production scenario, individual $bs\!=\!1$ prefill and batched $bs\!=\!N$ decode, 10 prompts, 64 tokens. Condition~D adds the $M$-padding fix on top of B. Llama-3.2-1B uses batch sizes 2--64; Llama-3.1-8B uses 2--32 for memory. The 8B reduction is larger because attention shapes ($K_{\mathrm {attn}}\!=\!4{,}096$) sit well below $K_{\max }$; the 1B residual is dominated by FFN projections at $K\!=\!8{,}192$, which exceed the bound.\relax }{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Comparison Against vLLM Official Batch-Invariant Mode}{10}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:vllm_bi}{{4.7}{10}{Comparison Against vLLM Official Batch-Invariant Mode}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{10}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Result (Table\nobreakspace  {}\ref  {tab:srp_vs_vllm_bi}).}{10}{subsection.4.7}\protected@file@percent }
+\citation{ouyang2022instructgpt,schulman2017proximal,shao2024deepseekmath}
+\citation{hinton2015distilling,gu2024minillm}
+\citation{yuan2025numerical}
+\citation{batchinvariantops2024}
+\citation{cublas2024}
+\citation{demmel2013accurate,rump2010accurate}
+\citation{kwon2023vllm}
+\citation{sglang2024}
+\citation{shah2024flashattention3}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces HF + SRP vs.\ vLLM official \texttt  {VLLM\_BATCH\_INVARIANT=1}. DeepSeek-R1-Distill-Qwen-7B, MATH500 ($n\!=\!5$), greedy, $256$ tokens, $\mathit  {bs}\!\in \!\{1,2,4,8,16\}$. ``Strict'' indicates token-level bit-exactness across batch sizes by kernel construction.\relax }}{11}{table.caption.11}\protected@file@percent }
+\newlabel{tab:srp_vs_vllm_bi}{{7}{11}{HF + SRP vs.\ vLLM official \texttt {VLLM\_BATCH\_INVARIANT=1}. DeepSeek-R1-Distill-Qwen-7B, MATH500 ($n\!=\!5$), greedy, $256$ tokens, $\mathit {bs}\!\in \!\{1,2,4,8,16\}$. ``Strict'' indicates token-level bit-exactness across batch sizes by kernel construction.\relax }{table.caption.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Implication.}{11}{table.caption.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Negative results in HF eager.}{11}{table.caption.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Downstream Impact}{11}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:downstream}{{4.8}{11}{Downstream Impact}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{11}{section.5}\protected@file@percent }
+\newlabel{sec:related}{{5}{11}{Related Work}{section.5}{}}
+\bibdata{references}
+\bibcite{deepseekr1}{{1}{2025}{{DeepSeek-AI}}{{}}}
+\bibcite{demmel2013accurate}{{2}{2013}{{Demmel and Nguyen}}{{}}}
+\bibcite{goldberg1991fp}{{3}{1991}{{Goldberg}}{{}}}
+\bibcite{gu2024minillm}{{4}{2024}{{Gu et~al.}}{{Gu, Dong, Wei, and Huang}}}
+\bibcite{hendrycks2021math}{{5}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt}}}
+\bibcite{higham2002accuracy}{{6}{2002}{{Higham}}{{}}}
+\bibcite{hinton2015distilling}{{7}{2015}{{Hinton et~al.}}{{Hinton, Vinyals, and Dean}}}
+\bibcite{ieee754}{{8}{2019}{{IEEE Standards Association}}{{}}}
+\bibcite{kwon2023vllm}{{9}{2023}{{Kwon et~al.}}{{Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang, and Stoica}}}
+\bibcite{llama32}{{10}{2024}{{Meta AI}}{{}}}
+\bibcite{cublas2024}{{11}{2024}{{NVIDIA Corporation}}{{}}}
+\bibcite{ouyang2022instructgpt}{{12}{2022}{{Ouyang et~al.}}{{Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin, Zhang, Agarwal, Slama, Ray, Schulman, Hilton, Kelton, Miller, Simens, Askell, Welinder, Christiano, Leike, and Lowe}}}
+\bibcite{pytorch2024det}{{13}{2024}{{PyTorch Contributors}}{{}}}
+\bibcite{phi4}{{14}{2024}{{Research}}{{}}}
+\bibcite{rump2010accurate}{{15}{2010}{{Rump et~al.}}{{Rump, Ogita, and Oishi}}}
+\bibcite{schulman2017proximal}{{16}{2017}{{Schulman et~al.}}{{Schulman, Wolski, Dhariwal, Radford, and Klimov}}}
+\bibcite{shah2024flashattention3}{{17}{2024}{{Shah et~al.}}{{Shah, Bikshandi, Zhang, Thakkar, Ramani, and Dao}}}
+\bibcite{shao2024deepseekmath}{{18}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu, and Guo}}}
+\newlabel{sec:discussion}{{5}{12}{Related Work}{section.5}{}}
+\bibcite{batchinvariantops2024}{{19}{2024}{{Thinking Machines Lab}}{{}}}
+\bibcite{yuan2025numerical}{{20}{2025}{{Yuan et~al.}}{{Yuan, Li, Ding, Xie, Li, Zhao, Wan, Shi, Hu, and Liu}}}
+\bibcite{sglang2024}{{21}{2024}{{Zheng et~al.}}{{Zheng, Yin, Xie, Sun, Huang, Yu, Cao, Kozyrakis, Stoica, Gonzalez, Barrett, and Sheng}}}
+\bibstyle{abbrvnat}
+\citation{higham2002accuracy}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Environment and Reproducibility}{14}{appendix.A}\protected@file@percent }
+\newlabel{app:env}{{A}{14}{Environment and Reproducibility}{appendix.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Software Environment}{14}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Kernel Compilation}{14}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Running the Overhead Benchmark}{14}{subsection.A.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Running the Log-Probability Experiment}{14}{subsection.A.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}cuBLASLt API Details}{14}{appendix.B}\protected@file@percent }
+\newlabel{app:api}{{B}{14}{cuBLASLt API Details}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Proof of Theorem\nobreakspace  {}\ref  {thm:pa} and Corollary\nobreakspace  {}\ref  {cor:llm}}{14}{appendix.C}\protected@file@percent }
+\newlabel{app:proof}{{C}{14}{Proof of Theorem~\ref {thm:pa} and Corollary~\ref {cor:llm}}{appendix.C}{}}
+\newlabel{eq:perm-bound}{{3}{15}{}{equation.C.3}{}}
+\newlabel{eq:pair-bound}{{4}{15}{}{equation.C.4}{}}
+\newlabel{eq:suff}{{5}{15}{}{equation.C.5}{}}
+\newlabel{eq:expected-l1}{{6}{15}{}{equation.C.6}{}}
+\newlabel{eq:expected-suff}{{7}{15}{}{equation.C.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces $K_{\qopname  \relax m{max}}$ sweep. ``Zero rate'' is the fraction of row-0 output cells that match bit-for-bit between $M\!=\!2$ and $M\!=\!32$. \textsc  {DetermLLM}\xspace  stays at or near 100\% across the whole range, including $K$ well beyond $K_{\qopname  \relax m{max}}\!\approx \!7{,}700$.\relax }}{16}{table.caption.12}\protected@file@percent }
+\newlabel{tab:kmax_sweep}{{8}{16}{$K_{\max }$ sweep. ``Zero rate'' is the fraction of row-0 output cells that match bit-for-bit between $M\!=\!2$ and $M\!=\!32$. \dllm stays at or near 100\% across the whole range, including $K$ well beyond $K_{\max }\!\approx \!7{,}700$.\relax }{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}$K_{\qopname  \relax m{max}}$ Sweep: Full Data}{16}{appendix.D}\protected@file@percent }
+\newlabel{app:kmax}{{D}{16}{$K_{\max }$ Sweep: Full Data}{appendix.D}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Row-Major Layout Bug: Formal Analysis}{16}{appendix.E}\protected@file@percent }
+\newlabel{app:row_major}{{E}{16}{Row-Major Layout Bug: Formal Analysis}{appendix.E}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Batched-Prefill KV-Cache Experiment (Confounding Setting)}{16}{appendix.F}\protected@file@percent }
+\newlabel{app:kvcache_batched}{{F}{16}{Batched-Prefill KV-Cache Experiment (Confounding Setting)}{appendix.F}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {G}50-Prompt Broader Evaluation}{16}{appendix.G}\protected@file@percent }
+\newlabel{app:50p}{{G}{16}{50-Prompt Broader Evaluation}{appendix.G}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Batched prefill + KV decode (Llama-3.2-1B, not production-representative).\relax }}{17}{table.caption.13}\protected@file@percent }
+\newlabel{tab:kvcache_batched}{{9}{17}{Batched prefill + KV decode (Llama-3.2-1B, not production-representative).\relax }{table.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces 50-prompt evaluation (Llama-3.2-1B, full re-computation, batch sizes 2--64). Of 33 affected prompts, \textsc  {DetermLLM}\xspace  fully resolves 24 (73\%). Padding fix (D) identical to B, as expected in the full re-computation setting.\relax }}{17}{table.caption.14}\protected@file@percent }
+\newlabel{tab:decomp_50p}{{10}{17}{50-prompt evaluation (Llama-3.2-1B, full re-computation, batch sizes 2--64). Of 33 affected prompts, \dllm fully resolves 24 (73\%). Padding fix (D) identical to B, as expected in the full re-computation setting.\relax }{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Kernel Implementations}{17}{appendix.H}\protected@file@percent }
+\newlabel{app:kernel}{{H}{17}{Kernel Implementations}{appendix.H}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {H.1}cuBLASLt Backend: Two-Phase Heuristic}{17}{subsection.H.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}\texttt  {gemm\_fixed\_algo.cu}.}{17}{lstlisting.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {H.2}Triton Backend: Fixed-Plan GEMM}{17}{subsection.H.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}Core of \texttt  {triton\_det\_gemm.py}.}{17}{lstlisting.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {I}Model-Level Logit Perturbation}{18}{appendix.I}\protected@file@percent }
+\newlabel{app:logit_error}{{I}{18}{Model-Level Logit Perturbation}{appendix.I}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Model-level logit perturbation (Llama-3.1-8B, FlashAttention backend, $bs\!=\!1$ reference vs.\ batch size $N$). With \textsc  {DetermLLM}\xspace  , linear-layer contributions collapse to zero; residual attention non-determinism is negligible at $bs\!=\!8$.\relax }}{18}{table.caption.15}\protected@file@percent }
+\newlabel{tab:logit_error}{{11}{18}{Model-level logit perturbation (Llama-3.1-8B, FlashAttention backend, $bs\!=\!1$ reference vs.\ batch size $N$). With \dllm , linear-layer contributions collapse to zero; residual attention non-determinism is negligible at $bs\!=\!8$.\relax }{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Why FP32 Upcast Does Not Yield Batch Invariance}{18}{appendix.J}\protected@file@percent }
+\newlabel{app:fp32insufficient}{{J}{18}{Why FP32 Upcast Does Not Yield Batch Invariance}{appendix.J}{}}
+\@writefile{toc}{\contentsline {paragraph}{F.linear shapes.}{18}{appendix.J}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention shapes.}{19}{appendix.J}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Consequence.}{19}{appendix.J}\protected@file@percent }
+\gdef \@abspage@last{19}

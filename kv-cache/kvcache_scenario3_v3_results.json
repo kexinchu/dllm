@@ -1,0 +1,258 @@
+{
+  "config": {
+    "model": "/home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct",
+    "num_runs": 1000
+  },
+  "scenario3": {
+    "total_tests": 1000,
+    "summary": {
+      "chunk_128": {
+        "total_differ": 988,
+        "differ_pct": "98.8%",
+        "total_first_token_flip": 14,
+        "first_token_flip_pct": "1.4%",
+        "p50_diff": "2.187500e-01",
+        "p90_diff": "3.125000e-01",
+        "p99_diff": "4.062500e-01",
+        "max_diff": "5.625000e-01",
+        "flip_examples": [
+          {
+            "test_idx": 97,
+            "question": "How does this relate to real world applications?",
+            "token_full": " This",
+            "token_chunked": " The",
+            "logit_diff": 0.25
+          },
+          {
+            "test_idx": 108,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " Current",
+            "token_chunked": " While",
+            "logit_diff": 0.296875
+          },
+          {
+            "test_idx": 122,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.3125
+          },
+          {
+            "test_idx": 322,
+            "question": "What is the most important concept discussed?",
+            "token_full": " Continuous",
+            "token_chunked": " The",
+            "logit_diff": 0.21875
+          },
+          {
+            "test_idx": 388,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " Current",
+            "token_chunked": " The",
+            "logit_diff": 0.234375
+          },
+          {
+            "test_idx": 422,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.1875
+          },
+          {
+            "test_idx": 681,
+            "question": "Summarize the main points in three sentences.",
+            "token_full": " The",
+            "token_chunked": " \n",
+            "logit_diff": 0.3125
+          },
+          {
+            "test_idx": 722,
+            "question": "What is the most important concept discussed?",
+            "token_full": " Continuous",
+            "token_chunked": " The",
+            "logit_diff": 0.3125
+          },
+          {
+            "test_idx": 781,
+            "question": "Summarize the main points in three sentences.",
+            "token_full": " The",
+            "token_chunked": " \n",
+            "logit_diff": 0.25
+          },
+          {
+            "test_idx": 822,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Model",
+            "logit_diff": 0.203125
+          }
+        ]
+      },
+      "chunk_64": {
+        "total_differ": 1000,
+        "differ_pct": "100.0%",
+        "total_first_token_flip": 15,
+        "first_token_flip_pct": "1.5%",
+        "p50_diff": "2.094727e-01",
+        "p90_diff": "2.871094e-01",
+        "p99_diff": "4.375000e-01",
+        "max_diff": "6.250000e-01",
+        "flip_examples": [
+          {
+            "test_idx": 62,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Cons",
+            "logit_diff": 0.171875
+          },
+          {
+            "test_idx": 108,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " Current",
+            "token_chunked": " While",
+            "logit_diff": 0.21875
+          },
+          {
+            "test_idx": 122,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.234375
+          },
+          {
+            "test_idx": 222,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.25
+          },
+          {
+            "test_idx": 381,
+            "question": "Summarize the main points in three sentences.",
+            "token_full": " The",
+            "token_chunked": " \n",
+            "logit_diff": 0.265625
+          },
+          {
+            "test_idx": 422,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.1875
+          },
+          {
+            "test_idx": 581,
+            "question": "Summarize the main points in three sentences.",
+            "token_full": " The",
+            "token_chunked": " \n",
+            "logit_diff": 0.25
+          },
+          {
+            "test_idx": 628,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " While",
+            "token_chunked": " The",
+            "logit_diff": 0.1875
+          },
+          {
+            "test_idx": 681,
+            "question": "Summarize the main points in three sentences.",
+            "token_full": " The",
+            "token_chunked": " \n",
+            "logit_diff": 0.203125
+          },
+          {
+            "test_idx": 738,
+            "question": "What are the potential risks?",
+            "token_full": " The",
+            "token_chunked": " \n",
+            "logit_diff": 0.296875
+          }
+        ]
+      },
+      "chunk_32": {
+        "total_differ": 1000,
+        "differ_pct": "100.0%",
+        "total_first_token_flip": 17,
+        "first_token_flip_pct": "1.7%",
+        "p50_diff": "2.148438e-01",
+        "p90_diff": "2.890625e-01",
+        "p99_diff": "4.375000e-01",
+        "max_diff": "6.875000e-01",
+        "flip_examples": [
+          {
+            "test_idx": 62,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Cons",
+            "logit_diff": 0.2265625
+          },
+          {
+            "test_idx": 108,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " Current",
+            "token_chunked": " While",
+            "logit_diff": 0.203125
+          },
+          {
+            "test_idx": 122,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.234375
+          },
+          {
+            "test_idx": 182,
+            "question": "What is the most important concept discussed?",
+            "token_full": " Climate",
+            "token_chunked": " The",
+            "logit_diff": 0.25
+          },
+          {
+            "test_idx": 222,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.1875
+          },
+          {
+            "test_idx": 322,
+            "question": "What is the most important concept discussed?",
+            "token_full": " Continuous",
+            "token_chunked": " The",
+            "logit_diff": 0.25
+          },
+          {
+            "test_idx": 328,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " While",
+            "token_chunked": " The",
+            "logit_diff": 0.25
+          },
+          {
+            "test_idx": 388,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " Current",
+            "token_chunked": " The",
+            "logit_diff": 0.1953125
+          },
+          {
+            "test_idx": 422,
+            "question": "What is the most important concept discussed?",
+            "token_full": " The",
+            "token_chunked": " Continuous",
+            "logit_diff": 0.203125
+          },
+          {
+            "test_idx": 628,
+            "question": "What are the limitations of current approaches?",
+            "token_full": " While",
+            "token_chunked": " The",
+            "logit_diff": 0.25
+          }
+        ]
+      }
+    }
+  },
+  "elapsed_seconds": 343.0
+}

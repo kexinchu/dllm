@@ -1,0 +1,6 @@
+[2026-04-25 12:11:21] START Phase 2 GPU 1 (DeepSeek-7B)
+[2026-04-25 12:11:21] [run] deepseek7b math500 BF16+LayerCast+SRP-FP32
+[2026-04-25 16:31:58] DONE: deepseek7b math500
+[2026-04-25 16:31:58] [run] deepseek7b aime25 BF16+LayerCast+SRP-FP32
+[2026-04-25 20:58:07] DONE: deepseek7b aime25
+[2026-04-25 20:58:07] Phase 2 GPU 1 FINISHED

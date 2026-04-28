@@ -1,0 +1,14 @@
+{
+  "BF16 (default)": {
+    "unique": 3,
+    "N": 200,
+    "deterministic": false
+  },
+  "FP32 accum": {
+    "unique": 3,
+    "N": 200,
+    "deterministic": false
+  },
+  "latency_BF16": 253.8877703831531,
+  "latency_FP32 accum": 253.7555583170615
+}

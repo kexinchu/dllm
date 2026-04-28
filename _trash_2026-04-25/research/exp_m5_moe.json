@@ -1,0 +1,507 @@
+{
+  "near_tie": [
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "tau": 0.1,
+      "near_tie_frac": 1.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "tau": 0.01,
+      "near_tie_frac": 0.9660000205039978
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "tau": 0.001,
+      "near_tie_frac": 0.30000001192092896
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "tau": 0.0001,
+      "near_tie_frac": 0.030000001192092896
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "tau": 0.1,
+      "near_tie_frac": 1.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "tau": 0.01,
+      "near_tie_frac": 0.9660000205039978
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "tau": 0.001,
+      "near_tie_frac": 0.30000001192092896
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "tau": 0.0001,
+      "near_tie_frac": 0.030000001192092896
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "tau": 0.1,
+      "near_tie_frac": 1.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "tau": 0.01,
+      "near_tie_frac": 0.9920000433921814
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "tau": 0.001,
+      "near_tie_frac": 0.398000031709671
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "tau": 0.0001,
+      "near_tie_frac": 0.0820000022649765
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "tau": 0.1,
+      "near_tie_frac": 1.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "tau": 0.01,
+      "near_tie_frac": 0.9920000433921814
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "tau": 0.001,
+      "near_tie_frac": 0.398000031709671
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "tau": 0.0001,
+      "near_tie_frac": 0.07800000160932541
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "tau": 0.1,
+      "near_tie_frac": 0.6680000424385071
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "tau": 0.01,
+      "near_tie_frac": 0.10400000214576721
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "tau": 0.001,
+      "near_tie_frac": 0.010000000707805157
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "tau": 0.0001,
+      "near_tie_frac": 0.0020000000949949026
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "tau": 0.1,
+      "near_tie_frac": 0.6660000085830688
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "tau": 0.01,
+      "near_tie_frac": 0.10400000214576721
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "tau": 0.001,
+      "near_tie_frac": 0.014000000432133675
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "tau": 0.0001,
+      "near_tie_frac": 0.006000000052154064
+    }
+  ],
+  "expert_flips": [
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "bs": 4,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "bs": 8,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "bs": 16,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "bs": 32,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "BF16",
+      "bs": 64,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "bs": 4,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "bs": 8,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "bs": 16,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "bs": 32,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "64e_top6_h2048",
+      "mode": "FP32",
+      "bs": 64,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "bs": 4,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "bs": 8,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "bs": 16,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "bs": 32,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "BF16",
+      "bs": 64,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "bs": 4,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "bs": 8,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "bs": 16,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "bs": 32,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "128e_top8_h4096",
+      "mode": "FP32",
+      "bs": 64,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "bs": 4,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "bs": 8,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "bs": 16,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "bs": 32,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "BF16",
+      "bs": 64,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "bs": 4,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "bs": 8,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "bs": 16,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "bs": 32,
+      "flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "config": "8e_top2_h4096",
+      "mode": "FP32",
+      "bs": 64,
+      "flips": 0,
+      "flip_rate": 0.0
+    }
+  ],
+  "gate_gemm": [
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 1,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 2,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.0024580578319728374
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 4,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.0024580578319728374
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 8,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.0024580578319728374
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 16,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.0024580578319728374
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 32,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.0024611111730337143
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 64,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.002786934142932296
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 128,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.0024611111730337143
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 256,
+      "mode": "BF16",
+      "max_diff": 0.03125,
+      "mean_diff": 0.002869686111807823
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 1,
+      "mode": "FP32",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 2,
+      "mode": "FP32",
+      "max_diff": 0.015625,
+      "mean_diff": 1.1693337000906467e-05
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 4,
+      "mode": "FP32",
+      "max_diff": 0.015625,
+      "mean_diff": 1.1693337000906467e-05
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 8,
+      "mode": "FP32",
+      "max_diff": 0.015625,
+      "mean_diff": 1.1693337000906467e-05
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 16,
+      "mode": "FP32",
+      "max_diff": 0.015625,
+      "mean_diff": 1.1693337000906467e-05
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 32,
+      "mode": "FP32",
+      "max_diff": 0.015625,
+      "mean_diff": 2.2447435185313225e-05
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 64,
+      "mode": "FP32",
+      "max_diff": 0.00048828125,
+      "mean_diff": 1.644948497414589e-07
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 128,
+      "mode": "FP32",
+      "max_diff": 0.015625,
+      "mean_diff": 2.2447435185313225e-05
+    },
+    {
+      "K": 14336,
+      "N": 4096,
+      "M": 256,
+      "mode": "FP32",
+      "max_diff": 0.015625,
+      "mean_diff": 1.173350028693676e-05
+    }
+  ],
+  "deepseek_error": "'DynamicCache' object has no attribute 'get_usable_length'"
+}

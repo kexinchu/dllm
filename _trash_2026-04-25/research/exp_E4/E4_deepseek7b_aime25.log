@@ -1,0 +1,14 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+
+====================================================================================
+  MODEL: deepseek7b  dataset=aime25  gen_len=1024  reasoning=True
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.29s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.97s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.02s/it]
+  Loaded 30 problems from aime25
+
+-- BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=417s  diverge_so_far=5/5
+   [ 10/30] elapsed=902s  diverge_so_far=10/10
+   [ 15/30] elapsed=1553s  diverge_so_far=15/15
+   [ 20/30] elapsed=1976s  diverge_so_far=20/20

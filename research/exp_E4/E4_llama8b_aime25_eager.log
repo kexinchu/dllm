@@ -1,0 +1,90 @@
+GPU: NVIDIA RTX A6000  free=20.9 GB
+
+====================================================================================
+  MODEL: llama8b  dataset=aime25  gen_len=512  reasoning=False
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.54it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.32it/s]
+  Loaded 30 problems from aime25
+
+-- BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=311s  diverge_so_far=5/5
+   [ 10/30] elapsed=652s  diverge_so_far=10/10
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 286, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 281, in main
+    run_model(args.model, args.dataset, args.n_problems, out)
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 195, in run_model
+    tokens_by_bs[bs] = generate_batch(model, tok, prompt_text, bs, gen_len, device)
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 143, in generate_batch
+    out = model.generate(input_ids=ids, attention_mask=mask,
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 2566, in generate
+    result = decoding_method(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 2786, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 459, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 395, in forward
+    hidden_states = decoder_layer(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 294, in forward
+    hidden_states, _ = self.self_attn(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 252, in forward
+    attn_output, attn_weights = attention_interface(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 189, in eager_attention_forward
+    attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/functional.py", line 2142, in softmax
+    ret = input.softmax(dim, dtype=dtype)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.38 GiB. GPU 0 has a total capacity of 47.40 GiB of which 1.21 GiB is free. Process 3584265 has 27.68 GiB memory in use. Including non-PyTorch memory, this process has 18.49 GiB memory in use. Of the allocated memory 17.63 GiB is allocated by PyTorch, and 559.87 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+GPU: NVIDIA RTX A6000  free=50.6 GB
+
+====================================================================================
+  MODEL: llama8b  dataset=aime25  gen_len=512  reasoning=False
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.05it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.55it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.32it/s]
+  Loaded 30 problems from aime25
+
+-- BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=284s  diverge_so_far=5/5
+   [ 10/30] elapsed=593s  diverge_so_far=10/10
+   [ 15/30] elapsed=905s  diverge_so_far=15/15
+   [ 20/30] elapsed=1215s  diverge_so_far=20/20
+   [ 25/30] elapsed=1528s  diverge_so_far=25/25
+   [ 30/30] elapsed=1822s  diverge_so_far=30/30
+   [BF16] bit-exact=6.7%  diverge_problems=100.0%  div_med=84  acc(bs=1)=0.0%  acc(bs=16)=0.0%  time=1822s
+
+-- FP32flag --
+   [  5/30] elapsed=286s  diverge_so_far=5/5
+   [ 10/30] elapsed=597s  diverge_so_far=10/10
+   [ 15/30] elapsed=916s  diverge_so_far=14/15
+   [ 20/30] elapsed=1228s  diverge_so_far=19/20
+   [ 25/30] elapsed=1539s  diverge_so_far=23/25

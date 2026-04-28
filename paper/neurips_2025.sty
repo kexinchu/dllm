@@ -1,0 +1,166 @@
+% NeurIPS 2025 Style File
+% Based on the official NeurIPS LaTeX template
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{neurips_2025}[2025/01/01 NeurIPS 2025 style]
+
+\newif\if@submission\@submissionfalse
+\newif\if@preprint\@preprintfalse
+\newif\if@final\@finalfalse
+
+\DeclareOption{submission}{\@submissiontrue}
+\DeclareOption{preprint}{\@preprinttrue}
+\DeclareOption{final}{\@finaltrue}
+\ProcessOptions\relax
+
+% -----------------------------------------------------------------------
+% Page layout
+% -----------------------------------------------------------------------
+\usepackage[
+  paperwidth=8.5in,
+  paperheight=11in,
+  left=1.5in,
+  right=1.5in,
+  top=1in,
+  bottom=1.1in,
+  columnsep=0.25in
+]{geometry}
+
+% -----------------------------------------------------------------------
+% Fonts
+% -----------------------------------------------------------------------
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+% -----------------------------------------------------------------------
+% Useful packages
+% -----------------------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=green!50!black,
+  urlcolor=blue!70!black
+}
+
+% -----------------------------------------------------------------------
+% Title / author formatting
+% -----------------------------------------------------------------------
+\renewcommand{\@maketitle}{%
+  \vbox{%
+    \hsize\textwidth
+    \linewidth\hsize
+    \vskip 0.1in
+    \centering
+    {\LARGE\bf \@title \par}
+    \vskip 0.2in
+    \def\And{\end{tabular}\hfil\linebreak[0]\hfil\begin{tabular}[t]{c}}
+    \def\AND{\end{tabular}\hfil\linebreak[4]\hfil\begin{tabular}[t]{c}}
+    \begin{tabular}[t]{c}
+      \@author
+    \end{tabular}
+    \vskip 0.3in
+  }
+}
+
+% -----------------------------------------------------------------------
+% Abstract
+% -----------------------------------------------------------------------
+\renewenvironment{abstract}{%
+  \vskip 0.075in%
+  \centerline{\large\bf Abstract}%
+  \vspace{0.5ex}%
+  \begin{quote}
+}{%
+  \end{quote}
+  \vskip 1ex%
+}
+
+% -----------------------------------------------------------------------
+% Section headings
+% -----------------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{1em}{}
+\titlespacing*{\section}{0pt}{12pt plus 2pt minus 2pt}{6pt plus 1pt minus 1pt}
+\titlespacing*{\subsection}{0pt}{8pt plus 2pt minus 2pt}{4pt plus 1pt minus 1pt}
+\titlespacing*{\subsubsection}{0pt}{6pt plus 2pt minus 2pt}{3pt plus 1pt minus 1pt}
+
+% -----------------------------------------------------------------------
+% Captions
+% -----------------------------------------------------------------------
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  skip=4pt
+}
+
+% -----------------------------------------------------------------------
+% Footnotes
+% -----------------------------------------------------------------------
+\setlength{\footnotesep}{6.65pt}
+\setlength{\skip\footins}{9pt plus 4pt minus 2pt}
+\renewcommand{\footnoterule}{\kern-3pt \hrule width 5pc \kern 2.6pt}
+\setcounter{footnote}{0}
+
+% -----------------------------------------------------------------------
+% Floats
+% -----------------------------------------------------------------------
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{12pt plus 2pt minus 2pt}
+
+% -----------------------------------------------------------------------
+% Paragraphs
+% -----------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+% -----------------------------------------------------------------------
+% Submission / anonymous mode
+% -----------------------------------------------------------------------
+\if@submission
+  \def\@author{Anonymous Authors}
+\fi
+
+% -----------------------------------------------------------------------
+% Line numbers for review
+% -----------------------------------------------------------------------
+\if@submission
+  \usepackage{lineno}
+  \linenumbers
+\fi
+
+% -----------------------------------------------------------------------
+% Listings style for code
+% -----------------------------------------------------------------------
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue!70!black}\bfseries,
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!60!black},
+  frame=single,
+  rulecolor=\color{gray!40},
+  breaklines=true,
+  showstringspaces=false,
+  numberstyle=\tiny\color{gray},
+  numbers=left,
+  numbersep=5pt
+}

@@ -1,0 +1,122 @@
+{
+  "baseline": {
+    "unique": 2,
+    "transitions": [
+      2,
+      8,
+      17,
+      61
+    ],
+    "elapsed": 128.61745929718018,
+    "config": {
+      "bf16_red": "True",
+      "tf32": "True",
+      "fp32_prec": "high",
+      "det": "False"
+    }
+  },
+  "no_bf16_red": {
+    "unique": 2,
+    "transitions": [
+      57,
+      65
+    ],
+    "elapsed": 126.51711750030518,
+    "config": {
+      "bf16_red": "False",
+      "tf32": "True",
+      "fp32_prec": "high",
+      "det": "False"
+    }
+  },
+  "no_tf32": {
+    "unique": 2,
+    "transitions": [
+      2,
+      8,
+      17,
+      61
+    ],
+    "elapsed": 126.92652487754822,
+    "config": {
+      "bf16_red": "True",
+      "tf32": "False",
+      "fp32_prec": "high",
+      "det": "False"
+    }
+  },
+  "no_bf16+no_tf32": {
+    "unique": 2,
+    "transitions": [
+      57,
+      65
+    ],
+    "elapsed": 126.80973172187805,
+    "config": {
+      "bf16_red": "False",
+      "tf32": "False",
+      "fp32_prec": "high",
+      "det": "False"
+    }
+  },
+  "prec_highest": {
+    "unique": 2,
+    "transitions": [
+      2,
+      8,
+      17,
+      61
+    ],
+    "elapsed": 128.02670884132385,
+    "config": {
+      "bf16_red": "True",
+      "tf32": "True",
+      "fp32_prec": "highest",
+      "det": "False"
+    }
+  },
+  "no_bf16+highest": {
+    "unique": 2,
+    "transitions": [
+      57,
+      65
+    ],
+    "elapsed": 125.50084900856018,
+    "config": {
+      "bf16_red": "False",
+      "tf32": "False",
+      "fp32_prec": "highest",
+      "det": "False"
+    }
+  },
+  "det_algo": {
+    "unique": 2,
+    "transitions": [
+      2,
+      8,
+      17,
+      61
+    ],
+    "elapsed": 132.89160799980164,
+    "config": {
+      "bf16_red": "True",
+      "tf32": "True",
+      "fp32_prec": "high",
+      "det": "True"
+    }
+  },
+  "all_flags": {
+    "unique": 2,
+    "transitions": [
+      57,
+      65
+    ],
+    "elapsed": 132.61050724983215,
+    "config": {
+      "bf16_red": "False",
+      "tf32": "False",
+      "fp32_prec": "highest",
+      "det": "True"
+    }
+  }
+}

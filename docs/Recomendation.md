@@ -43,7 +43,7 @@
             - 数据传输通路：
                 - meta data(name/shape/dtype/...) 通过http rest交互；告诉对方哪些参数需要更放心
                 - 权重本体通过 NCCL/torch.distributed 进行广播
-        
+
 ## Non-associativity in LLM
 - [Link](https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/)
 - 浮点数计算的非结合性(具有不同的"小数位数"时)
@@ -97,9 +97,3 @@ print(f"There are {len(results)} unique results")
         - https://hazyresearch.stanford.edu/blog/2025-05-27-no-bubbles 
         - https://github.com/HazyResearch/ThunderKittens
         - 哪些component不是deterministic，以及perf loss
-
-
-## 世界模型 - Diffusion
-- low lattency
-- 如何实时的生成Diffusion
-- 减少network的压力

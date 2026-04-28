@@ -1,0 +1,105 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+Model: /home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct
+Prompt: 'Explain the concept of deterministic inference in large language models, covering hardware, software, and algorithmic factors.'
+Schemes: BF16 + SRP-FP32 + FP32-all
+BS list: [2, 4, 8, 16], RUNS_PER_BS=25, MAX_NEW=256
+
+Loading model in BF16 ...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.06it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.08it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.57it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.33it/s]
+
+============================================================================================
+  SCHEME: BF16
+============================================================================================
+  prompt='Explain the concept of deterministic inference in large language models, covering hardware, software, and algorithmic factors.'
+  input_len=23
+  bs= 1 ref (  7.1s): hash=b4abb3c039a9
+    bs= 2 run= 1/25 (  6.9s) hash=53b11c4e9cec fdi=145
+    bs= 2 run=10/25 (  6.9s) hash=53b11c4e9cec fdi=145
+    bs= 2 run=20/25 (  6.9s) hash=53b11c4e9cec fdi=145
+    bs= 4 run= 1/25 (  7.0s) hash=7d06a746de2b fdi=145
+    bs= 4 run=10/25 (  7.0s) hash=7d06a746de2b fdi=145
+    bs= 4 run=20/25 (  7.0s) hash=7d06a746de2b fdi=145
+    bs= 8 run= 1/25 (  7.1s) hash=7d06a746de2b fdi=145
+    bs= 8 run=10/25 (  7.1s) hash=7d06a746de2b fdi=145
+    bs= 8 run=20/25 (  7.1s) hash=7d06a746de2b fdi=145
+    bs=16 run= 1/25 (  7.5s) hash=b4abb3c039a9 fdi=256
+    bs=16 run=10/25 (  7.5s) hash=b4abb3c039a9 fdi=256
+    bs=16 run=20/25 (  7.5s) hash=b4abb3c039a9 fdi=256
+
+  --- BF16 aggregate ---
+  total unique outputs across 101 runs (incl. ref): 3
+   bs  #runs  unique  match_ref  fdi min  fdi mean  fdi max  fdi p50
+    1      1       1          1        -         -        -        -
+    2     25       1          0      145     145.0      145      145
+    4     25       1          0      145     145.0      145      145
+    8     25       1          0      145     145.0      145      145
+   16     25       1         25      256     256.0      256      256
+
+============================================================================================
+  SCHEME: SRP-FP32
+============================================================================================
+  prompt='Explain the concept of deterministic inference in large language models, covering hardware, software, and algorithmic factors.'
+  input_len=23
+  bs= 1 ref (  7.4s): hash=8d6d2a16aaad
+    bs= 2 run= 1/25 (  7.2s) hash=8d6d2a16aaad fdi=256
+    bs= 2 run=10/25 (  7.1s) hash=8d6d2a16aaad fdi=256
+    bs= 2 run=20/25 (  7.2s) hash=8d6d2a16aaad fdi=256
+    bs= 4 run= 1/25 (  7.1s) hash=8d6d2a16aaad fdi=256
+    bs= 4 run=10/25 (  7.2s) hash=8d6d2a16aaad fdi=256
+    bs= 4 run=20/25 (  7.2s) hash=8d6d2a16aaad fdi=256
+    bs= 8 run= 1/25 (  7.3s) hash=8d6d2a16aaad fdi=256
+    bs= 8 run=10/25 (  7.3s) hash=8d6d2a16aaad fdi=256
+    bs= 8 run=20/25 (  7.3s) hash=8d6d2a16aaad fdi=256
+    bs=16 run= 1/25 (  7.8s) hash=8d6d2a16aaad fdi=256
+    bs=16 run=10/25 (  7.8s) hash=8d6d2a16aaad fdi=256
+    bs=16 run=20/25 (  7.8s) hash=8d6d2a16aaad fdi=256
+
+  --- SRP-FP32 aggregate ---
+  total unique outputs across 101 runs (incl. ref): 1
+   bs  #runs  unique  match_ref  fdi min  fdi mean  fdi max  fdi p50
+    1      1       1          1        -         -        -        -
+    2     25       1         25      256     256.0      256      256
+    4     25       1         25      256     256.0      256      256
+    8     25       1         25      256     256.0      256      256
+   16     25       1         25      256     256.0      256      256
+
+Loading model in FP32 (32 GB) ...
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.00s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.03it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.51it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.29it/s]
+
+============================================================================================
+  SCHEME: FP32-all
+============================================================================================
+  prompt='Explain the concept of deterministic inference in large language models, covering hardware, software, and algorithmic factors.'
+  input_len=23
+  bs= 1 ref ( 12.2s): hash=c7d83e1dc8ad
+    bs= 2 run= 1/25 ( 13.3s) hash=c7d83e1dc8ad fdi=256
+    bs= 2 run=10/25 ( 13.3s) hash=c7d83e1dc8ad fdi=256
+    bs= 2 run=20/25 ( 13.3s) hash=c7d83e1dc8ad fdi=256
+    bs= 4 run= 1/25 ( 13.8s) hash=c7d83e1dc8ad fdi=256
+    bs= 4 run=10/25 ( 13.8s) hash=c7d83e1dc8ad fdi=256
+    bs= 4 run=20/25 ( 13.8s) hash=c7d83e1dc8ad fdi=256
+    bs= 8 run= 1/25 ( 15.5s) hash=c7d83e1dc8ad fdi=256
+    bs= 8 run=10/25 ( 15.5s) hash=c7d83e1dc8ad fdi=256
+    bs= 8 run=20/25 ( 15.5s) hash=c7d83e1dc8ad fdi=256
+    bs=16 run= 1/25 ( 17.7s) hash=c7d83e1dc8ad fdi=256
+    bs=16 run=10/25 ( 17.7s) hash=c7d83e1dc8ad fdi=256
+    bs=16 run=20/25 ( 17.7s) hash=c7d83e1dc8ad fdi=256
+
+  --- FP32-all aggregate ---
+  total unique outputs across 101 runs (incl. ref): 1
+   bs  #runs  unique  match_ref  fdi min  fdi mean  fdi max  fdi p50
+    1      1       1          1        -         -        -        -
+    2     25       1         25      256     256.0      256      256
+    4     25       1         25      256     256.0      256      256
+    8     25       1         25      256     256.0      256      256
+   16     25       1         25      256     256.0      256      256
+
+============================================================================================
+  FINAL COMPARISON
+============================================================================================
+  Scheme         #unique   #match_ref/100   fdi mean  fdi median   fdi min
+  BF16                 3    25/100             172.8         145       145
+  SRP-FP32             1   100/100             256.0         256       256
+  FP32-all             1   100/100             256.0         256       256
+
+Saved: /home/kec23008/docker-sys/dllm/research/exp_validate/results.json

@@ -1,0 +1,8 @@
+# ninja log v5
+1	87350	1774017213014256242	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-3.10/csrc/gemm_fp32_accum_cuda.o	392eadba71ddb5b7
+31	85699	1774216200124863496	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-3.10/csrc/gemm_fixed_algo.o	14d9811f010109d6
+33	76623	1774219331879410185	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-3.10/csrc/gemm_fixed_algo.o	14d9811f010109d6
+37	74961	1774224705081343461	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-3.10/csrc/gemm_fixed_algo.o	14d9811f010109d6
+12	75758	1774232599359259592	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-3.10/csrc/gemm_fp32_reduce.o	16fb28c84a0b389c
+33	77691	1774232749778435988	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-3.10/csrc/gemm_fp32_reduce.o	16fb28c84a0b389c
+32	75232	1774232876860482940	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-3.10/csrc/gemm_fp32_reduce.o	16fb28c84a0b389c

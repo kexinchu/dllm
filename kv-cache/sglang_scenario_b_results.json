@@ -1,0 +1,46 @@
+{
+  "engine": "sglang",
+  "num_runs": 240,
+  "scenario_b_chunked_prefill": {
+    "chunk_128": {
+      "total": 240,
+      "first_token_flip": 1,
+      "flip_pct": "0.42%",
+      "flip_examples": [
+        {
+          "idx": 211,
+          "prompt_tail": "n: How does this compare to alternative approaches?\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " This"
+        }
+      ]
+    },
+    "chunk_64": {
+      "total": 240,
+      "first_token_flip": 1,
+      "flip_pct": "0.42%",
+      "flip_examples": [
+        {
+          "idx": 211,
+          "prompt_tail": "n: How does this compare to alternative approaches?\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " This"
+        }
+      ]
+    },
+    "chunk_32": {
+      "total": 240,
+      "first_token_flip": 1,
+      "flip_pct": "0.42%",
+      "flip_examples": [
+        {
+          "idx": 181,
+          "prompt_tail": "tion: Summarize the main points in three sentences.\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " \n"
+        }
+      ]
+    }
+  },
+  "elapsed_seconds": 189.3
+}

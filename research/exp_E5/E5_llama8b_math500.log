@@ -1,0 +1,26 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+
+============================================================================================
+  MODEL:llama8b  DATASET:math500  bs=[1, 8, 16]  gen_len=512  N=30  fp32_all=False
+============================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.00s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.04it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.53it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.31it/s]
+  Loaded 30 problems from math500
+
+-- method: SRP-FP32-linear --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=179s  div=10/10
+   [ 10/30] elapsed=354s  div=18/20
+   [ 15/30] elapsed=502s  div=23/30
+   [ 20/30] elapsed=661s  div=32/40
+   [ 25/30] elapsed=852s  div=41/50
+   [ 30/30] elapsed=1016s  div=46/60
+
+-- method: SRP-FP32-rmsnorm --
+   [  5/30] elapsed=176s  div=7/10
+   [ 10/30] elapsed=337s  div=16/20
+   [ 15/30] elapsed=478s  div=20/30
+   [ 20/30] elapsed=635s  div=30/40
+   [ 25/30] elapsed=810s  div=38/50
+   [ 30/30] elapsed=981s  div=47/60
+
+-- method: SRP-FP32-attention --

@@ -1,0 +1,4 @@
+[2026-04-25 12:11:21] START Phase 2 GPU 0 (Llama-8B)
+[2026-04-25 12:11:21] [run] llama8b math500 BF16+LayerCast+SRP-FP32
+[2026-04-25 14:05:31] DONE: llama8b math500
+[2026-04-25 14:05:31] [run] llama8b aime25 BF16+LayerCast+SRP-FP32

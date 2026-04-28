@@ -1,0 +1,1343 @@
+{
+  "A_BF16_baseline": {
+    "all_sequences_match": false,
+    "total_token_mismatches": 596,
+    "avg_lp_diff": 0.07977179661393166,
+    "per_prompt": {
+      "p0": {
+        "ref_hash": "1dbe7c3df8e0",
+        "batches": {
+          "bs2": {
+            "seq_match": false,
+            "token_mismatches": 11,
+            "mean_lp_diff": 0.042484015226364136,
+            "max_lp_diff": 0.8720703125
+          },
+          "bs4": {
+            "seq_match": false,
+            "token_mismatches": 11,
+            "mean_lp_diff": 0.04310908727347851,
+            "max_lp_diff": 0.8681640625
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 11,
+            "mean_lp_diff": 0.04632295295596123,
+            "max_lp_diff": 0.8720703125
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 11,
+            "mean_lp_diff": 0.04094604775309563,
+            "max_lp_diff": 0.8798828125
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0050490982830524445,
+            "max_lp_diff": 0.0625
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 11,
+            "mean_lp_diff": 0.04140635021030903,
+            "max_lp_diff": 0.8798828125
+          }
+        },
+        "total_token_mismatches": 55,
+        "avg_lp_diff": 0.03655292528371016,
+        "all_match": false
+      },
+      "p1": {
+        "ref_hash": "492fdd7e7b50",
+        "batches": {
+          "bs2": {
+            "seq_match": false,
+            "token_mismatches": 7,
+            "mean_lp_diff": 0.05646740272641182,
+            "max_lp_diff": 0.897003173828125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.013604618608951569,
+            "max_lp_diff": 0.0859375
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 18,
+            "mean_lp_diff": 0.12829088792204857,
+            "max_lp_diff": 1.156118392944336
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.011206608265638351,
+            "max_lp_diff": 0.1015625
+          },
+          "bs32": {
+            "seq_match": false,
+            "token_mismatches": 18,
+            "mean_lp_diff": 0.12676740437746048,
+            "max_lp_diff": 1.156118392944336
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 18,
+            "mean_lp_diff": 0.1261884719133377,
+            "max_lp_diff": 1.1561012268066406
+          }
+        },
+        "total_token_mismatches": 61,
+        "avg_lp_diff": 0.07708756563564141,
+        "all_match": false
+      },
+      "p2": {
+        "ref_hash": "57f0b4c7ede2",
+        "batches": {
+          "bs2": {
+            "seq_match": false,
+            "token_mismatches": 2,
+            "mean_lp_diff": 0.03716391511261463,
+            "max_lp_diff": 0.4375
+          },
+          "bs4": {
+            "seq_match": false,
+            "token_mismatches": 2,
+            "mean_lp_diff": 0.03495746850967407,
+            "max_lp_diff": 0.3828125
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 2,
+            "mean_lp_diff": 0.03154045529663563,
+            "max_lp_diff": 0.404296875
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00719529390335083,
+            "max_lp_diff": 0.0703125
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.006396139040589333,
+            "max_lp_diff": 0.08984375
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 2,
+            "mean_lp_diff": 0.03401244059205055,
+            "max_lp_diff": 0.4375
+          }
+        },
+        "total_token_mismatches": 8,
+        "avg_lp_diff": 0.025210952075819176,
+        "all_match": false
+      },
+      "p3": {
+        "ref_hash": "bc7bf7eb7f9c",
+        "batches": {
+          "bs2": {
+            "seq_match": false,
+            "token_mismatches": 51,
+            "mean_lp_diff": 0.42767675407230854,
+            "max_lp_diff": 1.880859375
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.011659614741802216,
+            "max_lp_diff": 0.078125
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.009681031107902527,
+            "max_lp_diff": 0.07421875
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 51,
+            "mean_lp_diff": 0.42632588557899,
+            "max_lp_diff": 1.89599609375
+          },
+          "bs32": {
+            "seq_match": false,
+            "token_mismatches": 51,
+            "mean_lp_diff": 0.42574214190244675,
+            "max_lp_diff": 1.89599609375
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 51,
+            "mean_lp_diff": 0.42736316844820976,
+            "max_lp_diff": 1.89599609375
+          }
+        },
+        "total_token_mismatches": 204,
+        "avg_lp_diff": 0.28807476597527665,
+        "all_match": false
+      },
+      "p4": {
+        "ref_hash": "ac3c80c7d241",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.013731110841035843,
+            "max_lp_diff": 0.09375
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.012976175174117088,
+            "max_lp_diff": 0.09375
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 31,
+            "mean_lp_diff": 0.1625718902796507,
+            "max_lp_diff": 1.200347900390625
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 31,
+            "mean_lp_diff": 0.16434024460613728,
+            "max_lp_diff": 1.2006988525390625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.01191968098282814,
+            "max_lp_diff": 0.078125
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.014460986480116844,
+            "max_lp_diff": 0.0859375
+          }
+        },
+        "total_token_mismatches": 62,
+        "avg_lp_diff": 0.06333334806064765,
+        "all_match": false
+      },
+      "p5": {
+        "ref_hash": "e87221676996",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.007789012044668198,
+            "max_lp_diff": 0.07421875
+          },
+          "bs4": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.009875494986772537,
+            "max_lp_diff": 0.0703125
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.012309696525335312,
+            "max_lp_diff": 0.1171875
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.010245230048894882,
+            "max_lp_diff": 0.07421875
+          },
+          "bs32": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.011309213936328888,
+            "max_lp_diff": 0.07421875
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.01058550551533699,
+            "max_lp_diff": 0.07421875
+          }
+        },
+        "total_token_mismatches": 5,
+        "avg_lp_diff": 0.010352358842889467,
+        "all_match": false
+      },
+      "p6": {
+        "ref_hash": "2fcc2cae519b",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.01444537378847599,
+            "max_lp_diff": 0.078125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.014396989718079567,
+            "max_lp_diff": 0.0859375
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 33,
+            "mean_lp_diff": 0.2827494237571955,
+            "max_lp_diff": 1.33984375
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 33,
+            "mean_lp_diff": 0.2774567399173975,
+            "max_lp_diff": 1.35546875
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.014448948204517365,
+            "max_lp_diff": 0.078125
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.016056517139077187,
+            "max_lp_diff": 0.0859375
+          }
+        },
+        "total_token_mismatches": 66,
+        "avg_lp_diff": 0.10325899875412385,
+        "all_match": false
+      },
+      "p7": {
+        "ref_hash": "af7317e2d2c7",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.010314464569091797,
+            "max_lp_diff": 0.078125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.010954678058624268,
+            "max_lp_diff": 0.07421875
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.009896934032440186,
+            "max_lp_diff": 0.06640625
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 12,
+            "mean_lp_diff": 0.0816718339920044,
+            "max_lp_diff": 1.83203125
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008574903011322021,
+            "max_lp_diff": 0.0703125
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008159011602401733,
+            "max_lp_diff": 0.05859375
+          }
+        },
+        "total_token_mismatches": 12,
+        "avg_lp_diff": 0.021595304210980732,
+        "all_match": false
+      },
+      "p8": {
+        "ref_hash": "12d1c27afcf3",
+        "batches": {
+          "bs2": {
+            "seq_match": false,
+            "token_mismatches": 32,
+            "mean_lp_diff": 0.24782868847250938,
+            "max_lp_diff": 1.3359375
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.012324072420597076,
+            "max_lp_diff": 0.083984375
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.014700867235660553,
+            "max_lp_diff": 0.07421875
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 32,
+            "mean_lp_diff": 0.2563125193119049,
+            "max_lp_diff": 1.5472412109375
+          },
+          "bs32": {
+            "seq_match": false,
+            "token_mismatches": 32,
+            "mean_lp_diff": 0.2589884027838707,
+            "max_lp_diff": 1.5472412109375
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 18,
+            "mean_lp_diff": 0.1047159917652607,
+            "max_lp_diff": 1.0556640625
+          }
+        },
+        "total_token_mismatches": 114,
+        "avg_lp_diff": 0.1491450903316339,
+        "all_match": false
+      },
+      "p9": {
+        "ref_hash": "c03074019477",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.009240061044692993,
+            "max_lp_diff": 0.1015625
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008390381932258606,
+            "max_lp_diff": 0.0859375
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 9,
+            "mean_lp_diff": 0.08717815577983856,
+            "max_lp_diff": 1.1638250350952148
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.010554984211921692,
+            "max_lp_diff": 0.06640625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.011243775486946106,
+            "max_lp_diff": 0.06640625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.012032583355903625,
+            "max_lp_diff": 0.109375
+          }
+        },
+        "total_token_mismatches": 9,
+        "avg_lp_diff": 0.023106656968593597,
+        "all_match": false
+      }
+    }
+  },
+  "B_dllm_triton": {
+    "all_sequences_match": false,
+    "total_token_mismatches": 11,
+    "avg_lp_diff": 0.0014064703136682513,
+    "per_prompt": {
+      "p0": {
+        "ref_hash": "1dbe7c3df8e0",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 9.1552734375e-05,
+            "max_lp_diff": 0.00390625
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 6.103515625e-05,
+            "max_lp_diff": 0.00390625
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00041985511779785156,
+            "max_lp_diff": 0.0166015625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00041985511779785156,
+            "max_lp_diff": 0.0166015625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00041985511779785156,
+            "max_lp_diff": 0.0166015625
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 11,
+            "mean_lp_diff": 0.037587739527225494,
+            "max_lp_diff": 0.87109375
+          }
+        },
+        "total_token_mismatches": 11,
+        "avg_lp_diff": 0.006499982128540675,
+        "all_match": false
+      },
+      "p1": {
+        "ref_hash": "02280f29a0cb",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0001220703125,
+            "max_lp_diff": 0.0078125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0001220703125,
+            "max_lp_diff": 0.0078125
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0001512765884399414,
+            "max_lp_diff": 0.00390625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0001512765884399414,
+            "max_lp_diff": 0.00390625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0001512765884399414,
+            "max_lp_diff": 0.00390625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0011278390884399414,
+            "max_lp_diff": 0.03125
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.00030430157979329425,
+        "all_match": true
+      },
+      "p2": {
+        "ref_hash": "57f0b4c7ede2",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0,
+            "max_lp_diff": 0.0
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0,
+            "max_lp_diff": 0.0
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0004215240478515625,
+            "max_lp_diff": 0.01953125
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0004215240478515625,
+            "max_lp_diff": 0.01953125
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0004215240478515625,
+            "max_lp_diff": 0.01953125
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0006199032068252563,
+            "max_lp_diff": 0.01953125
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.000314079225063324,
+        "all_match": true
+      },
+      "p3": {
+        "ref_hash": "0ed98fc5e247",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0001221001148223877,
+            "max_lp_diff": 0.0078125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0001220703125,
+            "max_lp_diff": 0.0078125
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.001789592206478119,
+            "max_lp_diff": 0.0546875
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.001789592206478119,
+            "max_lp_diff": 0.0546875
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.001789592206478119,
+            "max_lp_diff": 0.0546875
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.002476237714290619,
+            "max_lp_diff": 0.0546875
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.0013481974601745605,
+        "all_match": true
+      },
+      "p4": {
+        "ref_hash": "ac3c80c7d241",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00034332275390625,
+            "max_lp_diff": 0.0078125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.000244140625,
+            "max_lp_diff": 0.0078125
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0015110969543457031,
+            "max_lp_diff": 0.046875
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0015110969543457031,
+            "max_lp_diff": 0.046875
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0015110969543457031,
+            "max_lp_diff": 0.046875
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0015113353729248047,
+            "max_lp_diff": 0.046875
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.001105348269144694,
+        "all_match": true
+      },
+      "p5": {
+        "ref_hash": "2caa57d0a7e6",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0,
+            "max_lp_diff": 0.0
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0,
+            "max_lp_diff": 0.0
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0002465248107910156,
+            "max_lp_diff": 0.015625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0002465248107910156,
+            "max_lp_diff": 0.015625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0002465248107910156,
+            "max_lp_diff": 0.015625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0008568763732910156,
+            "max_lp_diff": 0.03125
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.00026607513427734375,
+        "all_match": true
+      },
+      "p6": {
+        "ref_hash": "2fcc2cae519b",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0009775161743164062,
+            "max_lp_diff": 0.0625
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0009775161743164062,
+            "max_lp_diff": 0.0625
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0013427734375,
+            "max_lp_diff": 0.0390625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0013427734375,
+            "max_lp_diff": 0.0390625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0013427734375,
+            "max_lp_diff": 0.0390625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00189208984375,
+            "max_lp_diff": 0.0390625
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.001312573750813802,
+        "all_match": true
+      },
+      "p7": {
+        "ref_hash": "af7317e2d2c7",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0008311271667480469,
+            "max_lp_diff": 0.03125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0008311271667480469,
+            "max_lp_diff": 0.03125
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0026652514934539795,
+            "max_lp_diff": 0.06640625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0026652514934539795,
+            "max_lp_diff": 0.06640625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0026652514934539795,
+            "max_lp_diff": 0.06640625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00267598032951355,
+            "max_lp_diff": 0.06640625
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.002055664857228597,
+        "all_match": true
+      },
+      "p8": {
+        "ref_hash": "12d1c27afcf3",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0,
+            "max_lp_diff": 0.0
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0,
+            "max_lp_diff": 0.0
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 9.987503290176392e-05,
+            "max_lp_diff": 0.00390625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 9.987503290176392e-05,
+            "max_lp_diff": 0.00390625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 9.987503290176392e-05,
+            "max_lp_diff": 0.00390625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0006951466202735901,
+            "max_lp_diff": 0.01953125
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.00016579528649648032,
+        "all_match": true
+      },
+      "p9": {
+        "ref_hash": "c03074019477",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0010995864868164062,
+            "max_lp_diff": 0.0625
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00012302398681640625,
+            "max_lp_diff": 0.0078125
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00047397613525390625,
+            "max_lp_diff": 0.01513671875
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00047397613525390625,
+            "max_lp_diff": 0.01513671875
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00047397613525390625,
+            "max_lp_diff": 0.01513671875
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0015115737915039062,
+            "max_lp_diff": 0.05859375
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.0006926854451497396,
+        "all_match": true
+      }
+    }
+  },
+  "B_dllm_cublaslt": {
+    "all_sequences_match": false,
+    "total_token_mismatches": 16,
+    "avg_lp_diff": 0.007536780213316281,
+    "per_prompt": {
+      "p0": {
+        "ref_hash": "1dbe7c3df8e0",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004004942253232002,
+            "max_lp_diff": 0.04296875
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0034613478928804398,
+            "max_lp_diff": 0.029296875
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0033027995377779007,
+            "max_lp_diff": 0.029296875
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0037300456315279007,
+            "max_lp_diff": 0.029296875
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0037300456315279007,
+            "max_lp_diff": 0.029296875
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 11,
+            "mean_lp_diff": 0.040882671251893044,
+            "max_lp_diff": 0.87109375
+          }
+        },
+        "total_token_mismatches": 11,
+        "avg_lp_diff": 0.009851975366473198,
+        "all_match": false
+      },
+      "p1": {
+        "ref_hash": "02280f29a0cb",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0033476129174232483,
+            "max_lp_diff": 0.0625
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00278676301240921,
+            "max_lp_diff": 0.0625
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.003094114363193512,
+            "max_lp_diff": 0.0625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0030944421887397766,
+            "max_lp_diff": 0.0625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0030944421887397766,
+            "max_lp_diff": 0.0625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004071004688739777,
+            "max_lp_diff": 0.0625
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.0032480632265408835,
+        "all_match": true
+      },
+      "p2": {
+        "ref_hash": "57f0b4c7ede2",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.001771397888660431,
+            "max_lp_diff": 0.0234375
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0032015517354011536,
+            "max_lp_diff": 0.1171875
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0038512423634529114,
+            "max_lp_diff": 0.1171875
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0038207247853279114,
+            "max_lp_diff": 0.1171875
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0038359835743904114,
+            "max_lp_diff": 0.1171875
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004034362733364105,
+            "max_lp_diff": 0.1171875
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.0034192105134328208,
+        "all_match": true
+      },
+      "p3": {
+        "ref_hash": "f7daede5862f",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004404924809932709,
+            "max_lp_diff": 0.0546875
+          },
+          "bs4": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.025612134486436844,
+            "max_lp_diff": 0.426513671875
+          },
+          "bs8": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.024757038801908493,
+            "max_lp_diff": 0.426513671875
+          },
+          "bs16": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.024677153676748276,
+            "max_lp_diff": 0.426513671875
+          },
+          "bs32": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.024676930159330368,
+            "max_lp_diff": 0.426513671875
+          },
+          "bs64": {
+            "seq_match": false,
+            "token_mismatches": 1,
+            "mean_lp_diff": 0.025333058089017868,
+            "max_lp_diff": 0.426513671875
+          }
+        },
+        "total_token_mismatches": 5,
+        "avg_lp_diff": 0.021576873337229092,
+        "all_match": false
+      },
+      "p4": {
+        "ref_hash": "ac3c80c7d241",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.006774932146072388,
+            "max_lp_diff": 0.0625
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.006977349519729614,
+            "max_lp_diff": 0.0625
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00876668095588684,
+            "max_lp_diff": 0.0625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00864461064338684,
+            "max_lp_diff": 0.0625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00864461064338684,
+            "max_lp_diff": 0.0625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008644849061965942,
+            "max_lp_diff": 0.0625
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.008075505495071411,
+        "all_match": true
+      },
+      "p5": {
+        "ref_hash": "2caa57d0a7e6",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00500275194644928,
+            "max_lp_diff": 0.06640625
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004466786980628967,
+            "max_lp_diff": 0.06640625
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.003968492150306702,
+            "max_lp_diff": 0.06640625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004327073693275452,
+            "max_lp_diff": 0.06640625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004334703087806702,
+            "max_lp_diff": 0.06640625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004945054650306702,
+            "max_lp_diff": 0.06640625
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.004507477084795634,
+        "all_match": true
+      },
+      "p6": {
+        "ref_hash": "2fcc2cae519b",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0035338029265403748,
+            "max_lp_diff": 0.109375
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004769518971443176,
+            "max_lp_diff": 0.109375
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0046484023332595825,
+            "max_lp_diff": 0.109375
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0048925429582595825,
+            "max_lp_diff": 0.109375
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0048925429582595825,
+            "max_lp_diff": 0.109375
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.0054418593645095825,
+            "max_lp_diff": 0.109375
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.00469644491871198,
+        "all_match": true
+      },
+      "p7": {
+        "ref_hash": "af7317e2d2c7",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.002797454595565796,
+            "max_lp_diff": 0.037109375
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.003208249807357788,
+            "max_lp_diff": 0.037109375
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.004920542240142822,
+            "max_lp_diff": 0.06640625
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.005042612552642822,
+            "max_lp_diff": 0.06640625
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.005042612552642822,
+            "max_lp_diff": 0.06640625
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.005053341388702393,
+            "max_lp_diff": 0.06640625
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.004344135522842407,
+        "all_match": true
+      },
+      "p8": {
+        "ref_hash": "12d1c27afcf3",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.007385671138763428,
+            "max_lp_diff": 0.08984375
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008034884929656982,
+            "max_lp_diff": 0.08984375
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008195318281650543,
+            "max_lp_diff": 0.08984375
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008408941328525543,
+            "max_lp_diff": 0.08984375
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008408941328525543,
+            "max_lp_diff": 0.08984375
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.00900421291589737,
+            "max_lp_diff": 0.08984375
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.008239661653836569,
+        "all_match": true
+      },
+      "p9": {
+        "ref_hash": "c03074019477",
+        "batches": {
+          "bs2": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.005555704236030579,
+            "max_lp_diff": 0.0703125
+          },
+          "bs4": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.005958631634712219,
+            "max_lp_diff": 0.078125
+          },
+          "bs8": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.007883146405220032,
+            "max_lp_diff": 0.109375
+          },
+          "bs16": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008005216717720032,
+            "max_lp_diff": 0.109375
+          },
+          "bs32": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.008005216717720032,
+            "max_lp_diff": 0.109375
+          },
+          "bs64": {
+            "seq_match": true,
+            "token_mismatches": 0,
+            "mean_lp_diff": 0.009042814373970032,
+            "max_lp_diff": 0.109375
+          }
+        },
+        "total_token_mismatches": 0,
+        "avg_lp_diff": 0.007408455014228821,
+        "all_match": true
+      }
+    }
+  }
+}

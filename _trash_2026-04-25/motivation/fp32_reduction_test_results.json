@@ -1,0 +1,67 @@
+{
+  "config": {
+    "model_path": "/workspace/Models/Llama-3.1-8B-Instruct",
+    "sharegpt_json": "/workspace/dllm/ShareGPT_V3_unfiltered_cleaned_split.json",
+    "num_queries": 2,
+    "max_new_tokens": 16,
+    "num_runs": 1,
+    "seed": 42
+  },
+  "pure_bf16": {
+    "mode": "Pure BF16 (BF16 storage + BF16 compute)",
+    "num_queries": 2,
+    "num_runs": 1,
+    "per_query_avg_latency_ms": [
+      581.5151324495673,
+      576.6836237162352
+    ],
+    "per_query_avg_tokenization_ms": [
+      0.7025068625807762,
+      0.5119079723954201
+    ],
+    "per_query_avg_inference_ms": [
+      580.7752311229706,
+      576.142642647028
+    ],
+    "overall_mean_latency_ms": 579.0993780829012,
+    "overall_std_latency_ms": 2.4157543666660786,
+    "overall_mean_tokenization_ms": 0.6072074174880981,
+    "overall_mean_inference_ms": 578.4589368849993,
+    "overall_std_inference_ms": 2.316294237971306,
+    "total_time_ms": 1158.1987561658025
+  },
+  "only_reduction_fp32": {
+    "mode": "Only-Reduction-FP32 (BF16 + FP32 reduction in Linear)",
+    "num_queries": 2,
+    "num_runs": 1,
+    "per_query_avg_latency_ms": [
+      21133.491394110024,
+      21261.186038143933
+    ],
+    "per_query_avg_tokenization_ms": [
+      0.9021395817399025,
+      0.8594607934355736
+    ],
+    "per_query_avg_inference_ms": [
+      21132.562529295683,
+      21260.28534024954
+    ],
+    "overall_mean_latency_ms": 21197.33871612698,
+    "overall_std_latency_ms": 63.84732201695442,
+    "overall_mean_tokenization_ms": 0.880800187587738,
+    "overall_mean_inference_ms": 21196.42393477261,
+    "overall_std_inference_ms": 63.86140547692776,
+    "total_time_ms": 42394.67743225396
+  },
+  "determinism": {
+    "deterministic": true,
+    "num_repeats": 5,
+    "num_tokens_generated": 16
+  },
+  "comparison": {
+    "bf16_latency_ms": 578.4589368849993,
+    "fp32_reduction_latency_ms": 21196.42393477261,
+    "slowdown_factor": 36.64291894065174,
+    "deterministic": true
+  }
+}

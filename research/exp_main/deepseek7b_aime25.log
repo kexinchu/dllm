@@ -1,0 +1,48 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+
+============================================================================================
+  MODEL:deepseek7b  DATASET:aime25  bs=[1, 8, 16]  gen_len=1024  N=30  fp32_all=False
+============================================================================================
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
+  Loaded 30 problems from aime25
+
+-- method: BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=419s  div=10/10
+   [ 10/30] elapsed=844s  div=20/20
+   [ 15/30] elapsed=1274s  div=30/30
+   [ 20/30] elapsed=1700s  div=40/40
+   [ 25/30] elapsed=2128s  div=50/50
+   [ 30/30] elapsed=2548s  div=60/60
+
+-- method: LayerCast --
+   [  5/30] elapsed=1746s  div=10/10
+   [ 10/30] elapsed=3514s  div=20/20
+   [ 15/30] elapsed=5294s  div=30/30
+   [ 20/30] elapsed=7065s  div=40/40
+   [ 25/30] elapsed=8838s  div=50/50
+   [ 30/30] elapsed=10587s  div=60/60
+
+-- method: SRP-FP32 --
+   [  5/30] elapsed=457s  div=0/10
+   [ 10/30] elapsed=929s  div=0/20
+   [ 15/30] elapsed=1412s  div=0/30
+   [ 20/30] elapsed=1888s  div=0/40
+   [ 25/30] elapsed=2363s  div=0/50
+   [ 30/30] elapsed=2823s  div=0/60
+
+  Saved: research/exp_main/deepseek7b_aime25.json
+
+============================================================================================================
+  AGGREGATE  (deepseek7b / aime25, N=30)
+============================================================================================================
+  method                  bs   acc    EM  div% div_med    TTFT    TPOT   tok/s  mem GB
+  BF16                     1    0%  100%    0%       0      57    25.3    39.4   14.28
+  BF16                     8    0%    0%  100%     225     231    27.2   292.5   14.76
+  BF16                    16    0%    0%  100%     187     436    29.1   543.5   15.33
+  LayerCast                1    0%  100%    0%       0     240   108.5     9.2   16.32
+  LayerCast                8    0%    0%  100%     248    1221   113.5    69.8   16.76
+  LayerCast               16    0%    0%  100%     167    2337   115.5   136.0   17.29
+  SRP-FP32                 1    0%  100%    0%       0      59    25.0    39.9   14.30
+  SRP-FP32                 8    0%  100%    0%    1024     259    29.9   266.0   14.91
+  SRP-FP32                16    0%  100%    0%    1024     487    35.5   448.2   15.62

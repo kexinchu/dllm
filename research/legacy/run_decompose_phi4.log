@@ -1,0 +1,75 @@
+Loading /home/kec23008/docker-sys/Models/Phi-4 (eager attn)...
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:03<00:16,  3.33s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:08,  2.05s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:04,  1.62s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:02,  1.43s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:07<00:01,  1.31s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.27s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.51s/it]
+  Loaded on cuda:0
+  hidden_size=5120, intermediate_size=17920, num_layers=40
+
+  Condition: A_BF16_baseline
+    p0 bs= 8: ✓  mean|ΔlogP|=0.0077
+    p0 bs=32: ✓  mean|ΔlogP|=0.0058
+    p1 bs= 2: ✗ (first_div=0, mm=32)  mean|ΔlogP|=0.3863
+    p1 bs= 4: ✗ (first_div=0, mm=32)  mean|ΔlogP|=0.3866
+    p1 bs= 8: ✗ (first_div=0, mm=32)  mean|ΔlogP|=0.3872
+    p1 bs=32: ✗ (first_div=0, mm=32)  mean|ΔlogP|=0.3882
+    p2 bs= 2: ✗ (first_div=6, mm=1)  mean|ΔlogP|=0.0114
+    p2 bs= 8: ✓  mean|ΔlogP|=0.0145
+    p2 bs=32: ✓  mean|ΔlogP|=0.0119
+    p3 bs= 2: ✗ (first_div=4, mm=16)  mean|ΔlogP|=0.1293
+    p3 bs= 4: ✗ (first_div=4, mm=27)  mean|ΔlogP|=0.2359
+    p3 bs= 8: ✗ (first_div=4, mm=27)  mean|ΔlogP|=0.2310
+    p3 bs=16: ✗ (first_div=4, mm=27)  mean|ΔlogP|=0.2346
+    p3 bs=32: ✗ (first_div=4, mm=27)  mean|ΔlogP|=0.2364
+    p4 bs= 8: ✓  mean|ΔlogP|=0.0083
+    p4 bs=32: ✓  mean|ΔlogP|=0.0039
+    p5 bs= 8: ✓  mean|ΔlogP|=0.0038
+    p5 bs=32: ✓  mean|ΔlogP|=0.0035
+    p6 bs= 8: ✓  mean|ΔlogP|=0.0036
+    p6 bs=32: ✓  mean|ΔlogP|=0.0043
+    p7 bs= 2: ✗ (first_div=6, mm=26)  mean|ΔlogP|=0.5507
+    p7 bs= 8: ✗ (first_div=6, mm=26)  mean|ΔlogP|=0.5499
+    p7 bs=16: ✗ (first_div=6, mm=26)  mean|ΔlogP|=0.5502
+    p7 bs=32: ✗ (first_div=6, mm=26)  mean|ΔlogP|=0.5477
+    p8 bs= 8: ✓  mean|ΔlogP|=0.0078
+    p8 bs=32: ✓  mean|ΔlogP|=0.0051
+    p9 bs= 2: ✗ (first_div=10, mm=22)  mean|ΔlogP|=0.3116
+    p9 bs= 4: ✗ (first_div=10, mm=22)  mean|ΔlogP|=0.3119
+    p9 bs= 8: ✓  mean|ΔlogP|=0.0120
+    p9 bs=16: ✗ (first_div=10, mm=22)  mean|ΔlogP|=0.3093
+    p9 bs=32: ✗ (first_div=10, mm=22)  mean|ΔlogP|=0.3088
+
+  >>> A_BF16_baseline: all_match=False, total_tok_mm=445, avg|ΔlogP|=0.1253
+
+  Condition: B_linear_only
+    p0 bs= 8: ✓  mean|ΔlogP|=0.0035
+    p0 bs=32: ✓  mean|ΔlogP|=0.0009
+    p1 bs= 8: ✓  mean|ΔlogP|=0.0072
+    p1 bs=32: ✓  mean|ΔlogP|=0.0049
+    p2 bs= 2: ✗ (first_div=6, mm=1)  mean|ΔlogP|=0.0082
+    p2 bs= 4: ✗ (first_div=6, mm=1)  mean|ΔlogP|=0.0076
+    p2 bs= 8: ✗ (first_div=6, mm=1)  mean|ΔlogP|=0.0109
+    p2 bs=32: ✗ (first_div=6, mm=1)  mean|ΔlogP|=0.0080
+    p3 bs= 8: ✓  mean|ΔlogP|=0.0028
+    p3 bs=32: ✓  mean|ΔlogP|=0.0013
+    p4 bs= 8: ✓  mean|ΔlogP|=0.0068
+    p4 bs=32: ✓  mean|ΔlogP|=0.0031
+    p5 bs= 8: ✓  mean|ΔlogP|=0.0022
+    p5 bs=32: ✓  mean|ΔlogP|=0.0018
+    p6 bs= 8: ✓  mean|ΔlogP|=0.0063
+    p6 bs=32: ✓  mean|ΔlogP|=0.0020
+    p7 bs= 8: ✓  mean|ΔlogP|=0.0048
+    p7 bs=32: ✓  mean|ΔlogP|=0.0014
+    p8 bs= 8: ✓  mean|ΔlogP|=0.0020
+    p8 bs=32: ✓  mean|ΔlogP|=0.0019
+    p9 bs= 8: ✗ (first_div=10, mm=22)  mean|ΔlogP|=0.3082
+    p9 bs=32: ✓  mean|ΔlogP|=0.0031
+
+  >>> B_linear_only: all_match=False, total_tok_mm=26, avg|ΔlogP|=0.0093
+
+=================================================================
+SUMMARY: Decomposition — Phi-4 (14B, Microsoft)
+=================================================================
+Condition                    All Match?   Tot MM   Avg|ΔlogP|
+--------------------------------------------------------------
+  A_BF16_baseline                       ✗      445       0.1253
+  B_linear_only                         ✗       26       0.0093
+
+Saved → /home/kec23008/docker-sys/dllm/research/exp_decompose_phi4.json

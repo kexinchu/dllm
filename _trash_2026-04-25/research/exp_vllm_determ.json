@@ -1,0 +1,60 @@
+{
+  "BF16_baseline": {
+    "determ_enabled": false,
+    "determinism_test": {
+      "2": {
+        "n_mismatches": 1,
+        "deterministic": false
+      },
+      "4": {
+        "n_mismatches": 1,
+        "deterministic": false
+      },
+      "8": {
+        "n_mismatches": 2,
+        "deterministic": false
+      }
+    },
+    "overall_deterministic": false,
+    "throughput_tps": 939.9710258482595,
+    "throughput_all_runs": [
+      928.52016252314,
+      943.9815049921962,
+      941.0924773902891,
+      944.6426560694513,
+      941.6183282662214
+    ],
+    "latency_4req_ms": 402.539842762053
+  },
+  "DetermLLM": {
+    "determ_enabled": true,
+    "determinism_test": {
+      "2": {
+        "n_mismatches": 1,
+        "deterministic": false
+      },
+      "4": {
+        "n_mismatches": 1,
+        "deterministic": false
+      },
+      "8": {
+        "n_mismatches": 1,
+        "deterministic": false
+      }
+    },
+    "overall_deterministic": false,
+    "throughput_tps": 553.1242299417612,
+    "throughput_all_runs": [
+      473.6537922948084,
+      483.61989259216193,
+      924.0782776169891,
+      412.7955520700303,
+      471.4736351348163
+    ],
+    "latency_4req_ms": 581.9309746846557
+  },
+  "summary": {
+    "throughput_overhead_pct": 41.155183007624686,
+    "latency_overhead_pct": 44.56481393039229
+  }
+}

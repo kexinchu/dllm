@@ -1,0 +1,59 @@
+GPU: NVIDIA RTX A6000  free=20.9 GB
+
+====================================================================================
+  MODEL: llama8b  dataset=aime25  gen_len=512  reasoning=False
+====================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.00s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.02it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.52it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.29it/s]
+  Loaded 30 problems from aime25
+
+-- BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=255s  diverge_so_far=5/5
+   [ 10/30] elapsed=516s  diverge_so_far=10/10
+   [ 15/30] elapsed=781s  diverge_so_far=14/15
+   [ 20/30] elapsed=1043s  diverge_so_far=19/20
+   [ 25/30] elapsed=1306s  diverge_so_far=24/25
+   [ 30/30] elapsed=1559s  diverge_so_far=29/30
+   [BF16] bit-exact=13.3%  diverge_problems=96.7%  div_med=104  acc(bs=1)=0.0%  acc(bs=16)=0.0%  time=1559s
+
+-- FP32flag --
+   [  5/30] elapsed=252s  diverge_so_far=5/5
+   [ 10/30] elapsed=514s  diverge_so_far=10/10
+   [ 15/30] elapsed=779s  diverge_so_far=15/15
+   [ 20/30] elapsed=1042s  diverge_so_far=20/20
+   [ 25/30] elapsed=1305s  diverge_so_far=24/25
+   [ 30/30] elapsed=1561s  diverge_so_far=29/30
+   [FP32flag] bit-exact=5.0%  diverge_problems=96.7%  div_med=73  acc(bs=1)=0.0%  acc(bs=16)=0.0%  time=1562s
+
+-- LayerCast --
+   [  5/30] elapsed=1058s  diverge_so_far=4/5
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 282, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 277, in main
+    run_model(args.model, args.dataset, args.n_problems, out)
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 194, in run_model
+    tokens_by_bs[bs] = generate_batch(model, tok, prompt_text, bs, gen_len, device)
+  File "/home/kec23008/docker-sys/dllm/research/exp_E4_div_index.py", line 143, in generate_batch
+    out = model.generate(input_ids=ids, attention_mask=mask,
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 2566, in generate
+    result = decoding_method(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/generation/utils.py", line 2789, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 473, in forward
+    logits = self.lm_head(hidden_states[:, slice_indices, :])
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/docker-sys/dllm/motivation/test_layercast_latency.py", line 132, in layercast_forward
+    weight_fp32 = self.weight.to(torch.float32) if self.weight.dtype == torch.bfloat16 else self.weight
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.96 GiB. GPU 0 has a total capacity of 47.40 GiB of which 260.06 MiB is free. Process 2674516 has 27.64 GiB memory in use. Including non-PyTorch memory, this process has 19.49 GiB memory in use. Of the allocated memory 16.78 GiB is allocated by PyTorch, and 2.39 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

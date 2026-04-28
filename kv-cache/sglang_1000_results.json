@@ -1,0 +1,129 @@
+{
+  "engine": "sglang",
+  "num_runs": 1000,
+  "scenario_a_prefix_cache": {
+    "total": 1000,
+    "first_token_flip": 10,
+    "flip_pct": "1.00%",
+    "flip_examples": [
+      {
+        "idx": 122,
+        "suffix": "What are the differences between Python and Java?",
+        "prefix_len": 113,
+        "token_nocache": " \n\n",
+        "token_cache": " \n"
+      },
+      {
+        "idx": 226,
+        "suffix": "What is the water cycle?",
+        "prefix_len": 63,
+        "token_nocache": " \n\n",
+        "token_cache": " The"
+      },
+      {
+        "idx": 298,
+        "suffix": "What is the Turing test?",
+        "prefix_len": 35,
+        "token_nocache": " \n\n",
+        "token_cache": " The"
+      },
+      {
+        "idx": 466,
+        "suffix": "What is the water cycle?",
+        "prefix_len": 63,
+        "token_nocache": " \n\n",
+        "token_cache": " The"
+      },
+      {
+        "idx": 559,
+        "suffix": "How does GPS navigation work?",
+        "prefix_len": 45,
+        "token_nocache": " GPS",
+        "token_cache": " \n"
+      },
+      {
+        "idx": 602,
+        "suffix": "What are the differences between Python and Java?",
+        "prefix_len": 113,
+        "token_nocache": " \n\n",
+        "token_cache": " \n"
+      },
+      {
+        "idx": 706,
+        "suffix": "What is the water cycle?",
+        "prefix_len": 63,
+        "token_nocache": " \n\n",
+        "token_cache": " The"
+      },
+      {
+        "idx": 799,
+        "suffix": "How does GPS navigation work?",
+        "prefix_len": 45,
+        "token_nocache": " GPS",
+        "token_cache": " \n"
+      },
+      {
+        "idx": 842,
+        "suffix": "What are the differences between Python and Java?",
+        "prefix_len": 113,
+        "token_nocache": " \n\n",
+        "token_cache": " \n"
+      },
+      {
+        "idx": 946,
+        "suffix": "What is the water cycle?",
+        "prefix_len": 63,
+        "token_nocache": " \n\n",
+        "token_cache": " The"
+      }
+    ]
+  },
+  "scenario_b_chunked_prefill": {
+    "chunk_128": {
+      "total": 1000,
+      "first_token_flip": 1,
+      "flip_pct": "0.10%",
+      "flip_examples": [
+        {
+          "idx": 211,
+          "prompt_tail": "n: How does this compare to alternative approaches?\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " This"
+        }
+      ]
+    },
+    "chunk_64": {
+      "total": 1000,
+      "first_token_flip": 1,
+      "flip_pct": "0.10%",
+      "flip_examples": [
+        {
+          "idx": 211,
+          "prompt_tail": "n: How does this compare to alternative approaches?\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " This"
+        }
+      ]
+    },
+    "chunk_32": {
+      "total": 1000,
+      "first_token_flip": 2,
+      "flip_pct": "0.20%",
+      "flip_examples": [
+        {
+          "idx": 181,
+          "prompt_tail": "tion: Summarize the main points in three sentences.\n\nAnswer:",
+          "token_base": " The",
+          "token_chunked": " \n"
+        },
+        {
+          "idx": 982,
+          "prompt_tail": "tion: What is the most important concept discussed?\n\nAnswer:",
+          "token_base": " Climate",
+          "token_chunked": " The"
+        }
+      ]
+    }
+  },
+  "elapsed_seconds": 394.2
+}

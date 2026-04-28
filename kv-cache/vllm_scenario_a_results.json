@@ -1,0 +1,131 @@
+{
+  "engine": "vllm",
+  "num_runs": 1000,
+  "scenario_a_prefix_cache": {
+    "total": 1000,
+    "first_token_flip": 17,
+    "flip_pct": "1.70%",
+    "flip_examples": [
+      {
+        "idx": 131,
+        "suffix": "How does encryption work?",
+        "prefix_len": 113,
+        "token_nocache": " What",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 148,
+        "suffix": "What is the Turing test?",
+        "prefix_len": 113,
+        "token_nocache": " \n",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 152,
+        "suffix": "What are the differences between Python and Java?",
+        "prefix_len": 640,
+        "token_nocache": " Python",
+        "token_cache": " ("
+      },
+      {
+        "idx": 200,
+        "suffix": "What is machine learning?",
+        "prefix_len": 400,
+        "token_nocache": " A",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 371,
+        "suffix": "How does encryption work?",
+        "prefix_len": 113,
+        "token_nocache": " What",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 388,
+        "suffix": "What is the Turing test?",
+        "prefix_len": 113,
+        "token_nocache": " \n",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 392,
+        "suffix": "What are the differences between Python and Java?",
+        "prefix_len": 640,
+        "token_nocache": " Python",
+        "token_cache": " ("
+      },
+      {
+        "idx": 440,
+        "suffix": "What is machine learning?",
+        "prefix_len": 400,
+        "token_nocache": " A",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 611,
+        "suffix": "How does encryption work?",
+        "prefix_len": 113,
+        "token_nocache": " What",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 628,
+        "suffix": "What is the Turing test?",
+        "prefix_len": 113,
+        "token_nocache": " \n",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 632,
+        "suffix": "What are the differences between Python and Java?",
+        "prefix_len": 640,
+        "token_nocache": " Python",
+        "token_cache": " ("
+      },
+      {
+        "idx": 680,
+        "suffix": "What is machine learning?",
+        "prefix_len": 400,
+        "token_nocache": " A",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 851,
+        "suffix": "How does encryption work?",
+        "prefix_len": 113,
+        "token_nocache": " What",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 868,
+        "suffix": "What is the Turing test?",
+        "prefix_len": 113,
+        "token_nocache": " \n",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 872,
+        "suffix": "What are the differences between Python and Java?",
+        "prefix_len": 640,
+        "token_nocache": " Python",
+        "token_cache": " ("
+      },
+      {
+        "idx": 920,
+        "suffix": "What is machine learning?",
+        "prefix_len": 400,
+        "token_nocache": " A",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 946,
+        "suffix": "What is the water cycle?",
+        "prefix_len": 63,
+        "token_nocache": " The",
+        "token_cache": " \n\n"
+      }
+    ]
+  },
+  "elapsed_seconds": 150.9
+}

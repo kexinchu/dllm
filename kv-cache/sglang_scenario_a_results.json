@@ -1,0 +1,40 @@
+{
+  "engine": "sglang",
+  "num_runs": 240,
+  "scenario_a_prefix_cache": {
+    "total": 240,
+    "first_token_flip": 4,
+    "flip_pct": "1.67%",
+    "flip_examples": [
+      {
+        "idx": 23,
+        "suffix": "How does the immune system work?",
+        "prefix_len": 43,
+        "token_nocache": " \n",
+        "token_cache": " \n\n"
+      },
+      {
+        "idx": 58,
+        "suffix": "What is the Turing test?",
+        "prefix_len": 35,
+        "token_nocache": " \n\n",
+        "token_cache": " The"
+      },
+      {
+        "idx": 78,
+        "suffix": "What is DNA replication?",
+        "prefix_len": 45,
+        "token_nocache": " \n",
+        "token_cache": " DNA"
+      },
+      {
+        "idx": 226,
+        "suffix": "What is the water cycle?",
+        "prefix_len": 63,
+        "token_nocache": " \n\n",
+        "token_cache": " The"
+      }
+    ]
+  },
+  "elapsed_seconds": 92.7
+}

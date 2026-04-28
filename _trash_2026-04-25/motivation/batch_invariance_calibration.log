@@ -1,0 +1,114 @@
+================================================================================
+  BATCH-INVARIANCE CALIBRATION
+  model=/home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct
+  N=1000  max_new_tokens=256  bs_cycle=[1, 2, 4, 8, 16]
+================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.54s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.36s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.17it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.03s/it]
+  target_len=10 tokens  prompt="What is deterministic inference in large language models?"
+
+
+=== BF16 baseline ===
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+    [  50/1000]    363s  uniq=5  diff=40
+    [ 100/1000]    717s  uniq=5  diff=80
+    [ 150/1000]   1072s  uniq=5  diff=120
+    [ 200/1000]   1426s  uniq=5  diff=160
+    [ 250/1000]   1781s  uniq=5  diff=200
+    [ 300/1000]   2138s  uniq=5  diff=240
+    [ 350/1000]   2492s  uniq=5  diff=280
+    [ 400/1000]   2847s  uniq=5  diff=320
+    [ 450/1000]   3201s  uniq=5  diff=360
+    [ 500/1000]   3586s  uniq=5  diff=400
+    [ 550/1000]   4192s  uniq=5  diff=440
+    [ 600/1000]   4635s  uniq=5  diff=480
+    [ 650/1000]   4988s  uniq=5  diff=520
+    [ 700/1000]   5343s  uniq=5  diff=560
+    [ 750/1000]   5696s  uniq=5  diff=600
+    [ 800/1000]   6050s  uniq=5  diff=640
+    [ 850/1000]   6404s  uniq=5  diff=680
+    [ 900/1000]   6759s  uniq=5  diff=720
+    [ 950/1000]   7112s  uniq=5  diff=760
+    [1000/1000]   7466s  uniq=5  diff=800
+  [BF16 baseline] unique=5  diff=800/1000  first_diff_idx=69  det=False  time=7466.4s  per_run=7466ms
+
+=== FP32 flag (cuBLAS) ===
+    [  50/1000]    362s  uniq=5  diff=40
+    [ 100/1000]    718s  uniq=5  diff=80
+    [ 150/1000]   1072s  uniq=5  diff=120
+    [ 200/1000]   1427s  uniq=5  diff=160
+    [ 250/1000]   1784s  uniq=5  diff=200
+    [ 300/1000]   2138s  uniq=5  diff=240
+    [ 350/1000]   2494s  uniq=5  diff=280
+    [ 400/1000]   2849s  uniq=5  diff=320
+    [ 450/1000]   3204s  uniq=5  diff=360
+    [ 500/1000]   3559s  uniq=5  diff=400
+    [ 550/1000]   3914s  uniq=5  diff=440
+    [ 600/1000]   4268s  uniq=5  diff=480
+    [ 650/1000]   4622s  uniq=5  diff=520
+    [ 700/1000]   4978s  uniq=5  diff=560
+    [ 750/1000]   5333s  uniq=5  diff=600
+    [ 800/1000]   5687s  uniq=5  diff=640
+    [ 850/1000]   6042s  uniq=5  diff=680
+    [ 900/1000]   6396s  uniq=5  diff=720
+    [ 950/1000]   6751s  uniq=5  diff=760
+    [1000/1000]   7106s  uniq=5  diff=800
+  [FP32 flag (cuBLAS)] unique=5  diff=800/1000  first_diff_idx=69  det=False  time=7106.1s  per_run=7106ms
+
+=== LayerCast ===
+    [  50/1000]   1557s  uniq=5  diff=40
+    [ 100/1000]   3085s  uniq=5  diff=80
+    [ 150/1000]   4613s  uniq=5  diff=120
+    [ 200/1000]   6141s  uniq=5  diff=160
+    [ 250/1000]   7669s  uniq=5  diff=200
+    [ 300/1000]   9196s  uniq=5  diff=240
+    [ 350/1000]  10724s  uniq=5  diff=280
+    [ 400/1000]  12252s  uniq=5  diff=320
+    [ 450/1000]  13780s  uniq=5  diff=360
+    [ 500/1000]  15308s  uniq=5  diff=400
+    [ 550/1000]  16836s  uniq=5  diff=440
+    [ 600/1000]  18364s  uniq=5  diff=480
+    [ 650/1000]  19892s  uniq=5  diff=520
+    [ 700/1000]  21420s  uniq=5  diff=560
+    [ 750/1000]  22948s  uniq=5  diff=600
+    [ 800/1000]  24476s  uniq=5  diff=640
+    [ 850/1000]  26004s  uniq=5  diff=680
+    [ 900/1000]  27532s  uniq=5  diff=720
+    [ 950/1000]  29060s  uniq=5  diff=760
+    [1000/1000]  30588s  uniq=5  diff=800
+  [LayerCast] unique=5  diff=800/1000  first_diff_idx=23  det=False  time=30588.4s  per_run=30588ms
+
+=== DetermLLM ===
+    [  50/1000]    864s  uniq=4  diff=30
+    [ 100/1000]   1401s  uniq=4  diff=60
+    [ 150/1000]   1939s  uniq=4  diff=90
+    [ 200/1000]   2476s  uniq=4  diff=120
+    [ 250/1000]   3014s  uniq=4  diff=150
+    [ 300/1000]   3554s  uniq=4  diff=180
+    [ 350/1000]   4095s  uniq=4  diff=210
+    [ 400/1000]   4636s  uniq=4  diff=240
+    [ 450/1000]   5184s  uniq=4  diff=270
+    [ 500/1000]   5726s  uniq=4  diff=300
+    [ 550/1000]   6265s  uniq=4  diff=330
+    [ 600/1000]   6812s  uniq=4  diff=360
+    [ 650/1000]   7355s  uniq=4  diff=390
+    [ 700/1000]   7890s  uniq=4  diff=420
+    [ 750/1000]   8430s  uniq=4  diff=450
+    [ 800/1000]   8978s  uniq=4  diff=480
+    [ 850/1000]   9515s  uniq=4  diff=510
+    [ 900/1000]  10051s  uniq=4  diff=540
+    [ 950/1000]  10597s  uniq=4  diff=570
+    [1000/1000]  11139s  uniq=4  diff=600
+  [DetermLLM] unique=4  diff=600/1000  first_diff_idx=69  det=False  time=11139.5s  per_run=11139ms
+
+================================================================================================
+  FINAL TABLE  (Llama-3.1-8B-Instruct, N=1000, 256 new tokens)
+================================================================================================
+  Scheme                  unique  diff/1000   1st diff   det     t (s)  overhead
+  ------------------------------------------------------------------------------
+  BF16 baseline                5        800         69    NO    7466.4     1.00x
+  FP32 flag (cuBLAS)           5        800         69    NO    7106.1     0.95x
+  LayerCast                    5        800         23    NO   30588.4     4.10x
+  DetermLLM                    4        600         69    NO   11139.5     1.49x
+================================================================================================
+
+  Saved: /home/kec23008/docker-sys/dllm/motivation/batch_invariance_calibration.json

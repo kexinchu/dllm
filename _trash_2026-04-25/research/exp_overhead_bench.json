@@ -1,0 +1,432 @@
+{
+  "A_BF16_baseline": {
+    "name": "BF16 baseline (non-det)",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 2180.511498404667,
+        "std_ms": 187.92444947944784
+      },
+      "8": {
+        "mean_ms": 2124.2998608388007,
+        "std_ms": 351.5909858461486
+      },
+      "32": {
+        "mean_ms": 2047.0653397031128,
+        "std_ms": 263.26064154008225
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": 0.0,
+      "8": 0.0,
+      "32": 0.0
+    }
+  },
+  "B_FP32_flag": {
+    "name": "FP32 flag only",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 1936.280213110149,
+        "std_ms": 315.9493165249779
+      },
+      "8": {
+        "mean_ms": 1515.6646622344851,
+        "std_ms": 55.26644826099243
+      },
+      "32": {
+        "mean_ms": 1857.8023467678577,
+        "std_ms": 317.8078194395619
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": -11.200641935307631,
+      "8": -28.65109628939061,
+      "32": -9.24557654631113
+    }
+  },
+  "C_DetermLLM": {
+    "name": "DetermLLM (ours)",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 2168.1811480782926,
+        "std_ms": 453.9311843063523
+      },
+      "8": {
+        "mean_ms": 2343.387453071773,
+        "std_ms": 441.03642310309874
+      },
+      "32": {
+        "mean_ms": 2385.617354279384,
+        "std_ms": 264.71399534885103
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": -0.565479720487394,
+      "8": 10.31340237185081,
+      "32": 16.5384078373078
+    }
+  },
+  "D_TorchDet": {
+    "name": "torch.use_deterministic_algorithms",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 3430.8004220947623,
+        "std_ms": 624.5133468150134
+      },
+      "8": {
+        "mean_ms": 2740.260039223358,
+        "std_ms": 637.5365516244879
+      },
+      "32": {
+        "mean_ms": 3755.6107573211193,
+        "std_ms": 821.3915710945305
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": 57.33924928187022,
+      "8": 28.995914830090854,
+      "32": 83.46315989433917
+    }
+  },
+  "E_FullFP32": {
+    "name": "Full FP32 (LayerCast)",
+    "deterministic": true,
+    "total_mismatches": 0,
+    "det_per_prompt": {
+      "p0": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p1": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "186828ba8a61",
+          "2": "186828ba8a61",
+          "4": "186828ba8a61",
+          "8": "186828ba8a61",
+          "16": "186828ba8a61",
+          "32": "186828ba8a61"
+        }
+      },
+      "p2": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      },
+      "p3": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "309950264013",
+          "2": "309950264013",
+          "4": "309950264013",
+          "8": "309950264013",
+          "16": "309950264013",
+          "32": "309950264013"
+        }
+      },
+      "p4": {
+        "is_deterministic": true,
+        "n_mismatches": 0,
+        "hashes": {
+          "1": "c64dcc81e318",
+          "2": "c64dcc81e318",
+          "4": "c64dcc81e318",
+          "8": "c64dcc81e318",
+          "16": "c64dcc81e318",
+          "32": "c64dcc81e318"
+        }
+      }
+    },
+    "latency": {
+      "1": {
+        "mean_ms": 6843.823374435306,
+        "std_ms": 91.99861962854641
+      },
+      "8": {
+        "mean_ms": 7296.32648313418,
+        "std_ms": 98.74629191277774
+      },
+      "32": {
+        "mean_ms": 7784.781116480008,
+        "std_ms": 106.7428630663957
+      }
+    },
+    "overhead_vs_baseline": {
+      "1": 213.86320959290836,
+      "8": 243.46970583772264,
+      "32": 280.2898210180746
+    }
+  }
+}

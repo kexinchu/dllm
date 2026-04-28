@@ -1,0 +1,307 @@
+[2026-04-21 19:18:39] [w1] === Worker w1 on GPU 1 starting ===
+[2026-04-21 19:18:39] [w1] SKIP dllm_hybrid bs=8 seed=0 (claimed by other worker)
+[2026-04-21 19:18:39] [w1] START dllm_hybrid bs=16 seed=0
+=== method=dllm_hybrid bs=16 seed=0 ===
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.21s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.94s/it]
+  method activated: dllm_hybrid
+Loading MATH500 (n=50) ...
+  [  1/50] correct=✗ len=1539 hash=eae2e4d71d16 acc_so_far=0.00% elapsed=157s
+  [  2/50] correct=✗ len=2048 hash=4dd9f51a26c2 acc_so_far=0.00% elapsed=270s
+  [  3/50] correct=✓ len=1930 hash=2338be7d01e0 acc_so_far=33.33% elapsed=371s
+  [  4/50] correct=✓ len=1340 hash=6eac08b6627a acc_so_far=50.00% elapsed=431s
+  [  5/50] correct=✗ len=2048 hash=4f013fff3f60 acc_so_far=40.00% elapsed=557s
+  [  6/50] correct=✓ len=775 hash=cf484ee43dc5 acc_so_far=50.00% elapsed=587s
+  [  7/50] correct=✓ len=2048 hash=1e4414249d1f acc_so_far=57.14% elapsed=696s
+  [  8/50] correct=✗ len=2048 hash=8f1f09d6d0d4 acc_so_far=50.00% elapsed=807s
+  [  9/50] correct=✓ len=1164 hash=d9d47976e29f acc_so_far=55.56% elapsed=857s
+  [ 10/50] correct=✗ len=2048 hash=9829ba4f8372 acc_so_far=50.00% elapsed=973s
+  [ 11/50] correct=✗ len=2048 hash=f9b99bf7ec64 acc_so_far=45.45% elapsed=1082s
+  [ 12/50] correct=✗ len=2048 hash=511458152ddc acc_so_far=41.67% elapsed=1193s
+  [ 13/50] correct=✗ len=2048 hash=45486ec05607 acc_so_far=38.46% elapsed=1304s
+  [ 14/50] correct=✓ len=826 hash=cbce652bcdc9 acc_so_far=42.86% elapsed=1340s
+  [ 15/50] correct=✓ len=1467 hash=67d9c08b1f9c acc_so_far=46.67% elapsed=1411s
+  [ 16/50] correct=✗ len=2048 hash=167d4fcd9b8c acc_so_far=43.75% elapsed=1529s
+  [ 17/50] correct=✗ len=2048 hash=45700e2e4292 acc_so_far=41.18% elapsed=1638s
+  [ 18/50] correct=✗ len=2048 hash=3c157f20a3ff acc_so_far=38.89% elapsed=1757s
+  [ 19/50] correct=✗ len=2048 hash=a75b51f0c2a5 acc_so_far=36.84% elapsed=1872s
+  [ 20/50] correct=✗ len=2048 hash=870e64333d73 acc_so_far=35.00% elapsed=1983s
+  [ 21/50] correct=✗ len=2048 hash=1e5a5fecc70a acc_so_far=33.33% elapsed=2092s
+  [ 22/50] correct=✗ len=2048 hash=6b082aa0a4c5 acc_so_far=31.82% elapsed=2201s
+  [ 23/50] correct=✗ len=2048 hash=ba75630a4f29 acc_so_far=30.43% elapsed=2316s
+  [ 24/50] correct=✗ len=1991 hash=8f16c610e215 acc_so_far=29.17% elapsed=2421s
+  [ 25/50] correct=✗ len=2048 hash=9e44b5638082 acc_so_far=28.00% elapsed=2534s
+  [ 26/50] correct=✗ len=2048 hash=050516557352 acc_so_far=26.92% elapsed=2646s
+  [ 27/50] correct=✗ len=2048 hash=1b629c8f7165 acc_so_far=25.93% elapsed=2757s
+  [ 28/50] correct=✓ len=998 hash=9c8187419e6b acc_so_far=28.57% elapsed=2799s
+  [ 29/50] correct=✓ len=1646 hash=dda4005b013f acc_so_far=31.03% elapsed=2879s
+  [ 30/50] correct=✓ len=1748 hash=8af3f518f85d acc_so_far=33.33% elapsed=2968s
+  [ 31/50] correct=✗ len=2048 hash=fc356ff0d4c4 acc_so_far=32.26% elapsed=3077s
+  [ 32/50] correct=✗ len=2048 hash=e227ddd8703a acc_so_far=31.25% elapsed=3186s
+  [ 33/50] correct=✗ len=2048 hash=95672b58861f acc_so_far=30.30% elapsed=3297s
+  [ 34/50] correct=✗ len=2048 hash=aa46cf42e684 acc_so_far=29.41% elapsed=3407s
+  [ 35/50] correct=✗ len=2048 hash=b9ac4b6fa900 acc_so_far=28.57% elapsed=3517s
+  [ 36/50] correct=✗ len=2048 hash=14cbd9441527 acc_so_far=27.78% elapsed=3627s
+  [ 37/50] correct=✗ len=2048 hash=97f67246e1ff acc_so_far=27.03% elapsed=3737s
+  [ 38/50] correct=✓ len=1387 hash=d3ae953f2ed4 acc_so_far=28.95% elapsed=3800s
+  [ 39/50] correct=✓ len=1514 hash=d659e7a2f1a7 acc_so_far=30.77% elapsed=3872s
+  [ 40/50] correct=✗ len=2048 hash=0f9f31b96745 acc_so_far=30.00% elapsed=3981s
+  [ 41/50] correct=✓ len=1116 hash=7294b30217ec acc_so_far=31.71% elapsed=4031s
+  [ 42/50] correct=✗ len=2048 hash=a20b7443ab3e acc_so_far=30.95% elapsed=4141s
+  [ 43/50] correct=✓ len=1354 hash=26232c531d1a acc_so_far=32.56% elapsed=4203s
+  [ 44/50] correct=✗ len=2048 hash=7422b7acf623 acc_so_far=31.82% elapsed=4315s
+  [ 45/50] correct=✓ len=1142 hash=9f3f709701b4 acc_so_far=33.33% elapsed=4365s
+  [ 46/50] correct=✓ len=1351 hash=9406287a4001 acc_so_far=34.78% elapsed=4426s
+  [ 47/50] correct=✗ len=2048 hash=730d8bb389f9 acc_so_far=34.04% elapsed=4537s
+  [ 48/50] correct=✓ len=1095 hash=ce99afd22f86 acc_so_far=35.42% elapsed=4584s
+  [ 49/50] correct=✓ len=772 hash=5e93b7f2f476 acc_so_far=36.73% elapsed=4613s
+  [ 50/50] correct=✓ len=2048 hash=e2b2676b8977 acc_so_far=38.00% elapsed=4723s
+
+  RESULT: accuracy=38.00% (19/50), avg_len=1772.9, runtime=4722.8s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_math500_overnight/dllm_hybrid_bs16_seed0.json
+[2026-04-21 20:37:33] [w1] OK dllm_hybrid bs=16 seed=0 duration=4734s
+[2026-04-21 20:37:33] [w1] SKIP dllm_hybrid bs=8 seed=1 (claimed by other worker)
+[2026-04-21 20:37:33] [w1] START dllm_hybrid bs=16 seed=1
+=== method=dllm_hybrid bs=16 seed=1 ===
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.22s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.95s/it]
+  method activated: dllm_hybrid
+Loading MATH500 (n=50) ...
+  [  1/50] correct=✗ len=1539 hash=eae2e4d71d16 acc_so_far=0.00% elapsed=158s
+  [  2/50] correct=✗ len=2048 hash=4dd9f51a26c2 acc_so_far=0.00% elapsed=271s
+  [  3/50] correct=✓ len=1930 hash=2338be7d01e0 acc_so_far=33.33% elapsed=373s
+  [  4/50] correct=✓ len=1340 hash=6eac08b6627a acc_so_far=50.00% elapsed=433s
+  [  5/50] correct=✗ len=2048 hash=4f013fff3f60 acc_so_far=40.00% elapsed=558s
+  [  6/50] correct=✓ len=775 hash=cf484ee43dc5 acc_so_far=50.00% elapsed=589s
+  [  7/50] correct=✓ len=2048 hash=1e4414249d1f acc_so_far=57.14% elapsed=698s
+  [  8/50] correct=✗ len=2048 hash=8f1f09d6d0d4 acc_so_far=50.00% elapsed=809s
+  [  9/50] correct=✓ len=1164 hash=d9d47976e29f acc_so_far=55.56% elapsed=860s
+  [ 10/50] correct=✗ len=2048 hash=9829ba4f8372 acc_so_far=50.00% elapsed=975s
+  [ 11/50] correct=✗ len=2048 hash=f9b99bf7ec64 acc_so_far=45.45% elapsed=1085s
+  [ 12/50] correct=✗ len=2048 hash=511458152ddc acc_so_far=41.67% elapsed=1196s
+  [ 13/50] correct=✗ len=2048 hash=45486ec05607 acc_so_far=38.46% elapsed=1308s
+  [ 14/50] correct=✓ len=826 hash=cbce652bcdc9 acc_so_far=42.86% elapsed=1343s
+  [ 15/50] correct=✓ len=1467 hash=67d9c08b1f9c acc_so_far=46.67% elapsed=1414s
+  [ 16/50] correct=✗ len=2048 hash=167d4fcd9b8c acc_so_far=43.75% elapsed=1531s
+  [ 17/50] correct=✗ len=2048 hash=45700e2e4292 acc_so_far=41.18% elapsed=1641s
+  [ 18/50] correct=✗ len=2048 hash=3c157f20a3ff acc_so_far=38.89% elapsed=1759s
+  [ 19/50] correct=✗ len=2048 hash=a75b51f0c2a5 acc_so_far=36.84% elapsed=1875s
+  [ 20/50] correct=✗ len=2048 hash=870e64333d73 acc_so_far=35.00% elapsed=1985s
+  [ 21/50] correct=✗ len=2048 hash=1e5a5fecc70a acc_so_far=33.33% elapsed=2094s
+  [ 22/50] correct=✗ len=2048 hash=6b082aa0a4c5 acc_so_far=31.82% elapsed=2204s
+  [ 23/50] correct=✗ len=2048 hash=ba75630a4f29 acc_so_far=30.43% elapsed=2319s
+  [ 24/50] correct=✗ len=1991 hash=8f16c610e215 acc_so_far=29.17% elapsed=2424s
+  [ 25/50] correct=✗ len=2048 hash=9e44b5638082 acc_so_far=28.00% elapsed=2537s
+  [ 26/50] correct=✗ len=2048 hash=050516557352 acc_so_far=26.92% elapsed=2649s
+  [ 27/50] correct=✗ len=2048 hash=1b629c8f7165 acc_so_far=25.93% elapsed=2760s
+  [ 28/50] correct=✓ len=998 hash=9c8187419e6b acc_so_far=28.57% elapsed=2802s
+  [ 29/50] correct=✓ len=1646 hash=dda4005b013f acc_so_far=31.03% elapsed=2883s
+  [ 30/50] correct=✓ len=1748 hash=8af3f518f85d acc_so_far=33.33% elapsed=2972s
+  [ 31/50] correct=✗ len=2048 hash=fc356ff0d4c4 acc_so_far=32.26% elapsed=3082s
+  [ 32/50] correct=✗ len=2048 hash=e227ddd8703a acc_so_far=31.25% elapsed=3190s
+  [ 33/50] correct=✗ len=2048 hash=95672b58861f acc_so_far=30.30% elapsed=3301s
+  [ 34/50] correct=✗ len=2048 hash=aa46cf42e684 acc_so_far=29.41% elapsed=3412s
+  [ 35/50] correct=✗ len=2048 hash=b9ac4b6fa900 acc_so_far=28.57% elapsed=3522s
+  [ 36/50] correct=✗ len=2048 hash=14cbd9441527 acc_so_far=27.78% elapsed=3632s
+  [ 37/50] correct=✗ len=2048 hash=97f67246e1ff acc_so_far=27.03% elapsed=3742s
+  [ 38/50] correct=✓ len=1387 hash=d3ae953f2ed4 acc_so_far=28.95% elapsed=3805s
+  [ 39/50] correct=✓ len=1514 hash=d659e7a2f1a7 acc_so_far=30.77% elapsed=3877s
+  [ 40/50] correct=✗ len=2048 hash=0f9f31b96745 acc_so_far=30.00% elapsed=3987s
+  [ 41/50] correct=✓ len=1116 hash=7294b30217ec acc_so_far=31.71% elapsed=4036s
+  [ 42/50] correct=✗ len=2048 hash=a20b7443ab3e acc_so_far=30.95% elapsed=4147s
+  [ 43/50] correct=✓ len=1354 hash=26232c531d1a acc_so_far=32.56% elapsed=4209s
+  [ 44/50] correct=✗ len=2048 hash=7422b7acf623 acc_so_far=31.82% elapsed=4321s
+  [ 45/50] correct=✓ len=1142 hash=9f3f709701b4 acc_so_far=33.33% elapsed=4371s
+  [ 46/50] correct=✓ len=1351 hash=9406287a4001 acc_so_far=34.78% elapsed=4432s
+  [ 47/50] correct=✗ len=2048 hash=730d8bb389f9 acc_so_far=34.04% elapsed=4543s
+  [ 48/50] correct=✓ len=1095 hash=ce99afd22f86 acc_so_far=35.42% elapsed=4590s
+  [ 49/50] correct=✓ len=772 hash=5e93b7f2f476 acc_so_far=36.73% elapsed=4619s
+  [ 50/50] correct=✓ len=2048 hash=e2b2676b8977 acc_so_far=38.00% elapsed=4729s
+
+  RESULT: accuracy=38.00% (19/50), avg_len=1772.9, runtime=4728.8s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_math500_overnight/dllm_hybrid_bs16_seed1.json
+[2026-04-21 21:56:32] [w1] OK dllm_hybrid bs=16 seed=1 duration=4739s
+[2026-04-21 21:56:32] [w1] SKIP bf16_baseline bs=8 seed=1 (claimed by other worker)
+[2026-04-21 21:56:32] [w1] START bf16_baseline bs=16 seed=1
+=== method=bf16_baseline bs=16 seed=1 ===
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.13s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.82s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.87s/it]
+  method activated: bf16_baseline
+Loading MATH500 (n=50) ...
+  [  1/50] correct=✗ len=1316 hash=d582496c9a6f acc_so_far=0.00% elapsed=59s
+  [  2/50] correct=✗ len=2048 hash=9110bbb32d53 acc_so_far=0.00% elapsed=171s
+  [  3/50] correct=✓ len=1781 hash=f4b7802da987 acc_so_far=33.33% elapsed=260s
+  [  4/50] correct=✓ len=1335 hash=184d8a274b72 acc_so_far=50.00% elapsed=318s
+  [  5/50] correct=✗ len=2048 hash=72b01a220e52 acc_so_far=40.00% elapsed=442s
+  [  6/50] correct=✓ len=850 hash=9f41382399e0 acc_so_far=50.00% elapsed=475s
+  [  7/50] correct=✓ len=2048 hash=2165c4da22a8 acc_so_far=57.14% elapsed=583s
+  [  8/50] correct=✗ len=2048 hash=fa4322223a5b acc_so_far=50.00% elapsed=693s
+  [  9/50] correct=✓ len=1439 hash=a250ffe8c9e5 acc_so_far=55.56% elapsed=758s
+  [ 10/50] correct=✗ len=2048 hash=8ffafe685217 acc_so_far=50.00% elapsed=872s
+  [ 11/50] correct=✗ len=2048 hash=3c50fbc3be70 acc_so_far=45.45% elapsed=980s
+  [ 12/50] correct=✗ len=2048 hash=c2f57b398582 acc_so_far=41.67% elapsed=1090s
+  [ 13/50] correct=✗ len=2048 hash=088b58a7d44b acc_so_far=38.46% elapsed=1200s
+  [ 14/50] correct=✓ len=609 hash=c6cf4c9ebff7 acc_so_far=42.86% elapsed=1224s
+  [ 15/50] correct=✓ len=1628 hash=8c29516d8c3e acc_so_far=46.67% elapsed=1305s
+  [ 16/50] correct=✗ len=2048 hash=2aa997f4e411 acc_so_far=43.75% elapsed=1421s
+  [ 17/50] correct=✗ len=2048 hash=d84c92854af6 acc_so_far=41.18% elapsed=1528s
+  [ 18/50] correct=✗ len=2048 hash=462dbd5c777f acc_so_far=38.89% elapsed=1646s
+  [ 19/50] correct=✗ len=2048 hash=1316c95f1d30 acc_so_far=36.84% elapsed=1760s
+  [ 20/50] correct=✗ len=2048 hash=b788c80b5b9c acc_so_far=35.00% elapsed=1869s
+  [ 21/50] correct=✗ len=2048 hash=d89b08be7202 acc_so_far=33.33% elapsed=1976s
+  [ 22/50] correct=✗ len=2048 hash=58bf5eb4bf89 acc_so_far=31.82% elapsed=2084s
+  [ 23/50] correct=✗ len=2048 hash=0f022b8e4ce2 acc_so_far=30.43% elapsed=2197s
+  [ 24/50] correct=✗ len=2048 hash=be31a336518f acc_so_far=29.17% elapsed=2305s
+  [ 25/50] correct=✗ len=2048 hash=b3fb37a2876a acc_so_far=28.00% elapsed=2417s
+  [ 26/50] correct=✗ len=2048 hash=d6e2187056d0 acc_so_far=26.92% elapsed=2528s
+  [ 27/50] correct=✗ len=2048 hash=062f9f27080b acc_so_far=25.93% elapsed=2637s
+  [ 28/50] correct=✓ len=1044 hash=9225798e21dc acc_so_far=28.57% elapsed=2681s
+  [ 29/50] correct=✓ len=1897 hash=c65ae50ae1bd acc_so_far=31.03% elapsed=2778s
+  [ 30/50] correct=✓ len=1334 hash=87ef915079e0 acc_so_far=33.33% elapsed=2838s
+  [ 31/50] correct=✗ len=2048 hash=f63d7a0c721c acc_so_far=32.26% elapsed=2946s
+  [ 32/50] correct=✗ len=722 hash=6448e5d37612 acc_so_far=31.25% elapsed=2972s
+  [ 33/50] correct=✗ len=2048 hash=adef4011f9bc acc_so_far=30.30% elapsed=3081s
+  [ 34/50] correct=✓ len=2048 hash=c27148dc4de4 acc_so_far=32.35% elapsed=3190s
+  [ 35/50] correct=✓ len=1616 hash=d8c1d4b71cc4 acc_so_far=34.29% elapsed=3267s
+  [ 36/50] correct=✗ len=2048 hash=c0aa946e6d15 acc_so_far=33.33% elapsed=3376s
+  [ 37/50] correct=✗ len=2048 hash=7054fb7e5c1b acc_so_far=32.43% elapsed=3484s
+  [ 38/50] correct=✓ len=1451 hash=d54abe6b00b4 acc_so_far=34.21% elapsed=3550s
+  [ 39/50] correct=✓ len=1246 hash=c72a24157bdf acc_so_far=35.90% elapsed=3604s
+  [ 40/50] correct=✗ len=2048 hash=5c6095a0f106 acc_so_far=35.00% elapsed=3712s
+  [ 41/50] correct=✓ len=1254 hash=294cfc629fe3 acc_so_far=36.59% elapsed=3769s
+  [ 42/50] correct=✗ len=2048 hash=c21781ba4737 acc_so_far=35.71% elapsed=3878s
+  [ 43/50] correct=✓ len=1370 hash=40e302a0b536 acc_so_far=37.21% elapsed=3939s
+  [ 44/50] correct=✗ len=2048 hash=0df7da4b46e0 acc_so_far=36.36% elapsed=4050s
+  [ 45/50] correct=✓ len=2048 hash=11f7018ffd6c acc_so_far=37.78% elapsed=4160s
+  [ 46/50] correct=✓ len=2035 hash=27ac14df45ad acc_so_far=39.13% elapsed=4267s
+  [ 47/50] correct=✗ len=2048 hash=42108e0a8463 acc_so_far=38.30% elapsed=4376s
+  [ 48/50] correct=✓ len=1009 hash=e56fdb70f89b acc_so_far=39.58% elapsed=4417s
+  [ 49/50] correct=✓ len=1124 hash=f91c78123773 acc_so_far=40.82% elapsed=4464s
+  [ 50/50] correct=✓ len=1125 hash=538e1d9f15cd acc_so_far=42.00% elapsed=4511s
+
+  RESULT: accuracy=42.00% (21/50), avg_len=1752.5, runtime=4510.6s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_math500_overnight/bf16_baseline_bs16_seed1.json
+[2026-04-21 23:11:54] [w1] OK bf16_baseline bs=16 seed=1 duration=4522s
+[2026-04-21 23:11:54] [w1] SKIP dllm_cublaslt bs=8 seed=1 (already done)
+[2026-04-21 23:11:54] [w1] SKIP dllm_cublaslt bs=16 seed=1 (claimed by other worker)
+[2026-04-21 23:11:54] [w1] START dllm_triton bs=8 seed=1
+=== method=dllm_triton bs=8 seed=1 ===
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.28s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]
+  method activated: dllm_triton
+Loading MATH500 (n=50) ...
+  [  1/50] correct=✗ len=1338 hash=a41a994d185d acc_so_far=0.00% elapsed=213s
+  [  2/50] correct=✗ len=2048 hash=ccefaa22ec83 acc_so_far=0.00% elapsed=307s
+  [  3/50] correct=✓ len=1934 hash=1a4a7bdc7a2c acc_so_far=33.33% elapsed=394s
+  [  4/50] correct=✓ len=1102 hash=911a23473ff8 acc_so_far=50.00% elapsed=443s
+  [  5/50] correct=✗ len=2048 hash=7b819485766c acc_so_far=40.00% elapsed=539s
+  [  6/50] correct=✓ len=1020 hash=80c6fd52bc6b acc_so_far=50.00% elapsed=584s
+  [  7/50] correct=✓ len=1963 hash=2a06e833a99b acc_so_far=57.14% elapsed=671s
+  [  8/50] correct=✗ len=2048 hash=5530a6137fdd acc_so_far=50.00% elapsed=763s
+  [  9/50] correct=✓ len=1160 hash=9abc0b5270ba acc_so_far=55.56% elapsed=813s
+  [ 10/50] correct=✗ len=2048 hash=588962af5623 acc_so_far=50.00% elapsed=907s
+  [ 11/50] correct=✗ len=2048 hash=74a1301490c2 acc_so_far=45.45% elapsed=998s
+  [ 12/50] correct=✗ len=2048 hash=b978ce1ecaa7 acc_so_far=41.67% elapsed=1091s
+  [ 13/50] correct=✗ len=2048 hash=d2bc7889ff45 acc_so_far=38.46% elapsed=1183s
+  [ 14/50] correct=✓ len=729 hash=03863492d3e5 acc_so_far=42.86% elapsed=1215s
+  [ 15/50] correct=✓ len=2048 hash=f59bdb962225 acc_so_far=46.67% elapsed=1308s
+  [ 16/50] correct=✗ len=2048 hash=2efdafd013de acc_so_far=43.75% elapsed=1402s
+  [ 17/50] correct=✓ len=1557 hash=b906023355ef acc_so_far=47.06% elapsed=1470s
+  [ 18/50] correct=✗ len=2048 hash=eac612c568aa acc_so_far=44.44% elapsed=1563s
+  [ 19/50] correct=✗ len=2048 hash=6a925beda24b acc_so_far=42.11% elapsed=1656s
+  [ 20/50] correct=✗ len=2048 hash=20524e030743 acc_so_far=40.00% elapsed=1748s
+  [ 21/50] correct=✗ len=1263 hash=3cdef5cb88bb acc_so_far=38.10% elapsed=1803s
+  [ 22/50] correct=✗ len=2048 hash=0a3162a278ad acc_so_far=36.36% elapsed=1895s
+  [ 23/50] correct=✗ len=2048 hash=3ee4e8784ca9 acc_so_far=34.78% elapsed=1988s
+  [ 24/50] correct=✗ len=1993 hash=101230ddd2fa acc_so_far=33.33% elapsed=2077s
+  [ 25/50] correct=✗ len=2048 hash=5dfcc1291ad7 acc_so_far=32.00% elapsed=2170s
+  [ 26/50] correct=✗ len=2048 hash=3e0843705f56 acc_so_far=30.77% elapsed=2262s
+  [ 27/50] correct=✗ len=2048 hash=0a2b42d3c36f acc_so_far=29.63% elapsed=2354s
+  [ 28/50] correct=✓ len=1119 hash=f185e732bc5f acc_so_far=32.14% elapsed=2403s
+  [ 29/50] correct=✓ len=1760 hash=57354cfb5798 acc_so_far=34.48% elapsed=2481s
+  [ 30/50] correct=✓ len=2048 hash=d36cecb6d681 acc_so_far=36.67% elapsed=2574s
+  [ 31/50] correct=✗ len=2048 hash=003af9219859 acc_so_far=35.48% elapsed=2667s
+  [ 32/50] correct=✗ len=2048 hash=e0848d7f9a40 acc_so_far=34.38% elapsed=2761s
+  [ 33/50] correct=✗ len=2048 hash=59619a70cd73 acc_so_far=33.33% elapsed=2854s
+  [ 34/50] correct=✗ len=2048 hash=8109df76caa8 acc_so_far=32.35% elapsed=2946s
+  [ 35/50] correct=✗ len=2048 hash=e7d9509eb1b3 acc_so_far=31.43% elapsed=3039s
+  [ 36/50] correct=✓ len=1973 hash=aa8ef53bc488 acc_so_far=33.33% elapsed=3129s
+  [ 37/50] correct=✗ len=2048 hash=51930dac9d4c acc_so_far=32.43% elapsed=3221s
+  [ 38/50] correct=✓ len=1366 hash=317603de7210 acc_so_far=34.21% elapsed=3280s
+  [ 39/50] correct=✓ len=1121 hash=7cfcae4b039f acc_so_far=35.90% elapsed=3328s
+  [ 40/50] correct=✗ len=2048 hash=8930eb967599 acc_so_far=35.00% elapsed=3420s
+  [ 41/50] correct=✓ len=812 hash=431d99510007 acc_so_far=36.59% elapsed=3455s
+  [ 42/50] correct=✗ len=2048 hash=02ad44b4f224 acc_so_far=35.71% elapsed=3548s
+  [ 43/50] correct=✓ len=1157 hash=aa9c1f6e55f4 acc_so_far=37.21% elapsed=3599s
+  [ 44/50] correct=✗ len=2048 hash=8b15c24bf6a7 acc_so_far=36.36% elapsed=3692s
+  [ 45/50] correct=✗ len=2048 hash=266a1ef7b52d acc_so_far=35.56% elapsed=3785s
+  [ 46/50] correct=✓ len=1526 hash=e1fdbc99e966 acc_so_far=36.96% elapsed=3853s
+  [ 47/50] correct=✗ len=2048 hash=c37a8cd84d02 acc_so_far=36.17% elapsed=3945s
+  [ 48/50] correct=✓ len=849 hash=95652a5a23e1 acc_so_far=37.50% elapsed=3983s
+  [ 49/50] correct=✓ len=749 hash=0f752ff1d7e6 acc_so_far=38.78% elapsed=4016s
+  [ 50/50] correct=✓ len=1070 hash=54801a010b9a acc_so_far=40.00% elapsed=4064s
+
+  RESULT: accuracy=40.00% (20/50), avg_len=1739.1, runtime=4063.8s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_math500_overnight/dllm_triton_bs8_seed1.json
+[2026-04-22 00:19:49] [w1] OK dllm_triton bs=8 seed=1 duration=4075s
+[2026-04-22 00:19:49] [w1] START dllm_triton bs=16 seed=1
+=== method=dllm_triton bs=16 seed=1 ===
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.27s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.94s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.99s/it]
+  method activated: dllm_triton
+Loading MATH500 (n=50) ...
+  [  1/50] correct=✗ len=1217 hash=13bf0ab3fa6c acc_so_far=0.00% elapsed=226s
+  [  2/50] correct=✗ len=2048 hash=dc80a2d84d58 acc_so_far=0.00% elapsed=342s
+  [  3/50] correct=✓ len=1966 hash=4397b71d9b47 acc_so_far=33.33% elapsed=450s
+  [  4/50] correct=✓ len=1675 hash=8b2d0bab363a acc_so_far=50.00% elapsed=537s
+  [  5/50] correct=✗ len=2048 hash=287aa9f300a6 acc_so_far=40.00% elapsed=662s
+  [  6/50] correct=✓ len=1083 hash=55159cb8699f acc_so_far=50.00% elapsed=713s
+  [  7/50] correct=✗ len=2048 hash=268b83b2c5cf acc_so_far=42.86% elapsed=826s
+  [  8/50] correct=✗ len=2048 hash=c427e022a4df acc_so_far=37.50% elapsed=940s
+  [  9/50] correct=✓ len=1287 hash=5a4c2ffe6585 acc_so_far=44.44% elapsed=1002s
+  [ 10/50] correct=✗ len=2048 hash=863a8b292160 acc_so_far=40.00% elapsed=1120s
+  [ 11/50] correct=✗ len=2048 hash=f0938df0050b acc_so_far=36.36% elapsed=1233s
+  [ 12/50] correct=✗ len=2048 hash=f063b0b95e37 acc_so_far=33.33% elapsed=1348s
+  [ 13/50] correct=✗ len=2048 hash=bd389849a94b acc_so_far=30.77% elapsed=1463s
+  [ 14/50] correct=✓ len=809 hash=8fda731a7dfe acc_so_far=35.71% elapsed=1500s
+  [ 15/50] correct=✓ len=2020 hash=4b85c2b1032a acc_so_far=40.00% elapsed=1614s
+  [ 16/50] correct=✗ len=2048 hash=38cfe0a7d311 acc_so_far=37.50% elapsed=1734s
+  [ 17/50] correct=✓ len=2048 hash=c42a746dd3b4 acc_so_far=41.18% elapsed=1847s
+  [ 18/50] correct=✗ len=2048 hash=3f2e455fc86a acc_so_far=38.89% elapsed=1967s
+  [ 19/50] correct=✗ len=2048 hash=e92a6ce84a35 acc_so_far=36.84% elapsed=2085s
+  [ 20/50] correct=✗ len=2048 hash=a3af1a6383b3 acc_so_far=35.00% elapsed=2199s
+  [ 21/50] correct=✗ len=2048 hash=36d6931d6c39 acc_so_far=33.33% elapsed=2312s
+  [ 22/50] correct=✗ len=2048 hash=49bbd0074b26 acc_so_far=31.82% elapsed=2426s
+  [ 23/50] correct=✗ len=2048 hash=28b793fc07b2 acc_so_far=30.43% elapsed=2544s
+  [ 24/50] correct=✗ len=1654 hash=b322c1549433 acc_so_far=29.17% elapsed=2629s
+  [ 25/50] correct=✓ len=2048 hash=c999888ce8dc acc_so_far=32.00% elapsed=2744s
+  [ 26/50] correct=✗ len=2048 hash=e54a0725f609 acc_so_far=30.77% elapsed=2859s
+  [ 27/50] correct=✗ len=2048 hash=f135c452b1d0 acc_so_far=29.63% elapsed=2974s
+  [ 28/50] correct=✓ len=1272 hash=14bcb4466917 acc_so_far=32.14% elapsed=3036s
+  [ 29/50] correct=✓ len=1496 hash=d3446820ce4e acc_so_far=34.48% elapsed=3110s
+  [ 30/50] correct=✓ len=1781 hash=64579a2f7d6a acc_so_far=36.67% elapsed=3206s
+  [ 31/50] correct=✓ len=2048 hash=66c15a421460 acc_so_far=38.71% elapsed=3320s
+  [ 32/50] correct=✗ len=774 hash=355b150f9961 acc_so_far=37.50% elapsed=3354s
+  [ 33/50] correct=✓ len=1797 hash=3f741cd93bbc acc_so_far=39.39% elapsed=3450s
+  [ 34/50] correct=✗ len=2048 hash=028ad483f655 acc_so_far=38.24% elapsed=3565s
+  [ 35/50] correct=✗ len=2048 hash=14149a2556b5 acc_so_far=37.14% elapsed=3679s
+  [ 36/50] correct=✗ len=1644 hash=8763d6d60d06 acc_so_far=36.11% elapsed=3764s
+  [ 37/50] correct=✗ len=2048 hash=fb901a63e949 acc_so_far=35.14% elapsed=3878s
+  [ 38/50] correct=✓ len=1440 hash=80021a0f4519 acc_so_far=36.84% elapsed=3950s
+  [ 39/50] correct=✓ len=1120 hash=f8a10636b3fd acc_so_far=38.46% elapsed=4002s
+  [ 40/50] correct=✗ len=2048 hash=68bba22114e2 acc_so_far=37.50% elapsed=4116s
+  [ 41/50] correct=✓ len=759 hash=8bcb85b3fabd acc_so_far=39.02% elapsed=4151s
+  [ 42/50] correct=✗ len=2048 hash=e41a5aa60b35 acc_so_far=38.10% elapsed=4265s
+  [ 43/50] correct=✓ len=2048 hash=238ff11db599 acc_so_far=39.53% elapsed=4379s
+  [ 44/50] correct=✗ len=2048 hash=9f81fe9c163a acc_so_far=38.64% elapsed=4496s
+  [ 45/50] correct=✗ len=2048 hash=28f86b24f0f6 acc_so_far=37.78% elapsed=4611s
+  [ 46/50] correct=✓ len=1264 hash=916124724335 acc_so_far=39.13% elapsed=4672s
+  [ 47/50] correct=✗ len=2048 hash=9b16fb8c4931 acc_so_far=38.30% elapsed=4786s
+  [ 48/50] correct=✓ len=1052 hash=41b5d07b9de9 acc_so_far=39.58% elapsed=4835s
+  [ 49/50] correct=✓ len=991 hash=e2c09009677d acc_so_far=40.82% elapsed=4880s
+  [ 50/50] correct=✓ len=2048 hash=dc21fd451047 acc_so_far=42.00% elapsed=4995s
+
+  RESULT: accuracy=42.00% (21/50), avg_len=1770.8, runtime=4994.7s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_math500_overnight/dllm_triton_bs16_seed1.json
+[2026-04-22 01:43:14] [w1] OK dllm_triton bs=16 seed=1 duration=5005s
+[2026-04-22 01:43:14] [w1] === Worker w1 done. ===

@@ -1,0 +1,89 @@
+{
+  "config": {
+    "model": "/home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct",
+    "num_runs": 1000
+  },
+  "scenario1": {
+    "128": {
+      "page_size=16": {
+        "nonzero_count": 525,
+        "nonzero_pct": "52.5%",
+        "max_diff": "1.953125e-03",
+        "mean_diff": "7.554802e-05"
+      },
+      "page_size=64": {
+        "nonzero_count": 573,
+        "nonzero_pct": "57.3%",
+        "max_diff": "3.906250e-03",
+        "mean_diff": "9.361405e-05"
+      },
+      "page_size=7": {
+        "nonzero_count": 546,
+        "nonzero_pct": "54.6%",
+        "max_diff": "3.906250e-03",
+        "mean_diff": "8.987697e-05"
+      }
+    },
+    "256": {
+      "page_size=16": {
+        "nonzero_count": 706,
+        "nonzero_pct": "70.6%",
+        "max_diff": "1.953125e-03",
+        "mean_diff": "8.607523e-05"
+      },
+      "page_size=64": {
+        "nonzero_count": 717,
+        "nonzero_pct": "71.7%",
+        "max_diff": "1.953125e-03",
+        "mean_diff": "9.297847e-05"
+      },
+      "page_size=7": {
+        "nonzero_count": 717,
+        "nonzero_pct": "71.7%",
+        "max_diff": "1.953125e-03",
+        "mean_diff": "8.944219e-05"
+      }
+    },
+    "512": {
+      "page_size=16": {
+        "nonzero_count": 791,
+        "nonzero_pct": "79.1%",
+        "max_diff": "9.765625e-04",
+        "mean_diff": "8.271115e-05"
+      },
+      "page_size=64": {
+        "nonzero_count": 788,
+        "nonzero_pct": "78.8%",
+        "max_diff": "9.765625e-04",
+        "mean_diff": "7.609665e-05"
+      },
+      "page_size=7": {
+        "nonzero_count": 788,
+        "nonzero_pct": "78.8%",
+        "max_diff": "9.765625e-04",
+        "mean_diff": "8.155865e-05"
+      }
+    },
+    "1024": {
+      "page_size=16": {
+        "nonzero_count": 721,
+        "nonzero_pct": "72.1%",
+        "max_diff": "9.765625e-04",
+        "mean_diff": "5.159851e-05"
+      },
+      "page_size=64": {
+        "nonzero_count": 707,
+        "nonzero_pct": "70.7%",
+        "max_diff": "4.882812e-04",
+        "mean_diff": "4.336078e-05"
+      },
+      "page_size=7": {
+        "nonzero_count": 747,
+        "nonzero_pct": "74.7%",
+        "max_diff": "9.765625e-04",
+        "mean_diff": "5.733421e-05"
+      }
+    }
+  },
+  "elapsed_seconds": 84.5
+}

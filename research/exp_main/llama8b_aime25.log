@@ -1,0 +1,12 @@
+GPU: NVIDIA RTX A6000  free=50.6 GB
+
+============================================================================================
+  MODEL:llama8b  DATASET:aime25  bs=[1, 8, 16]  gen_len=512  N=30  fp32_all=False
+============================================================================================
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.00s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.03it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.53it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.30it/s]
+  Loaded 30 problems from aime25
+
+-- method: BF16 --
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+   [  5/30] elapsed=231s  div=7/10
+   [ 10/30] elapsed=469s  div=17/20

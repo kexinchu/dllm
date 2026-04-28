@@ -1,0 +1,578 @@
+{
+  "table9_fix": [
+    {
+      "mode": "BF16",
+      "bs": 2,
+      "seq_len": 182,
+      "max_diff": 7.46875,
+      "mean_diff": 0.09469326585531235,
+      "argmax_flips": 1,
+      "flip_rate": 0.005494505494505495
+    },
+    {
+      "mode": "BF16",
+      "bs": 4,
+      "seq_len": 182,
+      "max_diff": 8.460693359375,
+      "mean_diff": 0.11886093020439148,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "mode": "BF16",
+      "bs": 8,
+      "seq_len": 182,
+      "max_diff": 7.46875,
+      "mean_diff": 0.09469326585531235,
+      "argmax_flips": 1,
+      "flip_rate": 0.005494505494505495
+    },
+    {
+      "mode": "BF16",
+      "bs": 16,
+      "seq_len": 182,
+      "max_diff": 8.59375,
+      "mean_diff": 0.10371540486812592,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "mode": "BF16",
+      "bs": 32,
+      "seq_len": 182,
+      "max_diff": 8.55859375,
+      "mean_diff": 0.11597561836242676,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "mode": "FP32_accum",
+      "bs": 2,
+      "seq_len": 182,
+      "max_diff": 6.78125,
+      "mean_diff": 0.07888457924127579,
+      "argmax_flips": 1,
+      "flip_rate": 0.005494505494505495
+    },
+    {
+      "mode": "FP32_accum",
+      "bs": 4,
+      "seq_len": 182,
+      "max_diff": 8.3984375,
+      "mean_diff": 0.09407848119735718,
+      "argmax_flips": 1,
+      "flip_rate": 0.005494505494505495
+    },
+    {
+      "mode": "FP32_accum",
+      "bs": 8,
+      "seq_len": 182,
+      "max_diff": 6.78125,
+      "mean_diff": 0.07888457924127579,
+      "argmax_flips": 1,
+      "flip_rate": 0.005494505494505495
+    },
+    {
+      "mode": "FP32_accum",
+      "bs": 16,
+      "seq_len": 182,
+      "max_diff": 6.78125,
+      "mean_diff": 0.07888457924127579,
+      "argmax_flips": 1,
+      "flip_rate": 0.005494505494505495
+    },
+    {
+      "mode": "FP32_accum",
+      "bs": 32,
+      "seq_len": 182,
+      "max_diff": 6.78125,
+      "mean_diff": 0.07888457924127579,
+      "argmax_flips": 1,
+      "flip_rate": 0.005494505494505495
+    }
+  ],
+  "seqlen_gemm": [
+    {
+      "seq_len": 32,
+      "bs": 1,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 32,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.07636220753192902
+    },
+    {
+      "seq_len": 32,
+      "bs": 32,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.07636220753192902
+    },
+    {
+      "seq_len": 32,
+      "bs": 128,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 32,
+      "bs": 1,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 32,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 1.0,
+      "mean_diff": 0.00016129191499203444
+    },
+    {
+      "seq_len": 32,
+      "bs": 32,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 32,
+      "bs": 128,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 64,
+      "bs": 1,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 64,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.05118834972381592
+    },
+    {
+      "seq_len": 64,
+      "bs": 32,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.09253276139497757
+    },
+    {
+      "seq_len": 64,
+      "bs": 128,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.05118834972381592
+    },
+    {
+      "seq_len": 64,
+      "bs": 1,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 64,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 1.0,
+      "mean_diff": 0.0001999244705075398
+    },
+    {
+      "seq_len": 64,
+      "bs": 32,
+      "mode": "FP32_accum",
+      "max_diff": 1.0,
+      "mean_diff": 0.0001999244705075398
+    },
+    {
+      "seq_len": 64,
+      "bs": 128,
+      "mode": "FP32_accum",
+      "max_diff": 1.0,
+      "mean_diff": 0.0001999244705075398
+    },
+    {
+      "seq_len": 128,
+      "bs": 1,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.07586660981178284
+    },
+    {
+      "seq_len": 128,
+      "bs": 32,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 128,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 1,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 32,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 128,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 256,
+      "bs": 1,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 256,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 256,
+      "bs": 32,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.075966015458107
+    },
+    {
+      "seq_len": 256,
+      "bs": 128,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.075966015458107
+    },
+    {
+      "seq_len": 256,
+      "bs": 1,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 256,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 1.0,
+      "mean_diff": 0.00015529962547589093
+    },
+    {
+      "seq_len": 256,
+      "bs": 32,
+      "mode": "FP32_accum",
+      "max_diff": 1.0,
+      "mean_diff": 0.00015529962547589093
+    },
+    {
+      "seq_len": 256,
+      "bs": 128,
+      "mode": "FP32_accum",
+      "max_diff": 1.0,
+      "mean_diff": 0.00015529962547589093
+    },
+    {
+      "seq_len": 512,
+      "bs": 1,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 512,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 512,
+      "bs": 32,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 512,
+      "bs": 128,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 512,
+      "bs": 1,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 512,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 512,
+      "bs": 32,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 512,
+      "bs": 128,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 1024,
+      "bs": 1,
+      "mode": "BF16",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 1024,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.0759427398443222
+    },
+    {
+      "seq_len": 1024,
+      "bs": 32,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.0759427398443222
+    },
+    {
+      "seq_len": 1024,
+      "bs": 128,
+      "mode": "BF16",
+      "max_diff": 2.0,
+      "mean_diff": 0.0759427398443222
+    },
+    {
+      "seq_len": 1024,
+      "bs": 1,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 1024,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 1024,
+      "bs": 32,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    },
+    {
+      "seq_len": 1024,
+      "bs": 128,
+      "mode": "FP32_accum",
+      "max_diff": 0.0,
+      "mean_diff": 0.0
+    }
+  ],
+  "seqlen_model": [
+    {
+      "seq_len": 32,
+      "bs": 2,
+      "mode": "BF16",
+      "max_diff": 0.90625,
+      "mean_diff": 0.0283783208578825,
+      "argmax_flips": 1,
+      "flip_rate": 0.03125
+    },
+    {
+      "seq_len": 32,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 0.6015625,
+      "mean_diff": 0.02611817792057991,
+      "argmax_flips": 1,
+      "flip_rate": 0.03125
+    },
+    {
+      "seq_len": 32,
+      "bs": 2,
+      "mode": "FP32_accum",
+      "max_diff": 1.25,
+      "mean_diff": 0.02635311894118786,
+      "argmax_flips": 1,
+      "flip_rate": 0.03125
+    },
+    {
+      "seq_len": 32,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 0.8125,
+      "mean_diff": 0.025926869362592697,
+      "argmax_flips": 1,
+      "flip_rate": 0.03125
+    },
+    {
+      "seq_len": 64,
+      "bs": 2,
+      "mode": "BF16",
+      "max_diff": 2.5625,
+      "mean_diff": 0.05278288945555687,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "seq_len": 64,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 4.421875,
+      "mean_diff": 0.051457587629556656,
+      "argmax_flips": 1,
+      "flip_rate": 0.015625
+    },
+    {
+      "seq_len": 64,
+      "bs": 2,
+      "mode": "FP32_accum",
+      "max_diff": 5.734375,
+      "mean_diff": 0.06008066609501839,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "seq_len": 64,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 5.69921875,
+      "mean_diff": 0.05918850004673004,
+      "argmax_flips": 1,
+      "flip_rate": 0.015625
+    },
+    {
+      "seq_len": 128,
+      "bs": 2,
+      "mode": "BF16",
+      "max_diff": 6.484375,
+      "mean_diff": 0.08363660424947739,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 8.65625,
+      "mean_diff": 0.07466195523738861,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 2,
+      "mode": "FP32_accum",
+      "max_diff": 8.46875,
+      "mean_diff": 0.09137599170207977,
+      "argmax_flips": 0,
+      "flip_rate": 0.0
+    },
+    {
+      "seq_len": 128,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 5.7421875,
+      "mean_diff": 0.05714239925146103,
+      "argmax_flips": 1,
+      "flip_rate": 0.0078125
+    },
+    {
+      "seq_len": 200,
+      "bs": 2,
+      "mode": "BF16",
+      "max_diff": 8.080078125,
+      "mean_diff": 0.10116869956254959,
+      "argmax_flips": 1,
+      "flip_rate": 0.005
+    },
+    {
+      "seq_len": 200,
+      "bs": 8,
+      "mode": "BF16",
+      "max_diff": 6.984375,
+      "mean_diff": 0.0764034315943718,
+      "argmax_flips": 1,
+      "flip_rate": 0.005
+    },
+    {
+      "seq_len": 200,
+      "bs": 2,
+      "mode": "FP32_accum",
+      "max_diff": 8.65380859375,
+      "mean_diff": 0.10534652322530746,
+      "argmax_flips": 1,
+      "flip_rate": 0.005
+    },
+    {
+      "seq_len": 200,
+      "bs": 8,
+      "mode": "FP32_accum",
+      "max_diff": 8.65380859375,
+      "mean_diff": 0.10534652322530746,
+      "argmax_flips": 1,
+      "flip_rate": 0.005
+    }
+  ]
+}

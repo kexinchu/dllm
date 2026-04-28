@@ -1,0 +1,547 @@
+[2026-04-23 16:51:40] [w1] === dtype-sweep worker w1 on GPU 1 starting ===
+[2026-04-23 16:51:40] [w1] dtype-sweep: 56 configs, n_prob=10, gen_len=256
+[2026-04-23 16:51:40] [w1] [1] SKIP ds7_bf16_bs1 (claimed by other)
+[2026-04-23 16:51:40] [w1] [2] START ds7_fp32_bs1  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=float32 bs=1
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=1 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.21s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.89s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.94s/it]
+  model loaded in 5.1s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=59s
+  [ 10/10] acc=0.0% elapsed=117s
+
+  RESULT: acc=0.0% avg_len=256 rt=117s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_fp32_bs1.json
+[2026-04-23 16:53:48] [w1] [2] OK ds7_fp32_bs1 duration=128s
+[2026-04-23 16:53:48] [w1] [3] SKIP ds7_dllm_bs1 (claimed by other)
+[2026-04-23 16:53:48] [w1] [4] START lm8_bf16_bs1  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=bfloat16 bs=1
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=1 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.01it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.04it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.54it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.31it/s]
+  model loaded in 4.3s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=39s
+  [ 10/10] acc=10.0% elapsed=75s
+
+  RESULT: acc=10.0% avg_len=244 rt=75s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_bf16_bs1.json
+[2026-04-23 16:55:11] [w1] [4] OK lm8_bf16_bs1 duration=83s
+[2026-04-23 16:55:11] [w1] [5] START lm8_fp32_bs1  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=float32 bs=1
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=1 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.02s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.03it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.52it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.29it/s]
+  model loaded in 4.3s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=61s
+  [ 10/10] acc=10.0% elapsed=118s
+
+  RESULT: acc=10.0% avg_len=243 rt=118s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_fp32_bs1.json
+[2026-04-23 16:57:18] [w1] [5] OK lm8_fp32_bs1 duration=127s
+[2026-04-23 16:57:18] [w1] [6] SKIP lm8_dllm_bs1 (claimed by other)
+[2026-04-23 16:57:18] [w1] [7] START p4_bf16_bs1  model=Phi-4 method=bf16_baseline dtype=bfloat16 bs=1
+[Phi-4 | math500 | bf16_baseline | bs=1 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.01it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.03it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.06it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.08it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]
+  model loaded in 6.7s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=63s
+  [ 10/10] acc=0.0% elapsed=126s
+
+  RESULT: acc=0.0% avg_len=256 rt=126s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/p4_bf16_bs1.json
+[2026-04-23 16:59:35] [w1] [7] OK p4_bf16_bs1 duration=137s
+[2026-04-23 16:59:35] [w1] [8] SKIP p4_dllm_bs1 (claimed by other)
+[2026-04-23 16:59:35] [w1] [9] START ds7_bf16_bs4  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=bfloat16 bs=4
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=4 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.13s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.82s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.87s/it]
+  model loaded in 5.0s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=36s
+  [ 10/10] acc=0.0% elapsed=71s
+
+  RESULT: acc=0.0% avg_len=256 rt=71s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_bf16_bs4.json
+[2026-04-23 17:00:58] [w1] [9] OK ds7_bf16_bs4 duration=83s
+[2026-04-23 17:00:58] [w1] [10] START ds7_fp32_bs4  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=float32 bs=4
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=4 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.27s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.94s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.99s/it]
+  model loaded in 5.3s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=66s
+  [ 10/10] acc=0.0% elapsed=131s
+
+  RESULT: acc=0.0% avg_len=256 rt=131s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_fp32_bs4.json
+[2026-04-23 17:03:19] [w1] [10] OK ds7_fp32_bs4 duration=141s
+[2026-04-23 17:03:20] [w1] [11] START ds7_dllm_bs4  model=DeepSeek-R1-Distill-Qwen-7B method=dllm_hybrid dtype=bfloat16 bs=4
+[DeepSeek-R1-Distill-Qwen-7B | math500 | dllm_hybrid | bs=4 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.31s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.98s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.03s/it]
+  model loaded in 5.3s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=110s
+  [ 10/10] acc=0.0% elapsed=153s
+
+  RESULT: acc=0.0% avg_len=256 rt=153s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_dllm_bs4.json
+[2026-04-23 17:06:03] [w1] [11] OK ds7_dllm_bs4 duration=163s
+[2026-04-23 17:06:03] [w1] [12] SKIP lm8_bf16_bs4 (claimed by other)
+[2026-04-23 17:06:03] [w1] [13] START lm8_fp32_bs4  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=float32 bs=4
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=4 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.16s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.12s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.29it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.10it/s]
+  model loaded in 4.9s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=72s
+  [ 10/10] acc=10.0% elapsed=138s
+
+  RESULT: acc=10.0% avg_len=243 rt=138s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_fp32_bs4.json
+[2026-04-23 17:08:31] [w1] [13] OK lm8_fp32_bs4 duration=148s
+[2026-04-23 17:08:31] [w1] [14] SKIP lm8_dllm_bs4 (claimed by other)
+[2026-04-23 17:08:31] [w1] [15] START p4_bf16_bs4  model=Phi-4 method=bf16_baseline dtype=bfloat16 bs=4
+[Phi-4 | math500 | bf16_baseline | bs=4 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.02s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:02<00:04,  1.01s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.01it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.03it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.02it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.02it/s]
+  model loaded in 6.9s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=67s
+  [ 10/10] acc=0.0% elapsed=132s
+
+  RESULT: acc=0.0% avg_len=256 rt=132s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/p4_bf16_bs4.json
+[2026-04-23 17:10:55] [w1] [15] OK p4_bf16_bs4 duration=144s
+[2026-04-23 17:10:55] [w1] [16] SKIP p4_dllm_bs4 (claimed by other)
+[2026-04-23 17:10:55] [w1] [17] START ds7_bf16_bs8  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=bfloat16 bs=8
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=8 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.18s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.87s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.91s/it]
+  model loaded in 5.1s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=39s
+  [ 10/10] acc=0.0% elapsed=76s
+
+  RESULT: acc=0.0% avg_len=256 rt=76s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_bf16_bs8.json
+[2026-04-23 17:12:22] [w1] [17] OK ds7_bf16_bs8 duration=87s
+[2026-04-23 17:12:22] [w1] [18] START ds7_fp32_bs8  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=float32 bs=8
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=8 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.29s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]
+  model loaded in 5.3s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=74s
+  [ 10/10] acc=0.0% elapsed=144s
+
+  RESULT: acc=0.0% avg_len=256 rt=144s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_fp32_bs8.json
+[2026-04-23 17:14:57] [w1] [18] OK ds7_fp32_bs8 duration=155s
+[2026-04-23 17:14:57] [w1] [19] SKIP ds7_dllm_bs8 (claimed by other)
+[2026-04-23 17:14:57] [w1] [20] START lm8_bf16_bs8  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=bfloat16 bs=8
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=8 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.02it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.06it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.08it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.57it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.34it/s]
+  model loaded in 4.2s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=44s
+  [ 10/10] acc=10.0% elapsed=84s
+
+  RESULT: acc=10.0% avg_len=246 rt=84s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_bf16_bs8.json
+[2026-04-23 17:16:30] [w1] [20] OK lm8_bf16_bs8 duration=93s
+[2026-04-23 17:16:30] [w1] [21] START lm8_fp32_bs8  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=float32 bs=8
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=8 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.16s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.13s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.28it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.09it/s]
+  model loaded in 4.8s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=85s
+  [ 10/10] acc=10.0% elapsed=160s
+
+  RESULT: acc=10.0% avg_len=243 rt=160s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_fp32_bs8.json
+[2026-04-23 17:19:21] [w1] [21] OK lm8_fp32_bs8 duration=171s
+[2026-04-23 17:19:21] [w1] [22] SKIP lm8_dllm_bs8 (claimed by other)
+[2026-04-23 17:19:21] [w1] [23] START p4_bf16_bs8  model=Phi-4 method=bf16_baseline dtype=bfloat16 bs=8
+[Phi-4 | math500 | bf16_baseline | bs=8 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:05,  1.01s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.01it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.03it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.05it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.03it/s]
+  model loaded in 6.8s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=73s
+  [ 10/10] acc=0.0% elapsed=143s
+
+  RESULT: acc=0.0% avg_len=256 rt=143s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/p4_bf16_bs8.json
+[2026-04-23 17:21:56] [w1] [23] OK p4_bf16_bs8 duration=155s
+[2026-04-23 17:21:56] [w1] [24] SKIP p4_dllm_bs8 (claimed by other)
+[2026-04-23 17:21:56] [w1] [25] START ds7_bf16_bs16  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=bfloat16 bs=16
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=16 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.11s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.81s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.85s/it]
+  model loaded in 5.4s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=44s
+  [ 10/10] acc=0.0% elapsed=86s
+
+  RESULT: acc=0.0% avg_len=256 rt=86s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_bf16_bs16.json
+[2026-04-23 17:23:33] [w1] [25] OK ds7_bf16_bs16 duration=97s
+[2026-04-23 17:23:33] [w1] [26] START ds7_fp32_bs16  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=float32 bs=16
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=16 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.33s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.99s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
+  model loaded in 5.3s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=86s
+  [ 10/10] acc=0.0% elapsed=166s
+
+  RESULT: acc=0.0% avg_len=256 rt=166s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_fp32_bs16.json
+[2026-04-23 17:26:30] [w1] [26] OK ds7_fp32_bs16 duration=177s
+[2026-04-23 17:26:30] [w1] [27] SKIP ds7_dllm_bs16 (claimed by other)
+[2026-04-23 17:26:30] [w1] [28] START lm8_bf16_bs16  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=bfloat16 bs=16
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=16 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.00it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.04it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.54it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.31it/s]
+  model loaded in 4.2s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=52s
+  [ 10/10] acc=10.0% elapsed=100s
+
+  RESULT: acc=10.0% avg_len=253 rt=100s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_bf16_bs16.json
+[2026-04-23 17:28:19] [w1] [28] OK lm8_bf16_bs16 duration=109s
+[2026-04-23 17:28:19] [w1] [29] START lm8_fp32_bs16  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=float32 bs=16
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=16 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.02s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.03it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.52it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.30it/s]
+  model loaded in 4.2s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=104s
+  [ 10/10] acc=10.0% elapsed=193s
+
+  RESULT: acc=10.0% avg_len=243 rt=193s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_fp32_bs16.json
+[2026-04-23 17:31:41] [w1] [29] OK lm8_fp32_bs16 duration=202s
+[2026-04-23 17:31:41] [w1] [30] SKIP lm8_dllm_bs16 (claimed by other)
+[2026-04-23 17:31:41] [w1] [31] START p4_bf16_bs16  model=Phi-4 method=bf16_baseline dtype=bfloat16 bs=16
+[Phi-4 | math500 | bf16_baseline | bs=16 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.06it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.08it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.11it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.13it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.10it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.10it/s]
+  model loaded in 6.4s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=85s
+  [ 10/10] acc=0.0% elapsed=164s
+
+  RESULT: acc=0.0% avg_len=256 rt=164s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/p4_bf16_bs16.json
+[2026-04-23 17:34:36] [w1] [31] OK p4_bf16_bs16 duration=175s
+[2026-04-23 17:34:36] [w1] [32] SKIP p4_dllm_bs16 (claimed by other)
+[2026-04-23 17:34:36] [w1] [33] START ds7_bf16_bs32  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=bfloat16 bs=32
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=32 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.27s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.89s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.95s/it]
+  model loaded in 5.7s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=54s
+  [ 10/10] acc=0.0% elapsed=104s
+
+  RESULT: acc=0.0% avg_len=256 rt=104s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_bf16_bs32.json
+[2026-04-23 17:36:31] [w1] [33] OK ds7_bf16_bs32 duration=115s
+[2026-04-23 17:36:31] [w1] [34] START ds7_fp32_bs32  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=float32 bs=32
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=32 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.41s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.97s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
+  model loaded in 5.8s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=112s
+  [ 10/10] acc=0.0% elapsed=212s
+
+  RESULT: acc=0.0% avg_len=256 rt=212s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_fp32_bs32.json
+[2026-04-23 17:40:14] [w1] [34] OK ds7_fp32_bs32 duration=223s
+[2026-04-23 17:40:14] [w1] [35] SKIP ds7_dllm_bs32 (claimed by other)
+[2026-04-23 17:40:14] [w1] [36] START lm8_bf16_bs32  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=bfloat16 bs=32
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=32 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.14s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.13s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.27it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.09it/s]
+  model loaded in 4.8s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=69s
+  [ 10/10] acc=10.0% elapsed=131s
+
+  RESULT: acc=10.0% avg_len=254 rt=131s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_bf16_bs32.json
+[2026-04-23 17:42:35] [w1] [36] OK lm8_bf16_bs32 duration=141s
+[2026-04-23 17:42:35] [w1] [37] SKIP lm8_fp32_bs32 (claimed by other)
+[2026-04-23 17:42:35] [w1] [38] START lm8_dllm_bs32  model=Llama-3.1-8B-Instruct method=dllm_hybrid dtype=bfloat16 bs=32
+[Llama-3.1-8B-Instruct | math500 | dllm_hybrid | bs=32 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.12s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.17s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.12s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.28it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.09it/s]
+  model loaded in 4.8s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=200s
+  [ 10/10] acc=10.0% elapsed=258s
+
+  RESULT: acc=10.0% avg_len=245 rt=258s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_dllm_bs32.json
+[2026-04-23 17:47:04] [w1] [38] OK lm8_dllm_bs32 duration=269s
+[2026-04-23 17:47:04] [w1] [39] SKIP p4_bf16_bs32 (claimed by other)
+[2026-04-23 17:47:04] [w1] [40] START p4_dllm_bs32  model=Phi-4 method=dllm_hybrid dtype=bfloat16 bs=32
+[Phi-4 | math500 | dllm_hybrid | bs=32 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.01it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.02it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.05it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.07it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]
+  model loaded in 6.7s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=326s
+  [ 10/10] acc=0.0% elapsed=424s
+
+  RESULT: acc=0.0% avg_len=256 rt=424s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/p4_dllm_bs32.json
+[2026-04-23 17:54:19] [w1] [40] OK p4_dllm_bs32 duration=435s
+[2026-04-23 17:54:19] [w1] [41] SKIP ds7_bf16_bs64 (done)
+[2026-04-23 17:54:19] [w1] [42] SKIP ds7_fp32_bs64 (claimed by other)
+[2026-04-23 17:54:19] [w1] [43] START ds7_dllm_bs64  model=DeepSeek-R1-Distill-Qwen-7B method=dllm_hybrid dtype=bfloat16 bs=64
+[DeepSeek-R1-Distill-Qwen-7B | math500 | dllm_hybrid | bs=64 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.31s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.98s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.03s/it]
+  model loaded in 5.3s on cuda:0
+  dataset math500: 10 problems loaded
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 299, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 250, in main
+    text, toks, lps = generate_one(
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 139, in generate_one
+    tok = lps.argmax().item()
+RuntimeError: CUDA error: an illegal memory access was encountered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+[2026-04-23 17:58:17] [w1] [43] FAIL ds7_dllm_bs64 rc=1 duration=238s
+[2026-04-23 17:58:17] [w1] [44] SKIP lm8_bf16_bs64 (done)
+[2026-04-23 17:58:17] [w1] [45] START lm8_fp32_bs64  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=float32 bs=64
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=64 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.03s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.01it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.49it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.27it/s]
+  model loaded in 4.4s on cuda:0
+  dataset math500: 10 problems loaded
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 299, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 250, in main
+    text, toks, lps = generate_one(
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 135, in generate_one
+    out = model(input_ids=ids, use_cache=True)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 473, in forward
+    logits = self.lm_head(hidden_states[:, slice_indices, :])
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 11.56 GiB. GPU 0 has a total capacity of 47.40 GiB of which 7.20 GiB is free. Including non-PyTorch memory, this process has 40.20 GiB memory in use. Of the allocated memory 36.20 GiB is allocated by PyTorch, and 3.69 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-04-23 18:01:20] [w1] [45] FAIL lm8_fp32_bs64 rc=1 duration=183s
+[2026-04-23 18:01:20] [w1] [46] SKIP lm8_dllm_bs64 (claimed by other)
+[2026-04-23 18:01:20] [w1] [47] START p4_bf16_bs64  model=Phi-4 method=bf16_baseline dtype=bfloat16 bs=64
+[Phi-4 | math500 | bf16_baseline | bs=64 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.01it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.02it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.05it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.07it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.04it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.05it/s]
+  model loaded in 6.8s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=156s
+  [ 10/10] acc=0.0% elapsed=292s
+
+  RESULT: acc=0.0% avg_len=256 rt=292s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/p4_bf16_bs64.json
+[2026-04-23 18:06:23] [w1] [47] OK p4_bf16_bs64 duration=303s
+[2026-04-23 18:06:23] [w1] [48] SKIP p4_dllm_bs64 (claimed by other)
+[2026-04-23 18:06:23] [w1] [49] START ds7_bf16_bs128  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=bfloat16 bs=128
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=128 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.40s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.01s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.07s/it]
+  model loaded in 6.0s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=0.0% elapsed=120s
+  [ 10/10] acc=0.0% elapsed=221s
+
+  RESULT: acc=0.0% avg_len=256 rt=221s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/ds7_bf16_bs128.json
+[2026-04-23 18:10:16] [w1] [49] OK ds7_bf16_bs128 duration=233s
+[2026-04-23 18:10:16] [w1] [50] START ds7_fp32_bs128  model=DeepSeek-R1-Distill-Qwen-7B method=bf16_baseline dtype=float32 bs=128
+[DeepSeek-R1-Distill-Qwen-7B | math500 | bf16_baseline | bs=128 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.34s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.05s/it]
+  model loaded in 5.4s on cuda:0
+  dataset math500: 10 problems loaded
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 299, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 250, in main
+    text, toks, lps = generate_one(
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 135, in generate_one
+    out = model(input_ids=ids, use_cache=True)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 449, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 384, in forward
+    hidden_states = decoder_layer(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 249, in forward
+    hidden_states = self.mlp(hidden_states)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 46, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.25 GiB. GPU 0 has a total capacity of 47.40 GiB of which 1.38 GiB is free. Including non-PyTorch memory, this process has 46.01 GiB memory in use. Of the allocated memory 38.71 GiB is allocated by PyTorch, and 7.00 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-04-23 18:14:04] [w1] [50] FAIL ds7_fp32_bs128 rc=1 duration=228s
+[2026-04-23 18:14:04] [w1] [51] SKIP ds7_dllm_bs128 (claimed by other)
+[2026-04-23 18:14:04] [w1] [52] START lm8_bf16_bs128  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=bfloat16 bs=128
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=128 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.00s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.04it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.53it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.30it/s]
+  model loaded in 4.3s on cuda:0
+  dataset math500: 10 problems loaded
+  [  5/10] acc=20.0% elapsed=167s
+  [ 10/10] acc=10.0% elapsed=299s
+
+  RESULT: acc=10.0% avg_len=246 rt=299s
+Saved -> /home/kec23008/docker-sys/dllm/research/exp_matrix_dtype/lm8_bf16_bs128.json
+[2026-04-23 18:19:12] [w1] [52] OK lm8_bf16_bs128 duration=308s
+[2026-04-23 18:19:12] [w1] [53] START lm8_fp32_bs128  model=Llama-3.1-8B-Instruct method=bf16_baseline dtype=float32 bs=128
+[Llama-3.1-8B-Instruct | math500 | bf16_baseline | bs=128 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.15s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.14s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.26it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.08it/s]
+  model loaded in 4.9s on cuda:0
+  dataset math500: 10 problems loaded
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 299, in <module>
+    
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 250, in main
+    "per_problem": [],
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 135, in generate_one
+    with torch.no_grad():
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 473, in forward
+    logits = self.lm_head(hidden_states[:, slice_indices, :])
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.91 GiB. GPU 0 has a total capacity of 47.40 GiB of which 8.27 GiB is free. Including non-PyTorch memory, this process has 39.12 GiB memory in use. Of the allocated memory 35.30 GiB is allocated by PyTorch, and 3.52 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-04-23 18:20:49] [w1] [53] FAIL lm8_fp32_bs128 rc=1 duration=97s
+[2026-04-23 18:20:49] [w1] [54] SKIP lm8_dllm_bs128 (claimed by other)
+[2026-04-23 18:20:49] [w1] [55] START p4_bf16_bs128  model=Phi-4 method=bf16_baseline dtype=bfloat16 bs=128
+[Phi-4 | math500 | bf16_baseline | bs=128 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.06it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.08it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.11it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.13it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.10it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.10it/s]
+  model loaded in 6.4s on cuda:0
+  dataset math500: 10 problems loaded
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 306, in <module>
+    main()
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 257, in main
+    text, toks, lps = generate_one(
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 136, in generate_one
+    out = model(input_ids=ids, use_cache=True)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 465, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 401, in forward
+    hidden_states = decoder_layer(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 263, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 198, in forward
+    attn_output, attn_weights = attention_interface(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 105, in eager_attention_forward
+    attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/functional.py", line 2142, in softmax
+    ret = input.softmax(dim, dtype=dtype)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.32 GiB. GPU 0 has a total capacity of 47.40 GiB of which 1015.62 MiB is free. Including non-PyTorch memory, this process has 46.40 GiB memory in use. Of the allocated memory 39.99 GiB is allocated by PyTorch, and 6.10 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-04-23 18:23:50] [w1] [55] FAIL p4_bf16_bs128 rc=1 duration=181s
+[2026-04-23 18:23:50] [w1] [56] START p4_dllm_bs128  model=Phi-4 method=dllm_hybrid dtype=bfloat16 bs=128
+[Phi-4 | math500 | dllm_hybrid | bs=128 | seed=0 | n=10 | gen=256]
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:00<00:04,  1.06it/s]Loading checkpoint shards:  33%|███▎      | 2/6 [00:01<00:03,  1.08it/s]Loading checkpoint shards:  50%|█████     | 3/6 [00:02<00:02,  1.10it/s]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:03<00:01,  1.13it/s]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:04<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.09it/s]Loading checkpoint shards: 100%|██████████| 6/6 [00:05<00:00,  1.10it/s]
+  model loaded in 6.5s on cuda:0
+  dataset math500: 10 problems loaded
+Traceback (most recent call last):
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 306, in <module>
+    with open(args.out, "w") as f:
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 257, in main
+    }
+  File "/home/kec23008/docker-sys/dllm/research/run_eval_general.py", line 136, in generate_one
+    out = model(input_ids=ids, use_cache=True)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 918, in wrapper
+    output = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 465, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 401, in forward
+    hidden_states = decoder_layer(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 263, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 198, in forward
+    attn_output, attn_weights = attention_interface(
+  File "/home/kec23008/.local/lib/python3.10/site-packages/transformers/models/phi3/modeling_phi3.py", line 105, in eager_attention_forward
+    attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)
+  File "/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/nn/functional.py", line 2142, in softmax
+    ret = input.softmax(dim, dtype=dtype)
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.32 GiB. GPU 0 has a total capacity of 47.40 GiB of which 1.86 GiB is free. Including non-PyTorch memory, this process has 45.53 GiB memory in use. Of the allocated memory 39.35 GiB is allocated by PyTorch, and 5.85 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[2026-04-23 18:34:08] [w1] [56] FAIL p4_dllm_bs128 rc=1 duration=618s
+[2026-04-23 18:34:08] [w1] === dtype-sweep worker w1 done ===

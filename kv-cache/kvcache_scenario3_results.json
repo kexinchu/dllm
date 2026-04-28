@@ -1,0 +1,101 @@
+{
+  "config": {
+    "model": "/home/kec23008/docker-sys/Models/Llama-3.1-8B-Instruct",
+    "num_runs": 1000
+  },
+  "scenario3": {
+    "summary": {
+      "chunk_512": {
+        "total_differ": 0,
+        "total_argmax_flip": 0,
+        "max_diff": "0.000000e+00"
+      },
+      "chunk_256": {
+        "total_differ": 0,
+        "total_argmax_flip": 0,
+        "max_diff": "0.000000e+00"
+      },
+      "chunk_128": {
+        "total_differ": 1000,
+        "total_argmax_flip": 0,
+        "max_diff": "4.453125e-01"
+      },
+      "chunk_64": {
+        "total_differ": 1000,
+        "total_argmax_flip": 0,
+        "max_diff": "2.656250e-01"
+      }
+    },
+    "per_prompt": [
+      {
+        "prompt_idx": 0,
+        "seq_len": 175,
+        "runs": 250,
+        "results": {
+          "chunk_128": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "4.453125e-01"
+          },
+          "chunk_64": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "2.656250e-01"
+          }
+        }
+      },
+      {
+        "prompt_idx": 1,
+        "seq_len": 193,
+        "runs": 250,
+        "results": {
+          "chunk_128": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "2.656250e-01"
+          },
+          "chunk_64": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "2.226562e-01"
+          }
+        }
+      },
+      {
+        "prompt_idx": 2,
+        "seq_len": 206,
+        "runs": 250,
+        "results": {
+          "chunk_128": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "2.656250e-01"
+          },
+          "chunk_64": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "2.187500e-01"
+          }
+        }
+      },
+      {
+        "prompt_idx": 3,
+        "seq_len": 211,
+        "runs": 250,
+        "results": {
+          "chunk_128": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "1.875000e-01"
+          },
+          "chunk_64": {
+            "differ_count": 250,
+            "argmax_flip": 0,
+            "max_diff": "2.500000e-01"
+          }
+        }
+      }
+    ]
+  },
+  "elapsed_seconds": 315.6
+}

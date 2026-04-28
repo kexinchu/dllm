@@ -1,0 +1,167 @@
+{
+  "logits_bi": {
+    "Pure BF16": {
+      "bs2": {
+        "logits_max_diff": 0.21875,
+        "logits_mean_diff": 0.022074507549405098,
+        "nonzero_ratio": 0.7853332397704591,
+        "argmax_match": true
+      },
+      "bs4": {
+        "logits_max_diff": 0.234375,
+        "logits_mean_diff": 0.0221069548279047,
+        "nonzero_ratio": 0.7808882235528942,
+        "argmax_match": true
+      },
+      "bs8": {
+        "logits_max_diff": 26.8125,
+        "logits_mean_diff": 2.5701100826263428,
+        "nonzero_ratio": 0.9982004740518962,
+        "argmax_match": false
+      },
+      "bs16": {
+        "logits_max_diff": 27.0,
+        "logits_mean_diff": 2.5970346927642822,
+        "nonzero_ratio": 0.9981794224051896,
+        "argmax_match": false
+      }
+    },
+    "Linear-only FP32 accum": {
+      "bs2": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": false
+      },
+      "bs4": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": false
+      },
+      "bs8": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": false
+      },
+      "bs16": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": false
+      }
+    },
+    "Full FP32 accum": {
+      "bs2": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": true
+      },
+      "bs4": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": true
+      },
+      "bs8": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": true
+      },
+      "bs16": {
+        "logits_max_diff": NaN,
+        "logits_mean_diff": NaN,
+        "nonzero_ratio": 0.0,
+        "argmax_match": true
+      }
+    }
+  },
+  "op_nondeterminism": {
+    "gemm": {
+      "bf16_diffs": {
+        "2": 1.0,
+        "4": 2.0,
+        "8": 2.0,
+        "16": 4.0,
+        "32": 4.0
+      },
+      "fp32_diffs": {
+        "2": 0.5,
+        "4": 0.125,
+        "8": 0.5,
+        "16": 0.5,
+        "32": 0.5
+      }
+    },
+    "rmsnorm": {
+      "2": {
+        "bf16": 0.015625,
+        "fp32": 0.0
+      },
+      "4": {
+        "bf16": 0.03125,
+        "fp32": 0.0
+      },
+      "8": {
+        "bf16": 0.03125,
+        "fp32": 0.0
+      },
+      "16": {
+        "bf16": 0.03125,
+        "fp32": 0.0
+      },
+      "32": {
+        "bf16": 0.03125,
+        "fp32": 0.0
+      }
+    },
+    "attention": {
+      "2": {
+        "bf16": 0.41796875,
+        "fp32": 0.41796875
+      },
+      "4": {
+        "bf16": 1.13671875,
+        "fp32": 1.14453125
+      },
+      "8": {
+        "bf16": 1.38671875,
+        "fp32": 1.39453125
+      },
+      "16": {
+        "bf16": 2.54833984375,
+        "fp32": 2.54833984375
+      }
+    }
+  },
+  "performance": {
+    "bf16": {
+      "mean_ms": 1166.8454725877382,
+      "std_ms": 10.202372219272187
+    },
+    "linear_only": {
+      "mean_ms": 45239.20770690311,
+      "std_ms": 465.01319175924493
+    },
+    "linear_rmsnorm": {
+      "mean_ms": 45251.997261098586,
+      "std_ms": 374.4748120484484
+    },
+    "full": {
+      "mean_ms": 46247.35397720942,
+      "std_ms": 848.4551537947697
+    }
+  },
+  "near_ties": {
+    "total_tokens": 42,
+    "near_ties": {
+      "1e-01": 0.02380952425301075,
+      "1e-02": 0.0,
+      "1e-03": 0.0,
+      "1e-04": 0.0
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "config": {
+    "model_path": "/workspace/Models/Llama-3.1-8B-Instruct",
+    "num_queries": 3,
+    "max_new_tokens": 32,
+    "num_runs": 2,
+    "seed": 42
+  },
+  "pure_bf16": {
+    "mode": "Pure BF16 (BF16 storage + BF16 compute)",
+    "num_queries": 3,
+    "num_runs": 2,
+    "per_query_avg_latency_ms": [
+      1244.4029827602208,
+      1431.5707618370652,
+      1157.4518596753478
+    ],
+    "per_query_avg_tokenization_ms": [
+      0.7879380136728287,
+      0.8082566782832146,
+      1.8430440686643124
+    ],
+    "per_query_avg_inference_ms": [
+      1243.5822687111795,
+      1430.7232331484556,
+      1155.56564880535
+    ],
+    "overall_mean_latency_ms": 1277.8085347575445,
+    "overall_std_latency_ms": 229.45633248386446,
+    "overall_mean_tokenization_ms": 1.1464129202067852,
+    "overall_mean_inference_ms": 1276.6237168883283,
+    "overall_std_inference_ms": 229.52803665039917,
+    "total_time_ms": 7666.851208545268
+  },
+  "layercast": {
+    "mode": "LayerCast (BF16 storage + FP32 compute)",
+    "num_queries": 3,
+    "num_runs": 2,
+    "per_query_avg_latency_ms": [
+      3717.8405658341944,
+      3705.9114542789757,
+      3850.939063820988
+    ],
+    "per_query_avg_tokenization_ms": [
+      0.8438327349722385,
+      0.6910804659128189,
+      1.857886090874672
+    ],
+    "per_query_avg_inference_ms": [
+      3716.965302359313,
+      3705.189486499876,
+      3849.048559553921
+    ],
+    "overall_mean_latency_ms": 3758.230361311386,
+    "overall_std_latency_ms": 65.74500385279701,
+    "overall_mean_tokenization_ms": 1.1309330972532432,
+    "overall_mean_inference_ms": 3757.06778280437,
+    "overall_std_inference_ms": 65.22728790892478,
+    "total_time_ms": 22549.382167868316
+  },
+  "comparison": {
+    "bf16_latency_ms": 1276.6237168883283,
+    "layercast_latency_ms": 3757.06778280437,
+    "slowdown_factor": 2.9429719447496496,
+    "speedup_factor": 0.3397925698150232
+  }
+}

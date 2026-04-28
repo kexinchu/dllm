@@ -1,0 +1,46 @@
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.33s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.05s/it]
+  N_PROB=5  BS=[1, 2, 4, 8, 16]  MAX_NEW=256
+
+=== BF16 ===
+  problem 0: pre_div=256  avg_std=3.016e-03  t=['7.7', '7.7', '7.5', '7.6', '8.0']
+  problem 1: pre_div=14  avg_std=5.235e-03  t=['7.4', '7.8', '7.6', '7.8', '8.3']
+  problem 2: pre_div=124  avg_std=3.659e-03  t=['7.4', '7.5', '7.7', '7.7', '8.0']
+  problem 3: pre_div=56  avg_std=3.377e-03  t=['7.4', '7.4', '7.8', '7.6', '7.9']
+  problem 4: pre_div=6  avg_std=2.790e-03  t=['7.4', '7.6', '8.1', '8.3', '9.2']
+  TOTAL: 194.3s  Avg_Std@top1=3.615e-03
+
+=== SRP-FP32 (HF Triton) ===
+  problem 0: pre_div=256  avg_std=0.000e+00  t=['20.5', '14.6', '9.8', '15.1', '10.8']
+  problem 1: pre_div=256  avg_std=0.000e+00  t=['9.8', '10.1', '9.9', '10.0', '10.6']
+  problem 2: pre_div=256  avg_std=0.000e+00  t=['9.9', '9.7', '9.8', '10.2', '10.2']
+  problem 3: pre_div=256  avg_std=0.000e+00  t=['14.7', '10.0', '9.7', '9.8', '10.0']
+  problem 4: pre_div=256  avg_std=0.000e+00  t=['10.0', '9.8', '10.1', '10.7', '13.0']
+  TOTAL: 278.7s  Avg_Std@top1=0.000e+00
+
+=== vLLM batch_invariant ===
+/home/kec23008/miniconda3/envs/dllm_research/lib/python3.10/site-packages/torch/library.py:349: UserWarning: Warning only once for all operators,  other operators may also be overridden.
+  Overriding a previously registered kernel for the same operator and the same dispatch key
+  operator: aten::_log_softmax(Tensor self, int dim, bool half_to_float) -> Tensor
+    registered at /pytorch/build/aten/src/ATen/RegisterSchema.cpp:6
+  dispatch key: CUDA
+  previous kernel: registered at /pytorch/build/aten/src/ATen/RegisterCPU.cpp:30477
+       new kernel: registered at /dev/null:135 (Triggered internally at /pytorch/aten/src/ATen/core/dispatch/OperatorEntry.cpp:154.)
+  self.m.impl(
+[W426 15:02:40.278921929 Context.cpp:336] Warning: torch.backends.cuda.preferred_blas_library is an experimental feature. If you see any error or unexpected behavior when this flag is set please file an issue on GitHub. (function operator())
+  problem 0: pre_div=256  avg_std=3.167e-04  t=['13.3', '11.1', '11.0', '11.0', '11.6']
+  problem 1: pre_div=188  avg_std=1.757e-03  t=['10.9', '10.9', '11.2', '11.2', '11.4']
+  problem 2: pre_div=256  avg_std=6.461e-04  t=['11.1', '11.0', '11.0', '11.4', '11.2']
+  problem 3: pre_div=256  avg_std=1.797e-04  t=['11.0', '11.2', '11.0', '11.1', '11.4']
+  problem 4: pre_div=9  avg_std=7.682e-04  t=['11.0', '11.4', '11.3', '11.7', '12.7']
+  TOTAL: 282.9s  Avg_Std@top1=7.336e-04
+
+====================================================================================
+FINAL
+====================================================================================
+  method                       total      Avg_Std   overhead
+  BF16                        194.3s    3.615e-03      +0.0%
+  SRP-FP32 (HF Triton)        278.7s    0.000e+00     +43.4%
+  vLLM batch_invariant        282.9s    7.336e-04     +45.6%
+
+Saved: /home/kec23008/docker-sys/dllm/research/exp_validate/vllm_kernels_results.json

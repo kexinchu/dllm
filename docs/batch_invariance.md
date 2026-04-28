@@ -21,14 +21,32 @@ print(f"There are {len(results)} unique results")
 # Output:
 # There are 102 unique results
 ```
-- GPU上的原子操作(类似"原子加法")时"非确定性的"
+- 假说：GPU上的并行规约：浮点非结合律 + 规约顺序改变
     - 涉及多个SM核心参与同一个向量的规约，执行顺序完全取决于哪个核心先完成计算
-    - 但是问题源头并不是来自于“GPU本身并行就不确定”；而是kernel选择
+        - 对向量规约 $S = \sum_{i=0}^{N-1}x_i$; GPU常见是将vector切分成多段，交给多个thread block（每个block 被调度到某个SM上计算）。每个block/SM内的本地规约通常是相对可控的。
+        - 但是跨SM合并（atomicAdd，全局加法）顺序取决于到达顺序：$atomicAdd(&S, p_*)$
+    - atomicAdd确保每个SM的result都被处理，但不保证顺序
+- 实际上：问题源头并不是来自于“GPU本身并行就不确定”；而是kernel选择
+    - Why 这么说？
+        - 上面的atomicAdd确实会导致这个nondeterministic的问题，但是绝大部分kernel中没有atomicAdd ops
+        - 在典型的LLM forward过程中，不含atomicAdd操作？
+            - token embedding, RoPE, activation, bias Add, Residual Add 都是per-token ops，无规约
+            - RMSNorm/layernorm，GEMM(mutmal)，Softmax 有规约，但是不依赖atomicAdd
+                - 以GEMM为例，大部分工程上几乎都按照 output tile来划分，不需要在规约维度上并行化
+                - 类似“树状”规约的策略，可以实现确定性 + 不牺牲性能
+        - 结果：使用相同的kernel，可以保证deterministic；
+    - 为什么说kernel选择才是问题源头呢？
+        - 选择不同的kernel，会导致：$(a+b+c)+(d+e+f) \neq (a+b)+(c+d)+(e+f)$
         - 为了得到最佳效率，对于 matmul / attention 这类带 reduction 的 kernel，会根据 batch 大小、形状动态选择不同的分块 / split-K / tensor core 指令。
-        - 不同的划分 → 不同的加法顺序 → 浮点非结合性 → logit 有微小差异 → greedy 采样在某个 token 开始走到另一条路径。
-        - 影响：即使temperature = 0， 也会返回不同的结果：(作者在vLLM下执行推理，相同prompt采样1000次得到了 80 个不同的结果)
-    - 问题定义“batch invariance”: 对同一个样本，无论它是在 batch_size=1 跑，还是和其他请求一起 batch_size=32 跑，甚至 batch 内位置变化，该样本的每一步数值轨迹都要一模一样
-    - Horace的方案是：重写RMSNorm/matual/attention这三个关键op，保证其reduction 方式对 batch尺度 / chunking / prefix caching 不敏感，包括：
+        - 例子：Mutmal/GEMM: $C = A x B$; 其中A是activation，shape=[M,K], B是权重，shape=[K,N]
+            - 对于标准output-tile GEMM, 按照 M 划分block, 此时假设 $M=batch_size=1$, 那么划分之后只有一个block，即只有一个MAC参与计算，其他MAC闲置 => 利用率低
+            - 对split-k + Add方法
+                - 按照K维度，分为 S 份，每个[1, K/S]块被分到一个block；分给 M*S 个MAC计算后再规约
+                - atomic合并，导致non-determinstic （最常见，vllm/sglang的deterministic常见都需要关闭split-k）
+            - 实际情况：对于M很小，会开启split-k，但是随着M增加，output-tiles 变多，S会减小甚至关闭split-k；这样就导致了batch variance
+    - 问题定义“batch invariance”: 
+        - 对同一个样本，无论它是在 batch_size=1 跑，还是和其他请求一起 batch_size=32 跑，甚至 batch 内位置变化，该样本的每一步数值轨迹都要一模一样
+    - Horace的方案是：重写RMSNorm/matual/attention这三个关键op，保证其 reduction 方式对 batch尺度 / chunking / prefix caching 不敏感，包括：
         - RMSNorm：
         ```py
         # x: [batch_size, hidden_dim]
@@ -37,19 +55,17 @@ print(f"There are {len(results)} unique results")
         ```
             - 修改前：
                 - 大 batch 时：data-parallel，每个 batch element（一行）交给一个 core/SM，整条向量的 mormalization 在该 core 内完成。
-                - 小 batch 时：为了“把所有 SM 喂饱”，会启用 split reduction：一个向量被拆成多个 chunk，分给多个 core 做局部 sum，再在最后合并。 => 可能会导致顺序改变
+                - 小 batch 时：为了“把所有 SM 喂饱”，会启用 split-k reduction：一个向量被拆成多个 chunk，分给多个 core 做局部 sum，再在最后合并。 => 可能会导致顺序改变
             - 修改后：
                 - 坚持使用data parallel, 每个element的normalization始终由一个core持有并完成；batch增大时，就多开启一些thread block；小 batch 时，牺牲并行度。
         <img src="./pictures/RMSNorm.jpg" width=400>
         
         - Matmul：
-            - 修改前：
-                - “正常情况”：data parallel，将输出matrix切分成2D tiles，每个tile分给一个core，在这个core内完成所有dot-prodect的规约计算
-                - 当在小batch下，如果K比较大，为了饱和GPU，会使用Split-K/Stream-K策略，在K维进行拆分，使多个core计算同一个输出tile的不同K区间，再合并 => 导致顺序改变
-                - 另外，tensor core选择也有影响：大tile在batch size大时效率高，小batch时，会切换小tile。也会导致内部的累加顺序改变
+            - 修改前：如前面所述
             - 修改后：
-                - 对 matmul 只保留一套内核配置(tile size + tensor core指令 + parallel划分方案)，只按照输出2D tiles做data parallel，不再拆分K；同时禁用 split-K/stream-K、动态tensor core 的策略
+                - 只按照output tiles做data parallel，不再拆分K维度；同时禁用 split-K/stream-K、动态tensor core等策略
                 - 相比于cuBLAS，损失了~20% 的性能，小batch时更明显
+        
         - Attention：
             - 比较复杂，在feature dim 和 sequence dim上分别进行规约
             - 修改前（以FlashAttention2为例）：
@@ -144,7 +160,6 @@ $${(e_1, w_1),(e_2, w_2)} = topk(softmax(matmul(w_{gate}, input)))$$
 - 结果
     - 是batch-invariant
 
-
 - 第一版测试因为 Gating 中的 Matmul 没有替换，测试出不同的结论
     - 根因分析
         - Gate Input: 100% 相同 (0.0000000000e+00)
@@ -204,7 +219,7 @@ class Qwen3MoeTopKRouter(nn.Module):
         self.hidden_dim = config.hidden_size
         self.weight = nn.Parameter(torch.zeros(self.num_experts, self.hidden_dim))
 
-    def forward(self, hidden_states):
+    def forward(self, hidden_states): # [batch_size=2, seq_len=100, hidden_num=1024]
         hidden_states = hidden_states.reshape(-1, self.hidden_dim)
         router_logits = F.linear(hidden_states, self.weight)  # (seq_len, num_experts)
         router_logits = torch.nn.functional.softmax(router_logits, dtype=torch.float, dim=-1)

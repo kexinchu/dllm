@@ -1,0 +1,85 @@
+{
+  "config": {
+    "model_path": "/workspace/Models/Llama-3.1-8B-Instruct",
+    "sharegpt_json": "/workspace/dllm/ShareGPT_V3_unfiltered_cleaned_split.json",
+    "num_queries": 5,
+    "max_new_tokens": 64,
+    "num_runs": 2,
+    "seed": 42
+  },
+  "pure_bf16": {
+    "mode": "Pure BF16 (BF16 storage + BF16 compute)",
+    "num_queries": 5,
+    "num_runs": 2,
+    "per_query_avg_latency_ms": [
+      2242.231640033424,
+      2249.4023302569985,
+      2378.9761918596923,
+      2764.914831612259,
+      2304.6171199530363
+    ],
+    "per_query_avg_tokenization_ms": [
+      0.9865383617579937,
+      0.9143413044512272,
+      1.7313230782747269,
+      1.05217844247818,
+      0.6730714812874794
+    ],
+    "per_query_avg_inference_ms": [
+      2241.2100257351995,
+      2248.456008732319,
+      2377.21299007535,
+      2763.8150467537344,
+      2303.9142224006355
+    ],
+    "overall_mean_latency_ms": 2388.028422743082,
+    "overall_std_latency_ms": 294.91095077464735,
+    "overall_mean_tokenization_ms": 1.0714905336499214,
+    "overall_mean_inference_ms": 2386.9216587394476,
+    "overall_std_inference_ms": 294.67894795670327,
+    "total_time_ms": 23880.28422743082
+  },
+  "only_reduction_fp32": {
+    "mode": "Only-Reduction-FP32 (BF16 + FP32 reduction in Linear)",
+    "num_queries": 5,
+    "num_runs": 2,
+    "per_query_avg_latency_ms": [
+      83607.82011784613,
+      83513.27456347644,
+      85356.97182174772,
+      83009.48506779969,
+      80879.15381928906
+    ],
+    "per_query_avg_tokenization_ms": [
+      1.1793035082519054,
+      0.5942755378782749,
+      1.5645246021449566,
+      0.5754823796451092,
+      0.7082708179950714
+    ],
+    "per_query_avg_inference_ms": [
+      83606.60538868979,
+      83512.65405025333,
+      85355.38100358099,
+      83008.88494448736,
+      80878.4128469415
+    ],
+    "overall_mean_latency_ms": 83273.34107803181,
+    "overall_std_latency_ms": 1870.7496536567894,
+    "overall_mean_tokenization_ms": 0.9243713691830635,
+    "overall_mean_inference_ms": 83272.3876467906,
+    "overall_std_inference_ms": 1870.5379688085163,
+    "total_time_ms": 832733.4107803181
+  },
+  "determinism": {
+    "deterministic": true,
+    "num_repeats": 5,
+    "num_tokens_generated": 64
+  },
+  "comparison": {
+    "bf16_latency_ms": 2386.9216587394476,
+    "fp32_reduction_latency_ms": 83272.3876467906,
+    "slowdown_factor": 34.88693788583217,
+    "deterministic": true
+  }
+}

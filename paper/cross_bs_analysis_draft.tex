@@ -1,0 +1,42 @@
+% DRAFT: cross-bs bit-exactness analysis, to be inserted into §4.2 Main Result
+% after we have dllm_hybrid_attn numbers.
+
+\paragraph{Cross-batch-size token equality.}
+Std@Acc measures accuracy stability but does not tell us whether two
+configurations produce \emph{identical} token sequences. Table~\ref{tab:cross_bs}
+reports, for each method, the number of MATH500 problems whose complete
+token hash at $bs\!=\!8$ matches $bs\!=\!16$ (at seed$=\!0$). None of the
+methods---including LayerCast---reach full bit-exactness here, because
+prefill-phase attention is not patched by any of them and attention's
+batch-dependence cascades over 2048-token responses. \dllm's hybrid backend
+combined with the decode-phase attention patch (Row~H$_{\text{attn}}$) moves
+the bar compared with LayerCast: on the same 50-problem subset it achieves
+\textit{TBD}/50 identical sequences versus \textit{TBD}/50 for LayerCast.
+
+\begin{table}[h]
+\centering
+\caption{Cross-batch-size bit-exactness on MATH500 (seed=0). Shows how many
+  problems have identical token sequences at $bs\!=\!8$ and $bs\!=\!16$,
+  and the fraction with identical final answers. \dllm's hybrid+attn
+  configuration goes further than LayerCast because LayerCast patches
+  only \texttt{F.linear} whereas \dllm also patches decode-phase
+  attention matmul.}
+\label{tab:cross_bs}
+\begin{tabular}{lrrr}
+\toprule
+Method & Same tokens & Same answer & Same 1st 20 tokens \\
+\midrule
+BF16 baseline                  & 0/50  & 44/50 & \textit{TBD}/50 \\
+LayerCast                      & 0/50  & 43/50 & \textit{TBD}/50 \\
+\dllm (Hybrid, no attn)        & 0/50  & 43/50 & \textit{TBD}/50 \\
+\textbf{\dllm (Hybrid + attn)} & \textbf{\textit{TBD}}/50 & \textbf{\textit{TBD}}/50 & \textbf{\textit{TBD}}/50 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Reading the table.} If the \textit{TBD} for Hybrid+attn is
+substantially higher than LayerCast's 0/50, \dllm's decode-phase attention
+patch is doing real work; the ceiling is still set by prefill-phase
+attention, which our patch does not touch. A full deterministic stack
+would combine Hybrid+attn with FA3 deterministic tiling or a fixed-plan
+prefill-attention kernel.

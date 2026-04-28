@@ -1,0 +1,225 @@
+{
+  "rows": [
+    {
+      "model": "DeepSeek-R1-Distill-Qwen-7B",
+      "method": "BF16",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "avg_std_top1": 0.1165797391064668,
+      "div_idx_median": 53.0,
+      "div_idx_mean": 75.7,
+      "div_idx_values": [
+        112,
+        241,
+        29,
+        25,
+        57,
+        49,
+        4,
+        145,
+        11,
+        84
+      ]
+    },
+    {
+      "model": "DeepSeek-R1-Distill-Qwen-7B",
+      "method": "DetermLLM",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32
+      ],
+      "avg_std_top1": 0.11236767687926381,
+      "div_idx_median": 69.5,
+      "div_idx_mean": 86.3,
+      "div_idx_values": [
+        155,
+        173,
+        75,
+        25,
+        64,
+        170,
+        4,
+        132,
+        11,
+        54
+      ]
+    },
+    {
+      "model": "DeepSeek-R1-Distill-Qwen-7B",
+      "method": "FP32-full",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32
+      ],
+      "avg_std_top1": 6.322287711819407e-07,
+      "div_idx_median": 256.0,
+      "div_idx_mean": 256,
+      "div_idx_values": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ]
+    },
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "method": "BF16",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "avg_std_top1": 0.07853350162990719,
+      "div_idx_median": 55.0,
+      "div_idx_mean": 75.6,
+      "div_idx_values": [
+        167,
+        10,
+        58,
+        52,
+        30,
+        11,
+        117,
+        150,
+        143,
+        18
+      ]
+    },
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "method": "DetermLLM",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32
+      ],
+      "avg_std_top1": 0.06053231560819353,
+      "div_idx_median": 72.0,
+      "div_idx_mean": 112.3,
+      "div_idx_values": [
+        166,
+        59,
+        256,
+        52,
+        39,
+        11,
+        140,
+        256,
+        72,
+        72
+      ]
+    },
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "method": "FP32-full",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32
+      ],
+      "avg_std_top1": 5.15047091782964e-07,
+      "div_idx_median": 256.0,
+      "div_idx_mean": 242.6,
+      "div_idx_values": [
+        256,
+        256,
+        256,
+        232,
+        256,
+        190,
+        235,
+        256,
+        233,
+        256
+      ]
+    },
+    {
+      "model": "Phi-4",
+      "method": "BF16",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "avg_std_top1": 0.004027246025526996,
+      "div_idx_median": 256.0,
+      "div_idx_mean": 228.1,
+      "div_idx_values": [
+        221,
+        12,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ]
+    },
+    {
+      "model": "Phi-4",
+      "method": "DetermLLM",
+      "bs_have": [
+        1,
+        4,
+        8,
+        16,
+        32
+      ],
+      "avg_std_top1": 0.0033149594602998,
+      "div_idx_median": 256.0,
+      "div_idx_mean": 238,
+      "div_idx_values": [
+        76,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ]
+    }
+  ],
+  "bs_list": [
+    1,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128
+  ]
+}

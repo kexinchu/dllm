@@ -1,0 +1,14 @@
+=== method=dllm_hybrid_attn bs=8 seed=0 ===
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.33s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  1.99s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.04s/it]
+  method activated: dllm_hybrid_attn
+Loading MATH500 (n=10) ...
+  [  1/10] correct=✗ len=1024 hash=9c53bd6e0ef4 acc_so_far=0.00% elapsed=431s
+  [  2/10] correct=✗ len=1024 hash=85d92015df9a acc_so_far=0.00% elapsed=789s
+  [  3/10] correct=✗ len=1024 hash=e1f95d8785af acc_so_far=0.00% elapsed=1148s
+  [  4/10] correct=✓ len=1024 hash=f22c61e2fecc acc_so_far=25.00% elapsed=1507s
+=== method=dllm_hybrid_attn bs=16 seed=0 ===
+Loading /home/kec23008/docker-sys/Models/DeepSeek-R1-Distill-Qwen-7B ...
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.61s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.02s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.11s/it]
+  method activated: dllm_hybrid_attn
+Loading MATH500 (n=10) ...

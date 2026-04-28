@@ -1,0 +1,7 @@
+# ninja log v5
+0	145370	1776566642378922099	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-cpython-310/csrc/gemm_fixed_algo.o	57210c480459ba07
+33	144474	1776573707005048457	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-cpython-310/csrc/gemm_fixed_algo.o	bafae5379e31ef54
+54	146947	1776575292102765629	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-cpython-310/csrc/gemm_fixed_algo.o	bafae5379e31ef54
+41	130285	1776606469790115985	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-cpython-310/csrc/gemm_fixed_algo.o	57210c480459ba07
+29	148350	1776606865376717979	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-cpython-310/csrc/gemm_fixed_algo.o	bafae5379e31ef54
+45	147441	1776614754497133713	/home/kec23008/docker-sys/dllm/FP32/build/temp.linux-x86_64-cpython-310/csrc/gemm_fixed_algo.o	bafae5379e31ef54

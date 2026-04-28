@@ -1,0 +1,198 @@
+{
+  "D1_moe_bf16": {
+    "p0": {
+      "2": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "4": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "8": {
+        "rollback": true,
+        "first_pos": 36,
+        "recompute": 28,
+        "recompute_pct": 43.75
+      },
+      "16": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "32": {
+        "rollback": true,
+        "first_pos": 36,
+        "recompute": 28,
+        "recompute_pct": 43.75
+      }
+    },
+    "p1": {
+      "2": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "4": {
+        "rollback": true,
+        "first_pos": 35,
+        "recompute": 29,
+        "recompute_pct": 45.3125
+      },
+      "8": {
+        "rollback": true,
+        "first_pos": 35,
+        "recompute": 29,
+        "recompute_pct": 45.3125
+      },
+      "16": {
+        "rollback": true,
+        "first_pos": 35,
+        "recompute": 29,
+        "recompute_pct": 45.3125
+      },
+      "32": {
+        "rollback": true,
+        "first_pos": 35,
+        "recompute": 29,
+        "recompute_pct": 45.3125
+      }
+    },
+    "p2": {
+      "2": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "4": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "8": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "16": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "32": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      }
+    }
+  },
+  "D1_moe_fp32": {
+    "p0": {
+      "2": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "4": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "8": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "16": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "32": {
+        "rollback": true,
+        "first_pos": 36,
+        "recompute": 28,
+        "recompute_pct": 43.75
+      }
+    },
+    "p1": {
+      "2": {
+        "rollback": true,
+        "first_pos": 5,
+        "recompute": 59,
+        "recompute_pct": 92.1875
+      },
+      "4": {
+        "rollback": true,
+        "first_pos": 5,
+        "recompute": 59,
+        "recompute_pct": 92.1875
+      },
+      "8": {
+        "rollback": true,
+        "first_pos": 5,
+        "recompute": 59,
+        "recompute_pct": 92.1875
+      },
+      "16": {
+        "rollback": true,
+        "first_pos": 5,
+        "recompute": 59,
+        "recompute_pct": 92.1875
+      },
+      "32": {
+        "rollback": true,
+        "first_pos": 5,
+        "recompute": 59,
+        "recompute_pct": 92.1875
+      }
+    },
+    "p2": {
+      "2": {
+        "rollback": true,
+        "first_pos": 34,
+        "recompute": 30,
+        "recompute_pct": 46.875
+      },
+      "4": {
+        "rollback": true,
+        "first_pos": 34,
+        "recompute": 30,
+        "recompute_pct": 46.875
+      },
+      "8": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "16": {
+        "rollback": false,
+        "first_pos": null,
+        "recompute": 0,
+        "recompute_pct": 0.0
+      },
+      "32": {
+        "rollback": true,
+        "first_pos": 34,
+        "recompute": 30,
+        "recompute_pct": 46.875
+      }
+    }
+  }
+}
